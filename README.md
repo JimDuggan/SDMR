@@ -15,9 +15,9 @@ The text book is available  (in a number of formats) through the following links
 ### System Dynamics
 [System dynamics](http://www.systemdynamics.org) is a modeling methodology used to build simulation models of social systems, and these computerized models can support policy analysis and decision making.  This simulation method is based calculus, and models of real-world dynamic processes are constructed using integral equations. The models presented illustrate the breadth of application of system dynamics, and include:
 
-* [**Epidemiology**](https://github.com/JimDuggan/SDMR/tree/master/models), with a focus on the contagious disease [SIR model](http://mathworld.wolfram.com/SIRModel.html ), and an interesting extension of this to a disaggregate form, based on a vectorized R implementation.
-* [**Health Systems Design**](https://github.com/JimDuggan/SDMR/tree/master/models), which provides a joined-up model comprising population demographics, a supply chain of general practitioners, and a demand-capacity model of general practitioner services to overall population.
-* [**Economics and Business**](https://github.com/JimDuggan/SDMR/tree/master/models), ranging from simple customer model, and onto models of limits to growth, capital investment, and the impact of non-renewable resources on growth.
+* **Epidemiology**, with a focus on the contagious disease [SIR model](http://mathworld.wolfram.com/SIRModel.html ), and an interesting extension of this to a disaggregate form, based on a vectorized R implementation.
+* **Health Systems Design**, which provides a system-wide model comprising population demographics, a supply chain of general practitioners, and a demand-capacity model of general practitioner services to overall population.
+* **Economics and Business**, ranging from simple customer model, and onto models of limits to growth, capital investment, and the impact of non-renewable resources on growth.
 
 
 Models are implemented using R and Vensim. The model catalog is as follows:
@@ -121,6 +121,19 @@ The output aligns the two plots, with the flows together on the lower plot, and 
 
 ![](images/CSim.png?raw=true)
 
+
+---
+
+### System Dynamics Simulation Tools
+
+The following are useful links to system dynamics software, which can be used to build system dynamics models.
+
+* [**AnyLogic**](http://www.anylogic.com)
+* [**Forio**](http://forio.com)
+* [**InsightMaker**](https://insightmaker.com)
+* [**PowerSim**](http://www.powersim.com)
+* [**Stella**](http://www.iseesystems.com/softwares/Education/StellaSoftware.aspx)
+* [**Vensim**](http://vensim.com)
 
 
 
