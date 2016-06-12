@@ -31,7 +31,7 @@ Models are implemented using R and Vensim. The model catalog is as follows:
 * [Chapter 3](https://github.com/JimDuggan/SDMR/tree/master/models/03%20Chapter) presents models of (1) S-Shaped growth, (2) [Solow's](http://piketty.pse.ens.fr/files/Solow1956.pdf) Economic model and (3) a model of overshoot and collapse.
 * [Chapter 4](https://github.com/JimDuggan/SDMR/tree/master/models/04%20Chapter) introduces a  Vensim model for a health systems example, where the model is divided into three distinct sectors
 * [Chapter 5](https://github.com/JimDuggan/SDMR/tree/master/models/05%20Chapter) contains the SIR model and a vectorised diffusion model.
-* Chapter 6 shows how RUnit can be used to test system dynamics models
+* [Chapter 6](https://github.com/JimDuggan/SDMR/tree/master/models/06%20Chapter)shows how RUnit can be used to test system dynamics models
 * Chapter 7 illustrates how statistical screening can be used to analyse system dynamics models
 
 
