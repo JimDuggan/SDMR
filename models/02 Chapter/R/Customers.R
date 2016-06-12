@@ -48,13 +48,6 @@ p1<-ggplot()+
   labs(color="")+
   theme(legend.position="none")
 
-ggplot()+
-  geom_line(data=o,aes(time,o$sCustomers),colour="blue")+
-  geom_point(data=o,aes(time,o$sCustomers),colour="blue")+
-  scale_y_continuous(labels = comma)+
-  ylab("Customers")+
-  xlab("Year")
-
 
 p2<-ggplot()+
   geom_line(data=o,aes(time,o$Losses,color="Losses"))+
@@ -65,7 +58,7 @@ p2<-ggplot()+
   labs(color="")+
   theme(legend.position="none")
 
-grid.arrange(p1, p2,nrow=2, ncol=1)
+p3<-grid.arrange(p1, p2,nrow=2, ncol=1)
 
 
 

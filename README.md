@@ -3,12 +3,16 @@ Welcome to the githib resource for the text book *System Dynamics Modeling with 
 
 ![](https://images.springer.com/sgw/books/medium/9783319340418.jpg "")
 
+With [Springer's MyCopy](http://www.springer.com/gp/products/books/mycopy), students and researchers can order their own personal, printed copy (or an eBook format) for 24.99 includes shipping and handling. This unique service is available to Institutions who have purchased one or more Springer eBook collections.
 
-The text book is available  (in a number of formats) through the following links.
+The text book is also available  (in a number of formats) through the following links.
 
 * View on Springer [System Dynamics Modeling with R](http://www.springer.com/us/book/9783319340418 "View on Springer")
 
 * View on Amazon [System Dynamics Modeling with R](https://www.amazon.co.uk/System-Dynamics-Modeling-Lecture-Networks/dp/3319340417/ref=sr_1_1?s=books&ie=UTF8&qid=1465684713&sr=1-1&keywords=system+dynamics+modeling+with+r "View on Springer")
+
+
+
 
 ---
 
@@ -26,9 +30,9 @@ Models are implemented using R and Vensim. The model catalog is as follows:
 * Chapter 2 has an implemention of the customer model in R
 * Chapter 3 presents models of (1) S-Shaped growth, (2) [Solow's](http://piketty.pse.ens.fr/files/Solow1956.pdf) Economic model and (3) a model of overshoot and collapse.
 * Chapter 4 introduces a  Vensim model for a health systems example, where the model is divided into three distinct sectors
-* Chapter 5 contains the following models
+* Chapter 5 contains the SIR model and a vectorised diffusion model.
 * Chapter 6 shows how RUnit can be used to test system dynamics models
-* Chapter 7 
+* Chapter 7 illustrates how statistical screening can be used to analyse system dynamics models
 
 
 ---
