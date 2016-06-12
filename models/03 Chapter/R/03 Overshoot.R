@@ -148,6 +148,8 @@ s2<-ggplot(data=base,aes(x=time,y=Extraction,color=base$GR))+
   theme(legend.position="bottom")+
   guides(color=guide_legend(title=NULL))
 
+
+
 grid.arrange(s1, s2, nrow=1, ncol=2)
 
 
