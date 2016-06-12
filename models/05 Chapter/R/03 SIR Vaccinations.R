@@ -88,7 +88,7 @@ p1<-ggplot()+
   labs(color="")+
   theme(legend.position="bottom")
 
-ggsave(file="Fig5_7.png", dpi=1600,p1) #saves g
+
 
 
 
