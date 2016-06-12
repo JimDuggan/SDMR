@@ -57,7 +57,7 @@ Models are implemented using R and Vensim. The model catalog is as follows:
 ---
 
 ### deSolve Package
-For the system dynamics examples, the [deSolve package](https://cran.r-project.org/web/packages/deSolve/deSolve.pdf) is used. Am example of a system dynamics model (the customer model) implemented using R and deSolve is shown below. These complete description of the code is contained in the text book, and comments are used here to provide an indication of how the model works.
+For the system dynamics examples, the [deSolve package](https://cran.r-project.org/web/packages/deSolve/deSolve.pdf) is used. An example of a system dynamics model (the customer model) implemented using R and deSolve is shown below. These complete description of the code is contained in the text book, and comments are used here to provide an indication of how the model works.
 
 ```R
 
