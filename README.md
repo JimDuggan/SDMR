@@ -1,7 +1,8 @@
-### Supporting resources for System Dynamics Modeling with R
-Welcome to the githib resource for the text book *System Dynamics Modeling with R*, published by Springer.
+#### Supporting resources for System Dynamics Modeling with R
+Welcome to the githib resource for the forthcoming text book *System Dynamics Modeling with R*, to published by Springer later in 2016.
 
 ![](https://images.springer.com/sgw/books/medium/9783319340418.jpg "")
+
 
 With [Springer's MyCopy](http://www.springer.com/gp/products/books/mycopy), students and researchers can order their own personal, printed copy (or an eBook format) for 24.99 includes shipping and handling. This unique service is available to Institutions who have purchased one or more Springer eBook collections.
 
@@ -16,8 +17,8 @@ The text book is also available  (in a number of formats) through the following 
 
 ---
 
-### System Dynamics
-[System dynamics](http://www.systemdynamics.org) is a modeling methodology used to build simulation models of social systems, and these computerized models can support policy analysis and decision making.  This simulation method is based calculus, and models of real-world dynamic processes are constructed using integral equations. The models presented illustrate the breadth of application of system dynamics, and include:
+#### System Dynamics
+[System dynamics](http://www.systemdynamics.org) is a modeling methodology used to build simulation models of social systems, and these computerized models can support policy analysis and decision making.  This simulation method is based calculus, and models of real-world dynamic processes are constructed using integral equations. The models presented here illustrate the breadth of application of system dynamics, and include:
 
 * **Epidemiology**, with a focus on the contagious disease [SIR model](http://mathworld.wolfram.com/SIRModel.html ), and an interesting extension of this to a disaggregate form, based on a vectorized R implementation.
 * **Health Systems Design**, which provides a system-wide model comprising population demographics, a supply chain of general practitioners, and a demand-capacity model of general practitioner services to overall population.
@@ -31,13 +32,13 @@ Models are implemented using R and Vensim. The model catalog is as follows:
 * [Chapter 3](https://github.com/JimDuggan/SDMR/tree/master/models/03%20Chapter) presents models of (1) S-Shaped growth, (2) [Solow's](http://piketty.pse.ens.fr/files/Solow1956.pdf) Economic model and (3) a model of overshoot and collapse.
 * [Chapter 4](https://github.com/JimDuggan/SDMR/tree/master/models/04%20Chapter) introduces a  Vensim model for a health systems example, where the model is divided into three distinct sectors
 * [Chapter 5](https://github.com/JimDuggan/SDMR/tree/master/models/05%20Chapter) contains the SIR model and a vectorised diffusion model.
-* [Chapter 6](https://github.com/JimDuggan/SDMR/tree/master/models/06%20Chapter)shows how RUnit can be used to test system dynamics models
-* Chapter 7 illustrates how statistical screening can be used to analyse system dynamics models
+* [Chapter 6](https://github.com/JimDuggan/SDMR/tree/master/models/06%20Chapter) shows how RUnit can be used to test system dynamics models
+* [Chapter 7](https://github.com/JimDuggan/SDMR/tree/master/models/07%20Chapter/R) illustrates how statistical screening can be used to analyse system dynamics models
 
 
 ---
 
-### R
+#### R
 [R](https://www.r-project.org) is open-source software (GNU General Public License), and has statistical, data manipulation, and visualization libraries. R is a functional programming language, where software programs are organized into functions that can be invoked to transform data. R is also object oriented. R’s mission is to enable the best and most thorough exploration of data possible ([Chambers 2008](http://www.springer.com/us/book/9780387759357)). For this text, it is recommended to use the [R Studio](https://www.rstudio.com) IDE, which is open source and provides an excellent way to manage R source files. Here is an example of a vector (similar to a one-dimensional array in languages such as C and Java), and how it can be manipulated. A key idea is know as *vectorisation*, where an operation (e.g. v*2) applied to a vector is applied to each vector element.
 
 ```R
@@ -128,7 +129,7 @@ The output aligns the two plots, with the flows together on the lower plot, and 
 
 ---
 
-### System Dynamics Simulation Tools
+#### System Dynamics Simulation Tools
 
 The following are useful links to system dynamics software, which can be used to build system dynamics models.
 
