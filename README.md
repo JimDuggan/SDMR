@@ -26,7 +26,7 @@ The text book is also available  (in a number of formats) through the following 
 
 Models are implemented using R and Vensim. The model catalog is as follows:
 
-* Chapter 1 contains the Vensim model of customer growth, with a single stock (Customers), and two flows, an inflow (Recruits) and an outflow (Losses)
+* [Chapter 1](https://github.com/JimDuggan/SDMR/tree/master/models/01%20Chapter/Vensim) contains the Vensim model of customer growth, with a single stock (Customers), and two flows, an inflow (Recruits) and an outflow (Losses)
 * Chapter 2 has an implemention of the customer model in R
 * Chapter 3 presents models of (1) S-Shaped growth, (2) [Solow's](http://piketty.pse.ens.fr/files/Solow1956.pdf) Economic model and (3) a model of overshoot and collapse.
 * Chapter 4 introduces a  Vensim model for a health systems example, where the model is divided into three distinct sectors
