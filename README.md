@@ -4,15 +4,13 @@ Welcome to the githib resource for the forthcoming text book *System Dynamics Mo
 ![](https://images.springer.com/sgw/books/medium/9783319340418.jpg "")
 
 
-With [Springer's MyCopy](http://www.springer.com/gp/products/books/mycopy), students and researchers can order their own personal, printed copy (or an eBook format) for 24.99 includes shipping and handling. This unique service is available to Institutions who have purchased one or more Springer eBook collections.
-
-The text book is also available  (in a number of formats) through the following links.
+The text book is available  (in a number of formats) through the following links.
 
 * View on Springer [System Dynamics Modeling with R](http://www.springer.com/us/book/9783319340418 "View on Springer")
 
 * View on Amazon [System Dynamics Modeling with R](https://www.amazon.co.uk/System-Dynamics-Modeling-Lecture-Networks/dp/3319340417/ref=sr_1_1?s=books&ie=UTF8&qid=1465684713&sr=1-1&keywords=system+dynamics+modeling+with+r "View on Springer")
 
-
+With [Springer's MyCopy](http://www.springer.com/gp/products/books/mycopy), students and researchers can order their own personal, printed copy (or an eBook format) for 24.99 includes shipping and handling. This unique service is available to Institutions who have purchased one or more Springer eBook collections.
 
 
 ---
