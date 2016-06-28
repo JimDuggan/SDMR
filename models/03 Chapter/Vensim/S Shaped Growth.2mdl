@@ -1,0 +1,126 @@
+{UTF-8}
+Net Flow=
+	Growth Rate*Stock
+	~	People/Year
+	~		|
+
+Growth Rate=
+	Ref Growth Rate*Effect Of Availability on Growth Rate
+	~	People/Year
+	~		|
+
+Availability=
+	1-Stock/Capacity
+	~	Dmnl
+	~		|
+
+Capacity=
+	10000
+	~	People
+	~		|
+
+Effect Of Availability on Growth Rate=
+	Availability/Ref Availability
+	~	Dmnl
+	~		|
+
+Ref Availability=
+	1
+	~	Dmnl
+	~		|
+
+Ref Growth Rate=
+	0.1
+	~	1/Year
+	~		|
+
+Stock= INTEG (
+	Net Flow,
+		100)
+	~	People
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Year
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Year
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Year [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.25
+	~	Year [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Stock,415,161,40,20,3,3,1,24,0,0,0,0,-1--1--1,0-0-0,|10|B|0-0-0
+12,2,48,247,166,10,8,0,3,1,0,-1,0,0,0
+1,3,5,1,4,1,0,22,2,0,0,-1--1--1,|12||0-0-0,1|(348,166)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(283,166)|
+11,5,48,316,166,6,8,34,3,0,0,1,0,0,0
+10,6,Net Flow,316,181,21,7,40,3,1,8,-1,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,7,Ref Growth Rate,155,261,36,7,8,3,0,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,8,Growth Rate,291,236,28,7,8,3,0,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,9,Effect Of Availability on Growth Rate,401,319,46,12,8,3,0,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,10,Capacity,572,217,20,7,8,3,1,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,11,Availability,482,246,26,7,8,3,0,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,12,Ref Availability,293,361,34,7,8,3,0,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+1,13,1,11,1,1,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(481,192)|
+1,14,10,11,1,1,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(538,236)|
+1,15,12,9,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(360,352)|
+1,16,11,9,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(465,278)|
+1,17,9,8,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(328,287)|
+1,18,8,6,1,1,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(295,207)|
+1,19,1,6,1,1,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(380,230)|
+1,20,7,8,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(190,258)|
+12,21,0,368,199,13,13,4,135,0,0,-1,0,0,0
+R
+12,22,0,424,256,13,13,4,135,0,0,-1,0,0,0
+B
+///---\\\
+:L<%^E!@
+1:Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:Ref Growth Rate
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:0
+41:0
+42:0
+24:0
+25:100
+26:100
