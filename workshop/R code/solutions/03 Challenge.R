@@ -1,6 +1,3 @@
-
-Subset the data frame so that only the actual yearly values are shown
-
 library(gdata)
 sim <- read.xls("workshop/R code/01 session/SimData.xlsx",
                 stringsAsFactors=FALSE)
