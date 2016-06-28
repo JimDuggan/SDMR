@@ -2,6 +2,7 @@ library(gdata)
 library(ggplot2)
 library(reshape2)
 
+# open excel file..
 sim <- read.xls("workshop/R code/01 session/SimData.xlsx",
                 stringsAsFactors=FALSE)
 sim$Total<-apply(sim[,2:5],MARGIN = 1,sum)
