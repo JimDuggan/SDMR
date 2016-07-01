@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xmile version="1.0" level="1" xmlns="http://www.systemdynamics.org/XMILE" xmlns:isee="http://iseesystems.com/XMILE">
+    <header>
+        <smile version="1.0" />
+        <name>01 Population</name>
+        <uuid>21b667b1-ac38-470c-a961-f3c7a62857fa</uuid>
+        <vendor>isee systems</vendor>
+        <product version="10.0" lang="en">iThink</product>
+    </header>
+    <style>
+        <model font-family="Geneva" />
+        <interface font-family="Helvetica" />
+    </style>
+    <sim_specs>
+        <start>0</start>
+        <stop>12</stop>
+        <dt>0.25</dt>
+        <method>Euler</method>
+        <time_units>Time</time_units>
+    </sim_specs>
+    <model_units />
+    <isee:prefs layer="model" grid_width="20" grid_height="50" divide_by_zero_alert="true" hide_taskbar="true" show_module_prefix="true">
+        <isee:window width="1025" height="692" />
+        <isee:security />
+        <isee:print_setup width="559" height="783" orientation="portrait" />
+    </isee:prefs>
+    <isee:equation_prefs order_by="module" />
+    <model>
+        <stock name="Population">
+            <eqn>10000</eqn>
+            <inflow>Added</inflow>
+            <display x="316" y="208" color="blue" />
+        </stock>
+        <flow name="Added">
+            <eqn>Population*GF</eqn>
+            <display x="237" y="203" color="blue">
+                <pts>
+                    <pt x="181" y="203" />
+                    <pt x="294" y="203" />
+                </pts>
+            </display>
+        </flow>
+        <aux name="GF">
+            <eqn>0.05</eqn>
+            <display x="160" y="315" color="blue">
+                <format precision="1" />
+            </display>
+        </aux>
+        <aux name="Derivative">
+            <eqn>DERIVN(Population,1)</eqn>
+            <display x="228" y="90" color="blue" />
+        </aux>
+        <display show_pages="false" page_width="559" page_height="783" page_sequence="row" pages_row_count="1" pages_column_count="1" isee:show_values_on_hover="true" isee:converter_size="medium" zoom="100" isee:animate_flows="true" isee:animate_stocks="true" isee:animate_converters="true" report_every_dt="true" scroll_x="0" scroll_y="0">
+            <connector x="322" y="224" uid="0">
+                <from>Population</from>
+                <to>Added</to>
+                <color>#FF007F</color>
+            </connector>
+            <connector x="160" y="306" uid="1">
+                <from>GF</from>
+                <to>Added</to>
+                <color>#FF007F</color>
+            </connector>
+            <connector x="312" y="191" uid="2">
+                <from>Population</from>
+                <to>Derivative</to>
+                <color>#FF007F</color>
+            </connector>
+            <popup x="84" y="447">
+                <stacked_container visible="false" height="282" width="492" visible_index="0" uid="pad_62292816">
+                    <graph type="time_series" title="Untitled" background="#FFFFC9" show_grid="false" numbers_on_plots="true" isee:use_five_segments="false" isee:date_time="-744748776" time_precision="2" from="0" to="12">
+                        <plot pen_width="1" precision="0">
+                            <index>0</index>
+                            <color>blue</color>
+                            <show_y_axis>true</show_y_axis>
+                            <entity name="Population" />
+                        </plot>
+                    </graph>
+                </stacked_container>
+            </popup>
+            <pad_icon x="107" y="441" width="26" height="22" color="#008F44" label="Graph 1" type="graph" icon_of="pad_62292816">
+                <label_side>bottom</label_side>
+            </pad_icon>
+            <popup x="141" y="371">
+                <stacked_container visible="false" height="290" width="509" visible_index="0" uid="pad_62294484">
+                    <table title="Untitled Table" font-size="9" background="#E0E0E0" columns_width="59" orientation="vertical" report_every_dt="true" isee:periods="49" report_from="0" report_to="12" isee:date_time="-744748776">
+                        <item type="time" color="black" text-align="left" precision="3" width="100" />
+                        <item color="black" text-align="left" precision="2" thousands_separator="true">
+                            <entity name="Derivative" />
+                            <index>0</index>
+                        </item>
+                        <item color="black" text-align="left" precision="2" thousands_separator="true">
+                            <entity name="Population" />
+                            <index>1</index>
+                        </item>
+                        <item color="black" text-align="left" precision="2" thousands_separator="true">
+                            <entity name="Added" />
+                            <index>2</index>
+                        </item>
+                    </table>
+                </stacked_container>
+            </popup>
+            <pad_icon x="229" y="416" width="26" height="22" color="#008F44" label="Table 1" type="table" icon_of="pad_62294484">
+                <label_side>bottom</label_side>
+            </pad_icon>
+        </display>
+        <interface scroll_x="0" scroll_y="0" zoom="100">
+            <simulation_delay>0.1</simulation_delay>
+            <pages show="false" row_count="1" column_count="1" home_page="1" width="788" height="528" />
+        </interface>
+    </model>
+</xmile>

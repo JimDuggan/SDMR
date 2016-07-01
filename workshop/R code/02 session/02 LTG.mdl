@@ -1,0 +1,135 @@
+{UTF-8}
+Growth Rate  = A FUNCTION OF( Effect Of Availability on Growth Rate,Ref Growth Rate) ~~|
+Growth Rate=
+	IF THEN ELSE(Deactivate B1=1,Ref Growth Rate,Ref Growth Rate*Effect Of Availability on Growth Rate\
+		)
+	~	
+	~		|
+
+Net Flow  = A FUNCTION OF( Growth Rate,Stock) ~~|
+Net Flow=
+	IF THEN ELSE(Deactivate R1=1,100,Growth Rate*Stock)
+	~	
+	~		|
+
+Diff Check  = A FUNCTION OF( Net Flow)
+	~	
+	~		|
+
+Availability=
+	1-Stock/Capacity
+	~	
+	~		|
+
+Capacity=
+	10000
+	~	
+	~		|
+
+Effect Of Availability on Growth Rate=
+	Availability/Ref Availability
+	~	
+	~		|
+
+Ref Availability=
+	1
+	~	
+	~		|
+
+Ref Growth Rate=
+	0.1
+	~	
+	~		|
+
+Stock= INTEG (
+	Net Flow,
+		100)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.25
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,5,0
+10,1,Stock,559,177,40,20,3,3,1,24,0,0,0,0,-1--1--1,0-0-0,|10|B|0-0-0
+12,2,48,391,182,10,8,0,3,1,0,-1,0,0,0
+1,3,5,1,4,1,0,22,2,0,0,-1--1--1,|12||0-0-0,1|(492,182)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(427,182)|
+11,5,48,460,182,6,8,34,3,0,0,1,0,0,0
+10,6,Net Flow,460,197,21,7,40,3,1,8,-1,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,7,Ref Growth Rate,299,277,36,7,8,3,0,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,8,Growth Rate,435,252,28,7,8,3,0,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,9,Effect Of Availability on Growth Rate,545,335,46,12,8,3,0,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,10,Capacity,716,233,20,7,8,3,1,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,11,Availability,626,262,26,7,8,3,0,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+10,12,Ref Availability,437,377,34,7,8,3,0,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
+1,13,1,11,1,1,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(625,208)|
+1,14,10,11,1,1,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(682,252)|
+1,15,12,9,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(504,368)|
+1,16,11,9,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(609,294)|
+1,17,9,8,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(472,303)|
+1,18,8,6,1,1,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(439,223)|
+1,19,1,6,1,1,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(524,246)|
+1,20,7,8,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(334,274)|
+12,21,0,512,215,13,13,4,135,0,0,-1,0,0,0
+R
+12,22,0,568,272,13,13,4,135,0,0,-1,0,0,0
+B
+10,27,Diff Check,326,64,29,8,8,3,0,0,0,0,0,0
+1,28,5,27,0,0,0,0,0,128,0,-1--1--1,,1|(400,130)|
+///---\\\
+:L<%^E!@
+1:/Users/jim/Dropbox/Research/Springer Book/MCS/models/03 chapter/Vensim/Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+15:0,0,0,0,0,0
+19:5,0
+27:2,
+34:0,
+4:Time
+5:Diff Check
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:0
+24:0
+25:100
+26:100

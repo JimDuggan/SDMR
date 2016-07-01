@@ -15,7 +15,7 @@ simtime <- seq(START, FINISH, by=STEP)
 
 # Create stock and auxs
 stocks  <- c(sPopulation=10000)
-auxs    <- c(aGrowthFraction=0.07)
+auxs    <- c(aGrowthFraction=0.05)
 
 
 # Model function
