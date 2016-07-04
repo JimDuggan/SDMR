@@ -36,7 +36,6 @@ sensRun<-function(p){
   g.simRuns<<-list(length=nrow(p))
   
   for(i in 1:nrow(p)){
-    init<-p[i,"initInfected"]
     
     a<-c(aGrowthFraction=p[i,"aGrowthFraction"])
     
