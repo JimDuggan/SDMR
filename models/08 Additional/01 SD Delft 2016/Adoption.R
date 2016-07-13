@@ -123,11 +123,15 @@ p1<-ggplot(ar,aes(x=Time,y=Value,color=Variable)) +
   ylab("Adoption Rate") +
   xlab("Time (Weeks)")
 
+ggsave(file="Plot1.png", dpi=300,p1) #saves g
+
 p2<-ggplot(ad,aes(x=Time,y=Value,color=Variable,group=Variable)) + 
   geom_line() +
   geom_point()+
   ylab("Adopters") +
   xlab("Time (Weeks)")
+
+ggsave(file="Plot2.png", dpi=300,p2) #saves g
 
 pa<-filter(tidy,grepl("PA_",Variable))
 
