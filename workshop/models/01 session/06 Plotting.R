@@ -57,6 +57,7 @@ ggplot(data=msub)+geom_line(aes(x=Year,y=Population,colour=Cohort))
 
 # Controllimg plot resolution
 p1<-ggplot(data=msub)+geom_area(aes(x=Year,y=Population,fill=Cohort))
-ggsave(file="workshop/models/01 session/hq_plot.png", dpi=300,p1)
+ggsave(file="workshop/models/01 session/hq_plot.png", height=5,width=7,units="in",
+       dpi=400,p1)
 
 
