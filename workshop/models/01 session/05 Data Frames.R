@@ -27,7 +27,7 @@ s<-subset(df,df$SumVar>mean(df$SumVar))
 
 # Reading from Excel files
 library(gdata)
-sim <- read.xls("workshop/R code/01 session/SimData.xlsx",
+sim <- read.xls("workshop/models/01 session/SimData.xlsx",
                 stringsAsFactors=FALSE)
 
 
