@@ -22,7 +22,6 @@ auxs    <- c(aGrowthFraction=0.08, aDeclineFraction=0.03)
 model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{
     
-    
     fRecruits<-sCustomers*aGrowthFraction
     
     fLosses<-sCustomers*aDeclineFraction

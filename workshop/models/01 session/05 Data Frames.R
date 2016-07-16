@@ -1,3 +1,10 @@
+# read in R data set for cars as a data frame
+ds<-data.frame(mpg)
+
+ds$status<-ifelse(ds$year<2005,"OLD","NEW")
+
+
+
 # define three vectors
 time<-seq(1,7) 
 v1<-rep(10,length(time))
@@ -26,8 +33,15 @@ df$Category<-ifelse(df$SumVar<mean(df$SumVar),"Lower","Higher")
 s<-subset(df,df$SumVar>mean(df$SumVar))
 
 # Reading from Excel files
-library(gdata)
-sim <- read.xls("workshop/models/01 session/SimData.xlsx",
-                stringsAsFactors=FALSE)
+# have saved the excel file as a binary
+#library(gdata)
+#pop <- read.xls("workshop/models/01 session/SimData.xlsx",
+#                stringsAsFactors=FALSE)
+#save(pop,file="workshop/models/01 session/SimData.Rda")
+
+load("workshop/models/01 session/SimData.Rda")
+
+
+
 
 

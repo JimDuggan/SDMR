@@ -2,8 +2,10 @@ library(gdata)
 library(ggplot2)
 library(reshape2)
 
-sim <- read.xls("workshop/models/01 session/SimData.xlsx",
-                stringsAsFactors=FALSE)
+#sim <- read.xls("workshop/models/01 session/SimData.xlsx",
+#                stringsAsFactors=FALSE)
+load("workshop/models/01 session/SimData.Rda")
+sim<-pop
 sim$Total<-apply(sim[,2:5],MARGIN = 1,sum)
 
 prop<-data.frame(Time=sim$Time,

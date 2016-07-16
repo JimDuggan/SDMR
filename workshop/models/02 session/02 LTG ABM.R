@@ -1,5 +1,5 @@
 library(ggplot2)
-library(gdata)
+#library(gdata)
 
 derivn<-function(voi,time){
   c(0.0,diff(voi)/diff(time))
@@ -10,10 +10,12 @@ abm<-function(v){
          ifelse(v<0,"LOG","EXP"))
 }
 
-# maybe add a binary file for the data?
+# have saved the excel file as a binary
+# sim <- read.xls("workshop/models/02 session/LTG.xlsx",
+#                stringsAsFactors=FALSE)
+# save(sim,file="workshop/models/02 session/LTG.Rda")
 
-sim <- read.xls("workshop/models/02 session/LTG.xlsx",
-                stringsAsFactors=FALSE)
+load("workshop/models/02 session/LTG.Rda")
 
 sim$abm<-derivn(abs(sim$Net.Flow),sim$Time)
 
