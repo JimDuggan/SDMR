@@ -61,3 +61,23 @@ ggsave(file="workshop/models/01 session/hq_plot.png", height=5,width=7,units="in
        dpi=400,p1)
 
 
+
+# examples from H Wickham book on ggplot
+# simple plot
+ggplot(mpg,aes(x=displ,y=hwy)) + geom_point()
+
+
+# differentiating wrt colour, size, shape
+ggplot(mpg,aes(x=displ,y=hwy,colour=class)) + geom_point()
+ggplot(mpg,aes(x=displ,y=hwy,size=cyl)) + geom_point()
+ggplot(mpg,aes(x=displ,y=hwy,shape=drv)) + geom_point()
+
+# Using the facet wrap 
+ggplot(mpg,aes(x=displ,y=hwy))+geom_point()+facet_wrap(~class)
+ggplot(mpg,aes(x=displ,y=hwy))+geom_point()+facet_wrap(~cyl)
+
+# Adding a smoother
+ggplot(mpg,aes(x=displ,y=hwy)) + geom_point() +geom_smooth()
+ggplot(mpg,aes(x=displ,y=hwy)) + geom_point() +geom_smooth(span=0.2)
+
+
