@@ -17,7 +17,14 @@ abm<-function(v){
 
 load("workshop/models/02 session/LTG.Rda")
 
-sim$abm<-derivn(abs(sim$Net.Flow),sim$Time)
+ggplot(data=sim,aes(Time,Stock))+
+  geom_point()+
+  ylab("Stock")+
+  xlab("Year") +
+  guides(color=guide_legend(title=NULL))+
+  theme(legend.position="top")
+
+sim$der<-derivn(abs(sim$Net.Flow),sim$Time)
 
 sim$bmode<-abm(sim$abm)
 

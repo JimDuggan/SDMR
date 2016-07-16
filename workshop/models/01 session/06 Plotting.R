@@ -71,7 +71,7 @@ ggplot(mpg,aes(x=displ,y=hwy)) + geom_point()
 
 
 # differentiating wrt colour, size, shape
-ggplot(mpg,aes(x=displ,y=hwy,colour=class)) + geom_point()
+
 ggplot(mpg,aes(x=displ,y=hwy,size=cyl)) + geom_point()
 ggplot(mpg,aes(x=displ,y=hwy,shape=drv)) + geom_point()
 
