@@ -1,18 +1,11 @@
 {UTF-8}
-Growth Rate  = A FUNCTION OF( Effect Of Availability on Growth Rate,Ref Growth Rate) ~~|
 Growth Rate=
-	IF THEN ELSE(Deactivate B1=1,Ref Growth Rate,Ref Growth Rate*Effect Of Availability on Growth Rate\
-		)
+	Ref Growth Rate*Effect Of Availability on Growth Rate
 	~	
 	~		|
 
-Net Flow  = A FUNCTION OF( Growth Rate,Stock) ~~|
 Net Flow=
-	IF THEN ELSE(Deactivate R1=1,100,Growth Rate*Stock)
-	~	
-	~		|
-
-Diff Check  = A FUNCTION OF( Net Flow)
+	Growth Rate*Stock
 	~	
 	~		|
 
@@ -64,7 +57,7 @@ INITIAL TIME  = 0
 	|
 
 SAVEPER  = 
-        TIME STEP
+        TIME STEP 
 	~	Month [0,?]
 	~	The frequency with which output is stored.
 	|
@@ -102,11 +95,22 @@ $192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,5
 R
 12,22,0,568,272,13,13,4,135,0,0,-1,0,0,0
 B
-10,27,Diff Check,326,64,29,8,8,3,0,0,0,0,0,0
-1,28,5,27,0,0,0,0,0,128,0,-1--1--1,,1|(400,130)|
+1,24,5,23,0,0,0,0,0,128,0,-1--1--1,,1|(400,130)|
 ///---\\\
+:TABLE Sim_Results
+:TITLE  
+:PRETTYNUM
+:TIME-DOWN
+:VAR Stock
+:VAR Capacity
+:VAR Availability
+:VAR Ref Availability
+:VAR Effect Of Availability on Growth Rate
+:VAR Ref Growth Rate
+:VAR Growth Rate
+:VAR Net Flow
 :L<%^E!@
-1:/Users/jim/Dropbox/Research/Springer Book/MCS/models/03 chapter/Vensim/Current.vdf
+1:Current.vdf
 9:Current
 22:$,Dollar,Dollars,$s
 22:Hour,Hours
@@ -121,7 +125,7 @@ B
 27:2,
 34:0,
 4:Time
-5:Diff Check
+5:Stock
 35:Date
 36:YYYY-MM-DD
 37:2000
