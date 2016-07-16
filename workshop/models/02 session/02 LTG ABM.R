@@ -26,11 +26,9 @@ ggplot(data=sim,aes(Time,Stock))+
 
 sim$der<-derivn(abs(sim$Net.Flow),sim$Time)
 
-sim$bmode<-abm(sim$abm)
+sim$bmode<-abm(sim$der)
 
 ggplot(data=sim,aes(Time,Stock,colour=bmode))+
-  geom_point()+
-  ylab("Stock")+
-  xlab("Year") +
+  geom_point()+ylab("Stock")+xlab("Year") +
   guides(color=guide_legend(title=NULL))+
   theme(legend.position="top")
