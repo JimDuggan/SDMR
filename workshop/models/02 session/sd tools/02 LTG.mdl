@@ -99,8 +99,9 @@ B
 ///---\\\
 :TABLE Sim_Results
 :TITLE  
-:PRETTYNUM
 :TIME-DOWN
+:FIRST-CELLWIDTH 30
+:CELLWIDTH 14
 :VAR Stock
 :VAR Capacity
 :VAR Availability
