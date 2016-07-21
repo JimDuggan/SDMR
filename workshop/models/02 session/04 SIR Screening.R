@@ -65,8 +65,6 @@ sensRun(p)
 
 df<-rbind.fill(g.simRuns)
 
-
-
 # statistical screening process starts here...
 runs<-split(df,df$time)
 

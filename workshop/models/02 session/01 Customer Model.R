@@ -4,7 +4,6 @@
 
 library(deSolve)
 library(ggplot2)
-require(gridExtra)
 library(scales)
 
 # Setup simulation times and time step
