@@ -1,4 +1,5 @@
 # read in R data set for cars as a data frame
+library(ggplot2)
 ds<-data.frame(mpg)
 
 ds$status<-ifelse(ds$year<2005,"OLD","NEW")

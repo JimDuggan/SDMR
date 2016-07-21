@@ -65,12 +65,14 @@ sensRun(p)
 
 df<-rbind.fill(g.simRuns)
 
-av.Infected<-sapply(runs,function(l){mean(l$sInfected)})
-max.Infected<-sapply(runs,function(l){max(l$sInfected)})
-min.Infected<-sapply(runs,function(l){min(l$sInfected)})
+
 
 # statistical screening process starts here...
 runs<-split(df,df$time)
+
+av.Infected<-sapply(runs,function(l){mean(l$sInfected)})
+max.Infected<-sapply(runs,function(l){max(l$sInfected)})
+min.Infected<-sapply(runs,function(l){min(l$sInfected)})
 
 cor.CE<-sapply(runs,function(l){cor(l$sInfected, l$CE)})
 cor.DEL<-sapply(runs,function(l){cor(l$sInfected, l$DEL )})

@@ -46,6 +46,8 @@ sensRun<-function(p){
   g.simRuns<<-list(length=nrow(p))
 
   for(i in 1:nrow(p)){
+    print("Simulating..\n")
+    
     init<-p[i,"initInfected"]
 
     a<-c(aTotalPopulation=10000,p[i,1:3])
