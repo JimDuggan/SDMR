@@ -196,7 +196,7 @@ sim$process_all<-function(){
 #sim$o<-sim$process_all()
 #sim$save_model(sim$o,"./reader/Test.R")
 
-sim$translate<-function(f){
+sim$translate_vensim<-function(f){
   sim$get_eqns(sim$get_input_vensim(f))
   sim$o<-sim$process_all()
 }
