@@ -1,0 +1,30 @@
+Init Infected = 1
+	
+Infected = INTEG( IR - RR , Init Infected ) 
+	
+Recovered = INTEG( RR , 0) 
+	
+Susceptible = INTEG( - IR , 9999) 
+	
+Effective Contact Rate = 2
+	
+Total Population = 10000
+	
+Beta = Effective Contact Rate / Total Population 
+	
+Delay = 2
+	
+FINAL TIME = 20
+	
+INITIAL TIME = 0
+	
+Lambda = Beta * Infected 
+	
+IR = Lambda * Susceptible 
+	
+RR = Infected / Delay 
+	
+TIME STEP = 0.125
+	
+SAVEPER = TIME STEP 
+	

@@ -12,6 +12,7 @@ auxs    <- c(aTotalPopulation=100000, aContact.Rate=6, aInfectivity=0.25)
 
 model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{ 
+    print(time)
     aBeta <- aContact.Rate * aInfectivity/ aTotalPopulation
     aRho <- aBeta * sAdopters
     
@@ -19,9 +20,10 @@ model <- function(time, stocks, auxs){
     
     dPA_dt  <- -fAR
     dA_dt   <- fAR
-
-    return (list(c(dPA_dt, dA_dt),
-                 AR=fAR, Rho=aRho))   
+    
+    rvals<-list(c(dPA_dt, dA_dt),
+                AR=fAR, Rho=aRho)
+    return (rvals)   
   })
 }
 

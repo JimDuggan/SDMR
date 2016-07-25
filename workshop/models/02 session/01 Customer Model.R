@@ -7,7 +7,7 @@ library(ggplot2)
 library(scales)
 
 # Setup simulation times and time step
-START<-2015; FINISH<-2030; STEP<-0.25
+START<-2015; FINISH<-2016; STEP<-0.5
 
 # Create time vector
 simtime <- seq(START, FINISH, by=STEP)
@@ -21,22 +21,32 @@ auxs    <- c(aGrowthFraction=0.08, aDeclineFraction=0.03)
 model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{
     
+    print("\nFunc call")
+    print(time)
+
+    
     fRecruits<-sCustomers*aGrowthFraction
     
     fLosses<-sCustomers*aDeclineFraction
     
     dC_dt <- fRecruits - fLosses
     
-    return (list(c(dC_dt),
-                 Recruits=fRecruits, Losses=fLosses,NetFlow=dC_dt,
-                 GF=aGrowthFraction,DF=aDeclineFraction))   
+    ans<-list(c(dC_dt),
+              Recruits=fRecruits, Losses=fLosses,NetFlow=dC_dt,
+              GF=aGrowthFraction,DF=aDeclineFraction)
+  
+    log<-list(stocks,ans)
+    
+    print(log)
+    
+    return (ans)   
   })
 }
 
 
 # Run simulation
 o<-data.frame(ode(y=stocks, times=simtime, func = model, 
-                  parms=auxs, method="euler"))
+                  parms=auxs, method='euler'))
 
 # Plots and output
 p1<-ggplot()+
