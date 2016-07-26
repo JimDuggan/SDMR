@@ -2,9 +2,9 @@ Init Infected = 1
 	
 Infected = INTEG( IR - RR , Init Infected ) 
 	
-Recovered = INTEG( RR , 0) 
+Recovered = INTEG( RR + VR , 0) 
 	
-Susceptible = INTEG( - IR , 9999) 
+Susceptible = INTEG( - IR - VR , 9999) 
 	
 Effective Contact Rate = 2
 	
@@ -27,4 +27,8 @@ RR = Infected / Delay
 TIME STEP = 0.125
 	
 SAVEPER = TIME STEP 
+	
+VF = 0.05
+	
+VR = Susceptible * VF 
 	

@@ -1,10 +1,9 @@
 #### Supporting resources for System Dynamics Modeling with R
-Welcome to the githib resource for the forthcoming text book *System Dynamics Modeling with R*, to published by Springer later in 2016.
+Welcome to the githib resource for the text book *System Dynamics Modeling with R*. 2016.
 
 ![](https://images.springer.com/sgw/books/medium/9783319340418.jpg "")
 
-
-The text book is available  (in a number of formats) through the following links.
+The text book is now available  (in a number of formats) through the following links.
 
 * View on Springer [System Dynamics Modeling with R](http://www.springer.com/us/book/9783319340418 "View on Springer")
 

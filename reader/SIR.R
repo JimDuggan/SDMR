@@ -1,6 +1,6 @@
 ###########################################
 # Translation of Vensim file.
-# Date created: 2016-07-25 16:56:15
+# Date created: 2016-07-25 19:26:53
 ###########################################
 library(deSolve)
 library(ggplot2)
@@ -27,9 +27,11 @@ model <- function(time, stocks, auxs){
     Lambda <- Beta*Infected
     IR <- Lambda*Susceptible
     RR <- Infected/Delay
+    VF <- 0.05
+    VR <- Susceptible*VF
     d_DT_Infected  <- IR-RR
-    d_DT_Recovered  <- RR
-    d_DT_Susceptible  <- -IR
+    d_DT_Recovered  <- RR+VR
+    d_DT_Susceptible  <- -IR-VR
     return (list(c(d_DT_Infected,d_DT_Recovered,d_DT_Susceptible)))
   })
 }
@@ -42,8 +44,8 @@ ggplot(data=mo)+geom_line(aes(x=Time,y=Value,colour=Stock))
 # Original text file exported from Vensim
 #  Init Infected = 1
 #  Infected = INTEG( IR - RR , Init Infected ) 
-#  Recovered = INTEG( RR , 0) 
-#  Susceptible = INTEG( - IR , 9999) 
+#  Recovered = INTEG( RR + VR , 0) 
+#  Susceptible = INTEG( - IR - VR , 9999) 
 #  Effective Contact Rate = 2
 #  Total Population = 10000
 #  Beta = Effective Contact Rate / Total Population 
@@ -55,4 +57,6 @@ ggplot(data=mo)+geom_line(aes(x=Time,y=Value,colour=Stock))
 #  RR = Infected / Delay 
 #  TIME STEP = 0.125
 #  SAVEPER = TIME STEP 
+#  VF = 0.05
+#  VR = Susceptible * VF 
 #----------------------------------------------------
