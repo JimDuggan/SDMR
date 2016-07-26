@@ -1,5 +1,5 @@
 #### Supporting resources for System Dynamics Modeling with R
-Welcome to the githib resource for the text book *System Dynamics Modeling with R*. 2016.
+Welcome to the githib resource for the text book *System Dynamics Modeling with R*.
 
 ![](https://images.springer.com/sgw/books/medium/9783319340418.jpg "")
 
