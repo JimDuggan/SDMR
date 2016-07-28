@@ -1,0 +1,107 @@
+{UTF-8}
+Inflow=
+	100+step(100,4)
+	~	
+	~		|
+
+Outflow=
+	Stock/Time Delay
+	~	
+	~		|
+
+Stock= INTEG (
+	Inflow-Outflow,
+		400)
+	~	
+	~		|
+
+Time Delay=
+	4
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 25
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.125
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Stock,415,208,40,20,3,3,0,0,0,0,0,0
+12,2,48,215,206,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(340,206)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(259,206)|
+11,5,48,300,206,6,8,34,3,0,0,1,0,0,0
+10,6,Inflow,300,222,18,8,40,3,0,0,-1,0,0,0
+12,7,48,608,207,10,8,0,3,0,0,-1,0,0,0
+1,8,10,7,4,0,0,22,0,0,0,-1--1--1,,1|(565,207)|
+1,9,10,1,100,0,0,22,0,0,0,-1--1--1,,1|(487,207)|
+11,10,48,526,207,6,8,34,3,0,0,1,0,0,0
+10,11,Outflow,526,223,22,8,40,3,0,0,-1,0,0,0
+10,12,Time Delay,511,316,31,8,8,3,0,0,0,0,0,0
+1,13,12,11,1,0,0,0,0,64,0,-1--1--1,,1|(536,277)|
+1,14,1,11,1,0,0,0,0,64,0,-1--1--1,,1|(476,245)|
+///---\\\
+:GRAPH Flows
+:SCALE
+:VAR Inflow
+:LINE-WIDTH 2
+:VAR Outflow
+:LINE-WIDTH 2
+
+:GRAPH Stock
+:SCALE
+:VAR Stock
+:LINE-WIDTH 2
+:L<%^E!@
+1:Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:Stock
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:25
+26:25

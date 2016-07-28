@@ -1,0 +1,198 @@
+{UTF-8}
+Staff University One=
+	2000+step(1000,2020)
+	~	
+	~		|
+
+Attractiveness University Two=
+	1-Student Staff Ratio Two/Combined Staff Student Ratio
+	~	
+	~		|
+
+Attractivness University One=
+	1-Student Staff Ratio One/Combined Staff Student Ratio
+	~	
+	~		|
+
+Combined Staff Student Ratio=
+	Student Staff Ratio One+Student Staff Ratio Two
+	~	
+	~		|
+
+Graduations One=
+	University One*0.25
+	~	
+	~		|
+
+Graduations Two=
+	University Two*0.25
+	~	
+	~		|
+
+Potential Students=
+	10000
+	~	
+	~		|
+
+Registrations One=
+	Potential Students*Attractivness University One
+	~	
+	~		|
+
+Registrations Two=
+	Potential Students*Attractiveness University Two
+	~	
+	~		|
+
+Staff University Two=
+	2000+step(2000,2030)
+	~	
+	~		|
+
+Student Staff Ratio One=
+	University One/Staff University One
+	~	
+	~		|
+
+Student Staff Ratio Two=
+	University Two/Staff University Two
+	~	
+	~		|
+
+University One= INTEG (
+	Registrations One-Graduations One,
+		20000)
+	~	
+	~		|
+
+University Two= INTEG (
+	Registrations Two-Graduations Two,
+		20000)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 2065
+	~	Year
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 2015
+	~	Year
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Year [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.03125
+	~	Year [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,University One,196,175,40,20,3,3,0,0,0,0,0,0
+10,2,University Two,620,165,40,20,3,3,0,0,0,0,0,0
+12,3,48,196,68,10,8,0,3,0,0,-1,0,0,0
+1,4,6,1,4,0,43,22,3,0,0,0-0-0,|12||0-0-0,1|(196,131)|
+1,5,6,3,100,0,0,22,0,0,0,-1--1--1,,1|(196,86)|
+11,6,48,196,102,8,6,33,3,0,0,4,0,0,0
+10,7,Registrations One,238,102,34,13,40,131,0,0,-1,0,0,0
+12,8,48,611,70,10,8,0,3,0,0,-1,0,0,0
+1,9,11,2,4,0,0,22,0,0,0,-1--1--1,,1|(609,127)|
+1,10,11,8,100,0,0,22,0,0,0,-1--1--1,,1|(609,88)|
+11,11,48,609,104,8,6,33,3,0,0,2,0,0,0
+10,12,Registrations Two,566,104,35,16,40,131,0,0,-1,0,0,0
+10,13,Staff University One,342,328,47,18,8,131,0,0,0,0,0,0
+10,14,Staff University Two,529,332,48,17,8,131,0,0,0,0,0,0
+10,15,Student Staff Ratio One,278,268,48,15,8,131,0,0,0,0,0,0
+10,16,Student Staff Ratio Two,540,275,34,14,8,3,0,0,0,0,0,0
+1,17,2,16,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(596,233)|
+1,18,14,16,0,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(533,308)|
+1,19,1,15,1,0,43,0,3,64,0,0-0-255,|12||0-0-0,1|(212,218)|
+1,20,13,15,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(318,301)|
+10,21,Attractivness University One,328,174,40,14,8,3,0,0,0,0,0,0
+10,22,Attractiveness University Two,483,173,40,14,8,3,0,0,0,0,0,0
+10,23,Potential Students,403,18,38,19,8,131,0,0,0,0,0,0
+1,24,23,7,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(313,42)|
+1,25,23,12,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(527,56)|
+1,26,21,7,1,0,43,0,3,64,0,0-0-255,|12||0-0-0,1|(306,126)|
+1,27,22,12,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(512,129)|
+10,28,Combined Staff Student Ratio,411,228,41,14,8,3,0,0,0,0,0,0
+1,29,15,21,1,0,45,0,3,64,0,0-0-255,|12||0-0-0,1|(317,231)|
+1,30,16,22,1,0,45,0,2,64,0,-1--1--1,|12||0-0-0,1|(491,224)|
+1,31,28,21,1,0,45,0,2,64,0,-1--1--1,|0||-1--1--1,1|(377,192)|
+1,32,28,22,1,0,45,0,2,64,0,-1--1--1,|0||-1--1--1,1|(436,193)|
+12,33,48,196,299,10,8,0,3,0,0,-1,0,0,0
+1,34,36,33,4,0,0,22,0,0,0,-1--1--1,,1|(196,268)|
+1,35,36,1,100,0,0,22,0,0,0,-1--1--1,,1|(196,214)|
+11,36,48,196,239,8,6,33,3,0,0,2,0,0,0
+10,37,Graduations One,153,239,35,13,40,131,0,0,-1,0,0,0
+1,38,1,36,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(178,204)|
+12,39,48,616,279,10,8,0,3,0,0,-1,0,0,0
+1,40,42,39,4,0,0,22,0,0,0,-1--1--1,,1|(616,252)|
+1,41,42,2,100,0,0,22,0,0,0,-1--1--1,,1|(616,203)|
+11,42,48,616,228,8,6,33,3,0,0,4,0,0,0
+10,43,Graduations Two,660,228,36,18,40,131,0,0,-1,0,0,0
+1,44,2,43,0,0,0,0,0,64,0,-1--1--1,,1|(636,191)|
+1,45,15,28,1,0,43,0,2,64,0,-1--1--1,|0||-1--1--1,1|(344,256)|
+1,46,16,28,1,0,43,0,2,64,0,-1--1--1,|0||-1--1--1,1|(466,262)|
+12,47,0,267,185,15,15,5,135,0,0,-1,0,0,0
+B
+12,48,0,543,196,16,16,4,135,0,0,-1,0,0,0
+B
+///---\\\
+:GRAPH Attractivness
+:TITLE Attractivness
+:SCALE
+:VAR Attractivness University One
+:LINE-WIDTH 2
+:VAR Attractiveness University Two
+:LINE-WIDTH 2
+
+:GRAPH Stocks
+:TITLE Stocks
+:SCALE
+:VAR University One
+:LINE-WIDTH 2
+:VAR University Two
+:LINE-WIDTH 2
+:L<%^E!@
+1:Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+22:Day,Days
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:Attractiveness University Two
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:0
+41:0
+42:0
+24:2015
+25:2065
+26:2065
