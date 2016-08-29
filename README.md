@@ -5,7 +5,7 @@ Welcome to the githib resource for the text book *System Dynamics Modeling with 
 
 The text book is now available  (in a number of formats) through the following links.
 
-* View on Springer [System Dynamics Modeling with R](http://www.springer.com/us/book/9783319340418 "View on Springer")
+* View on Springer [System Dynamics Modeling with R](http://link.springer.com/book/10.1007%2F978-3-319-34043-2 "View on Springer")
 
 * View on Amazon [System Dynamics Modeling with R](https://www.amazon.co.uk/System-Dynamics-Modeling-Lecture-Networks/dp/3319340417/ref=sr_1_1?s=books&ie=UTF8&qid=1465684713&sr=1-1&keywords=system+dynamics+modeling+with+r "View on Springer")
 
