@@ -1,0 +1,124 @@
+{UTF-8}
+Entering= WITH LOOKUP (
+	Time,
+		([(0,0)-(30,40)],(1,14),(2,16),(3,22),(4,37),(5,28),(6,27),(7,24),(8,29),(9,21),(10\
+		,22),(11,21),(12,22),(13,18),(14,19),(15,16),(16,12),(17,7),(18,13),(19,16),(20,15)\
+		,(21,23),(22,10),(23,8),(24,15),(25,12),(26,11),(27,12),(28,10),(29,11),(30,10) ))
+	~	
+	~		|
+
+Leaving= WITH LOOKUP (
+	Time,
+		([(0,0)-(30,40)],(1,10),(2,11),(3,15),(4,26),(5,18),(6,20),(7,18),(8,9),(9,16),(10,\
+		14),(11,16),(12,15),(13,16),(14,25),(15,26),(16,25),(17,30),(18,22),(19,28),(20,27)\
+		,(21,38),(22,23),(23,21),(24,26),(25,23),(26,24),(27,25),(28,20),(29,21),(30,17) ))
+	~	
+	~		|
+
+Net Flow=
+	Entering-Leaving
+	~	
+	~		|
+
+People in Store= INTEG (
+	Entering-Leaving,
+		100)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 30
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 1
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,People in Store,296,196,40,20,3,3,0,0,0,0,0,0
+12,2,48,135,194,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(231,194)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(169,194)|
+11,5,48,200,194,6,8,34,3,0,0,1,0,0,0
+10,6,Entering,200,210,23,8,40,3,0,0,-1,0,0,0
+12,7,48,449,191,10,8,0,3,0,0,-1,0,0,0
+1,8,10,7,4,0,0,22,0,0,0,-1--1--1,,1|(416,191)|
+1,9,10,1,100,0,0,22,0,0,0,-1--1--1,,1|(358,191)|
+11,10,48,387,191,6,8,34,3,0,0,1,0,0,0
+10,11,Leaving,387,207,22,8,40,3,0,0,-1,0,0,0
+10,12,Time,292,98,21,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|12||128-128-128
+1,13,12,5,1,1,0,0,2,128,0,-1--1--1,|12||0-0-0,1|(237,131)|
+1,14,12,10,1,1,0,0,2,128,0,-1--1--1,|12||0-0-0,1|(352,128)|
+10,15,Net Flow,289,280,25,8,8,3,1,0,0,0,0,0
+1,16,6,15,1,1,0,0,2,128,0,-1--1--1,|12||0-0-0,1|(228,245)|
+1,17,11,15,1,1,0,0,2,128,0,-1--1--1,|12||0-0-0,1|(354,242)|
+///---\\\
+:GRAPH Flows
+:TITLE Flows
+:SCALE
+:VAR Entering
+:LINE-WIDTH 2
+:SCALE
+:VAR Leaving
+:LINE-WIDTH 2
+
+:GRAPH Net_Flow
+:TITLE Net_Flow
+:SCALE
+:VAR Entering
+:VAR Leaving
+:VAR Net Flow
+
+:GRAPH Stock_and_Flow
+:SCALE
+:VAR People in Store
+:L<%^E!@
+1:/Users/jim/Dropbox/Lectures/2016 Lectures/CT561/02 Flows/Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:Leaving
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:1
+25:30
+26:30
