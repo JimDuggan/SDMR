@@ -7,7 +7,7 @@ library(ggplot2)
 library(scales)
 
 # Setup simulation times and time step
-START<-2015; FINISH<-2016; STEP<-0.5
+START<-2015; FINISH<-2030; STEP<-0.5
 
 # Create time vector
 simtime <- seq(START, FINISH, by=STEP)
@@ -47,6 +47,9 @@ model <- function(time, stocks, auxs){
 # Run simulation
 o<-data.frame(ode(y=stocks, times=simtime, func = model, 
                   parms=auxs, method='euler'))
+
+qplot(x=time,y=sCustomers,data=o) + geom_line()
+
 
 # Plots and output
 p1<-ggplot()+
