@@ -1,0 +1,26 @@
+Number of Vaccines = INTEG( - Vaccines Administered , 30000) 
+
+People Not Vaccinated = INTEG( - Vaccinations , 100000) 
+
+People Vaccinated = INTEG( Vaccinations , 0) 
+
+Average Dispensing Productivity = 200
+
+FINAL TIME = 20
+
+INITIAL TIME = 0
+
+Number of Health Workers = 10
+
+TIME STEP = 0.03125
+
+SAVEPER = TIME STEP 
+
+Vaccine Administration Capacity = Average Dispensing Productivity * Number of Health Workers
+
+Total Available Vaccine Capacity = min ( Vaccine Administration Capacity , Number of Vaccines ) 
+
+Vaccinations = min ( People Not Vaccinated , Total Available Vaccine Capacity) 
+
+Vaccines Administered = Vaccinations 
+

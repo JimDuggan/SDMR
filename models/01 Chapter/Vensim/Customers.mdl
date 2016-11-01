@@ -11,7 +11,7 @@ Decline Fraction=
 	~		|
 
 Growth Fraction=
-	0*(0.07-step(0.04,2020)-step(0.01,2025))
+	0.07
 	~	1/Year
 	~		|
 
@@ -42,7 +42,7 @@ INITIAL TIME  = 2015
 	|
 
 SAVEPER  = 
-        TIME STEP 
+        TIME STEP
 	~	Year [0,?]
 	~	The frequency with which output is stored.
 	|
@@ -58,7 +58,7 @@ V300  Do not put anything below this section - it will be ignored
 $192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
 10,1,Customers,438,165,40,20,3,3,0,8,0,0,0,0,-1--1--1,0-0-0,|10||0-0-0
 12,2,48,261,166,10,8,0,3,0,0,-1,0,0,0
-1,3,5,1,4,0,43,22,2,0,0,-1--1--1,|0||-1--1--1,1|(365,164)|
+1,3,5,1,4,0,43,22,2,0,0,-1--1--1,|12||0-0-0,1|(365,164)|
 1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(295,164)|
 11,5,48,326,164,6,8,34,3,0,0,1,0,0,0
 10,6,Recruits,326,179,19,7,40,3,0,8,-1,0,0,0,-1--1--1,0-0-0,|10||0-0-0
@@ -75,7 +75,6 @@ $192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,1
 1,17,16,11,1,0,43,0,2,64,0,-1--1--1,|12||0-0-0,1|(568,196)|
 ///---\\\
 :GRAPH Flow
-:TITLE  
 :SCALE
 :VAR Recruits
 :LINE-WIDTH 2
@@ -83,13 +82,11 @@ $192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,1
 :LINE-WIDTH 2
 
 :GRAPH Stock
-:TITLE  
 :SCALE
 :VAR Customers
 :LINE-WIDTH 2
 
 :GRAPH Neg_Link
-:TITLE  
 :X-AXIS Losses
 :SCALE
 :VAR Customers
@@ -110,7 +107,7 @@ $192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,1
 27:2,
 34:0,
 4:Time
-5:Customers
+5:Growth Fraction
 35:Date
 36:YYYY-MM-DD
 37:2000
