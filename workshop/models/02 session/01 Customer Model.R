@@ -34,10 +34,6 @@ model <- function(time, stocks, auxs){
     ans<-list(c(dC_dt),
               Recruits=fRecruits, Losses=fLosses,NetFlow=dC_dt,
               GF=aGrowthFraction,DF=aDeclineFraction)
-  
-    log<-list(stocks,ans)
-    
-    print(log)
     
     return (ans)   
   })
