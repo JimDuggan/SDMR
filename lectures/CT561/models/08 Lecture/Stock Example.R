@@ -17,13 +17,13 @@ auxs    <- c(aOutflow=50)
 model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{
   
-    fInflow<-input[which(simtime==time)]
+    fInflow <- input[which(simtime==time)]
 
-    fOutflow<-aOutflow
+    fOutflow <- aOutflow
     
     dS_dt <- fInflow - fOutflow
     
-    ans<-list(c(dS_dt),Inflow=fInflow, 
+    ans <- list(c(dS_dt),Inflow=fInflow, 
               Outflow=fOutflow,
               NetFlow=dS_dt)
   })
@@ -33,9 +33,11 @@ model <- function(time, stocks, auxs){
 o<-data.frame(ode(y=stocks, times=simtime, func = model, 
                   parms=auxs, method='euler'))
 
-qplot(x=time,y=sStock,data=o) + geom_line()
+
+qplot(x=time,y=sStock,data=o) + 
+  geom_line()
 
 
-
-#qplot(x=sStock,y=NetFlow,data=o) + geom_path()
+qplot(x=sStock,y=NetFlow,data=o) + 
+  geom_path()
 
