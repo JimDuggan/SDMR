@@ -1,0 +1,9 @@
+Init Customers = 10000
+Customers = INTEG( Recruits - Losses , Init Customers) 
+Decline Fraction = 0.03
+Growth Fraction = 0.07
+Losses = Customers * Decline Fraction 
+Recruits = Customers * Growth Fraction 
+FINAL TIME = 2030
+INITIAL TIME = 2015
+TIME STEP = 0.125

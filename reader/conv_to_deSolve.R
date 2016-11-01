@@ -7,6 +7,7 @@ sim <- new.env(parent=emptyenv())
 sim$get_input_vensim<-function(file){
   #input<-readLines("./reader/vensim.txt",n=-1)
   sim$input<<-readLines(file,n=-1)
+  sim$input<<-sim$input[sim$input != ""]
 }
 
 sim$is_stock<-function(rhs){
