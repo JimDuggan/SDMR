@@ -41,3 +41,5 @@ qplot(x=time,y=sStock,data=o) +
 qplot(x=sStock,y=NetFlow,data=o) + 
   geom_path()
 
+
+
