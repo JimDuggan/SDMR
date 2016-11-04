@@ -6,6 +6,7 @@ library(plyr)
 
 runsim <- function(rvec){
   # this is the model function
+  print(rvec[["RunNo"]])
   model <- function(time, stocks, auxs){
     with(as.list(c(stocks, auxs)),{ 
       aBeta <- aEffective.Contact.Rate / aTotalPopulation
@@ -53,7 +54,7 @@ parRange<-data.frame(
 
 rownames(parRange)<-c("aEffective.Contact.Rate","aDelay","initInfected")
 
-NRUNS<-10
+NRUNS<-2000
 p<-data.frame(RunNo=1:NRUNS,Latinhyper(parRange,NRUNS))
 
 out<-apply(p,1,function(x)runsim(x))
