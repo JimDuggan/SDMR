@@ -26,7 +26,7 @@ runsim <- function(rvec){
   }
   
   # setup the individual simulation run
-  START<-0; FINISH<-20; STEP<-0.01; 
+  START<-0; FINISH<-50; STEP<-0.01; 
   simtime <- seq(START, FINISH, by=STEP)
   
   init<-rvec[["initInfected"]]
@@ -54,7 +54,7 @@ parRange<-data.frame(
 
 rownames(parRange)<-c("aEffective.Contact.Rate","aDelay","initInfected")
 
-NRUNS<-2000
+NRUNS<-200
 p<-data.frame(RunNo=1:NRUNS,Latinhyper(parRange,NRUNS))
 
 out<-apply(p,1,function(x)runsim(x))
@@ -66,8 +66,3 @@ ggplot(df,aes(x=time,y=sInfected,color=RunNumber)) +
   ylab("Infected") +
   xlab("Time (Days)")  + guides(color=FALSE) 
 
-ggplot(df,aes(x=time,y=sInfected,color=RunNumber,group=RunNumber)) + 
-  geom_line() +
-  scale_colour_gradientn(colours=rainbow(10))+
-  ylab("Infected") +
-  xlab("Time (Days)")  + guides(color=FALSE) 
