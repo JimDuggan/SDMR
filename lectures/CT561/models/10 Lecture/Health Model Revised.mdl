@@ -565,44 +565,35 @@ B3
 12,40,0,337,164,14,14,4,135,0,8,-1,0,0,0,-1--1--1,0-0-0,|10||0-0-0
 B4
 ///---\\\
-:GRAPH GPs
-:TITLE GPs
+:GRAPH System_Stocks
+:TITLE  
+:SCALE
+:VAR Patients Being Treated
+:LINE-WIDTH 2
 :SCALE
 :VAR General Practitioners
-:VAR Desired GPs
-
-:GRAPH Population
-:TITLE Population
-:STACK-FILL 0
+:LINE-WIDTH 2
 :SCALE
-:VAR "Population Aged 0-14"
-:VAR "Population Aged 15-39"
-:VAR "Population Aged 40-64"
-:VAR "Population Aged 65+"
+:VAR Total Population
+:LINE-WIDTH 2
 
-:TABLE Population_Table
-:TITLE Population_Table
-:TIME-DOWN
-:FIRST-CELLWIDTH 30
-:CELLWIDTH 14
-:FONT Times New Roman|12||0-0-0
-:VAR "Population Aged 0-14"
-:VAR "Population Aged 15-39"
-:VAR "Population Aged 40-64"
-:VAR "Population Aged 65+"
-:VAR Desired GPs
-:VAR General Practitioners
-
-:GRAPH Profile
-:TITLE Profile
-:STACK-FILL 0
+:GRAPH Pressure_and_Effects
+:TITLE  
 :SCALE
-:VAR "Percentage 0-14"
-:VAR "Percentage 15-39"
-:VAR "Percentage 40-64"
-:VAR "Percentage 65+"
+:VAR System Pressure
+:Y-MIN 0.75
+:Y-MAX 1.5
+:LINE-WIDTH 2
+:VAR Effect of System Pressure on Work Year
+:Y-MIN 0.75
+:Y-MAX 1.5
+:LINE-WIDTH 2
+:VAR Effect of System Pressure on Productivity
+:Y-MIN 0.75
+:Y-MAX 1.5
+:LINE-WIDTH 2
 :L<%^E!@
-1:/Users/jim/Dropbox/R Projects/SDMR/models/04 Chapter/Vensim/Current.vdf
+1:Current.vdf
 9:Current
 22:$,Dollar,Dollars,$s
 22:Hour,Hours
