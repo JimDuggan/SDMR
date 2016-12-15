@@ -7,6 +7,7 @@ sim <- new.env(parent=emptyenv())
 sim$get_input_vensim<-function(file){
   #input<-readLines("./reader/vensim.txt",n=-1)
   sim$input<<-readLines(file,n=-1)
+  sim$input<<-gsub("\"","",x = sim$input)
   sim$input<<-sim$input[sim$input != ""]
 }
 

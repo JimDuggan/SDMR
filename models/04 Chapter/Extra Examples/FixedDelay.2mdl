@@ -1,0 +1,94 @@
+{UTF-8}
+Average Delay=
+	4
+	~	
+	~		|
+
+Inflow=
+	100+step(100,8)
+	~	
+	~		|
+
+Material in Transit= INTEG (
+	Inflow-Outflow,
+		400)
+	~	
+	~		|
+
+Outflow=
+	DELAY FIXED(Inflow , Average Delay , 100 )
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Material in Transit,432,190,40,20,3,3,0,0,0,0,0,0
+12,2,48,225,187,10,8,0,3,0,0,-1,0,0,0
+1,4,6,1,4,0,0,22,0,0,0,-1--1--1,,1|(355,187)|
+1,5,6,2,100,0,0,22,0,0,0,-1--1--1,,1|(271,187)|
+11,6,0,313,187,6,8,34,3,0,0,1,0,0,0
+10,7,Inflow,313,203,18,8,40,3,0,0,-1,0,0,0
+12,8,48,613,190,10,8,0,3,0,0,-1,0,0,0
+1,10,12,8,4,0,0,22,0,0,0,-1--1--1,,1|(573,190)|
+1,11,12,1,100,0,0,22,0,0,0,-1--1--1,,1|(501,190)|
+11,12,0,537,190,6,8,34,3,0,0,1,0,0,0
+10,13,Outflow,537,206,22,8,40,3,0,0,-1,0,0,0
+10,14,Average Delay,462,90,38,8,8,3,0,0,0,0,0,0
+1,15,14,12,1,0,0,0,0,128,0,-1--1--1,,1|(509,126)|
+1,16,7,13,1,0,0,0,0,128,0,-1--1--1,,1|(418,236)|
+///---\\\
+:L<%^E!@
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+5:Inflow
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0

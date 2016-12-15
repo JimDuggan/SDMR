@@ -1,0 +1,8 @@
+Material in Transit = INTEG( Inflow - Outflow , 400) 
+Inflow = 100 + step ( 100, 8) 
+Average Delay = 4
+Outflow = DELAY FIXED ( Inflow ,Average Delay , 100) 
+FINAL TIME = 20
+INITIAL TIME = 0
+TIME STEP = 0.125
+SAVEPER = TIME STEP
