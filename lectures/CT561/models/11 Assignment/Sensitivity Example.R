@@ -54,12 +54,21 @@ parRange<-data.frame(
 
 rownames(parRange)<-c("aEffective.Contact.Rate","aDelay","initInfected")
 
-NRUNS<-50
+NRUNS<-5
 p<-data.frame(RunNo=1:NRUNS,Latinhyper(parRange,NRUNS))
 
-out<-apply(p,1,function(x)runsim(x))
+out<-apply(p,1,function(x){
+                 browser()
+                 df <- runsim(x)
+                 df
+               })
 
 df<-rbind.fill(out)
+
+lapply(out,function(x){
+             list(maxI=max(x$sInfected),CE=unique(x$CE))
+  
+  })
 
 ggplot(df,aes(x=time,y=sInfected,color=RunNumber)) + 
   geom_path() + scale_colour_gradientn(colours=rainbow(10))+
