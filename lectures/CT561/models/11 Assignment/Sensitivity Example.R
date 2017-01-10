@@ -58,7 +58,7 @@ NRUNS<-5
 p<-data.frame(RunNo=1:NRUNS,Latinhyper(parRange,NRUNS))
 
 out<-apply(p,1,function(x){
-                 browser()
+                 #browser()
                  df <- runsim(x)
                  df
                })
