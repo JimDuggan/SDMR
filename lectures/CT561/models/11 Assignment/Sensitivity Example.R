@@ -5,6 +5,7 @@ library(plyr)
 
 
 runsim <- function(rvec){
+  #browser()
   # this is the model function
   print(sprintf("Simulation run number %d",rvec[["RunNo"]]))
   model <- function(time, stocks, auxs){
@@ -55,10 +56,11 @@ parRange<-data.frame(
 rownames(parRange)<-c("aEffective.Contact.Rate","aDelay","initInfected")
 
 set.seed(1234)
-NRUNS<-250
+NRUNS<-3
 p<-data.frame(RunNo=1:NRUNS,Latinhyper(parRange,NRUNS))
 
 out<-apply(p,1,function(x){
+                 #browser()
                  df <- runsim(x)
                  df
                })
