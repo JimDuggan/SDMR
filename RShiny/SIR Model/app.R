@@ -44,6 +44,7 @@ server <- function(input, output) {
       labs(color="")+
       theme(legend.position="bottom")
   })
+  
 }
 
 # Launch the app
