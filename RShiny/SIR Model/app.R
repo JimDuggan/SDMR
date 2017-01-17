@@ -15,15 +15,17 @@ ui <- fluidPage(
       sliderInput("rd",  "Recovery Delay", min=1, max=5, value=2, step=1)
     ),
     mainPanel(
-      plotOutput("plot")
-      )
+      plotOutput("plot"),
+      verbatimTextOutput("stats")
+    )
   )
 )
 
 # The Server Function
 server <- function(input, output) {
-  output$plot <- renderPlot({
-    cat(file=stderr(), "Function output$plot::renderPlot...\n")
+  
+  data <- reactive({
+    cat(file=stderr(), "Function data (reactive function)...\n")
     START<-0; FINISH<-20; STEP<-0.125
     simtime <- seq(START, FINISH, by=STEP)
     stocks  <- c(sSusceptible=99999,sInfected=1,sRecovered=0)
@@ -31,9 +33,16 @@ server <- function(input, output) {
                  aContactRate=as.numeric(input$cr), 
                  aInfectivity=as.numeric(input$inf),
                  aDelay=as.numeric(input$rd))
-
+    
     o<-data.frame(ode(y=stocks, times=simtime, func = model, 
-                       parms=auxs, method="euler"))
+                      parms=auxs, method="euler"))
+  })
+  
+  output$plot <- renderPlot({
+    cat(file=stderr(), "Function output$plot::renderPlot...\n")
+    
+    o <- data()
+    
     ggplot()+
       geom_line(data=o,aes(time,o$sSusceptible,color="1. Susceptible"))+
       geom_line(data=o,aes(time,o$sInfected,color="2. Infected"))+
@@ -43,6 +52,10 @@ server <- function(input, output) {
       xlab("Day") +
       labs(color="")+
       theme(legend.position="bottom")
+  })
+  
+  output$stats <- renderPrint({
+    summary(data()[,c("sSusceptible","sInfected","sRecovered")])
   })
   
 }
