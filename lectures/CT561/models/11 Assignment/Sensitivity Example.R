@@ -27,6 +27,7 @@ runsim <- function(rvec){
   }
   
   # setup the individual simulation run
+  #browser()
   START<-0; FINISH<-50; STEP<-0.01; 
   simtime <- seq(START, FINISH, by=STEP)
   
@@ -60,7 +61,6 @@ NRUNS<-3
 p<-data.frame(RunNo=1:NRUNS,Latinhyper(parRange,NRUNS))
 
 out<-apply(p,1,function(x){
-                 #browser()
                  df <- runsim(x)
                  df
                })
@@ -68,7 +68,8 @@ out<-apply(p,1,function(x){
 df<-rbind.fill(out)
 
 out2<-lapply(out,function(x){
-             list(maxI=max(x$sInfected),CE=unique(x$CE))
+             browser()
+             data.frame(maxI=max(x$sInfected),CE=unique(x$CE))
   })
 
 ggplot(df,aes(x=time,y=sInfected,color=RunNumber)) + 
