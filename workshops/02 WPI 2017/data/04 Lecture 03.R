@@ -59,7 +59,11 @@ p8 <- ggplot(data = ener) +
   xlab("Wind Generation") + ylab("CO2 Emissions") + 
   ggtitle("Wind Generation v CO2 Emissions")
 
-
+p9 <- ggplot(data = ener) +
+  geom_point(mapping = aes(x=Wind,y=CO2,colour=DayOfWeek)) +
+  facet_wrap(~DayOfWeek)+
+  xlab("Wind Generation") + ylab("CO2 Emissions") + 
+  ggtitle("Wind Generation v CO2 Emissions")
 
 
 
