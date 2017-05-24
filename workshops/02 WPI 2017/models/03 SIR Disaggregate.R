@@ -36,6 +36,10 @@ model <- function(time, stocks, auxs){
     Recovered   <- states[,3]
     
     Lambda      <- beta %*% Infected
+    colnames(states) <- c("Susceptible","Infected","Recovered")
+    rownames(states) <- c("Young","Adult","Elderly")
+    
+    browser()
     
     IR         <- Lambda * Susceptible
     RR         <- Infected / delays
