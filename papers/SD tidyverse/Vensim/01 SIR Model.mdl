@@ -1,42 +1,42 @@
 {UTF-8}
 Prop E Infected=
 	100*Recovered E/Pop E
-	~	
+	~	Dmnl
 	~		|
 
 Prop Y Infected=
 	100*Recovered Y/Pop Y
-	~	
+	~	Dmnl
 	~		|
 
 Total Population=
 	Pop E+Pop A+Pop Y
-	~	
+	~	Person
 	~		|
 
 Prop A Infected=
 	100*Recovered A/Pop A
-	~	
+	~	Dmnl
 	~		|
 
 Beta EE=
 	CE EE/Pop E
-	~	
+	~	1/(Day*Person)
 	~		|
 
 Beta EA=
 	CE EA/Pop E
-	~	
+	~	1/(Day*Person)
 	~		|
 
 Beta EY=
 	CE EY/Pop E
-	~	
+	~	1/(Day*Person)
 	~		|
 
 Lambda E=
 	Beta EE*Infected E+Beta EA*Infected A+Beta EY*Infected Y
-	~	
+	~	1/Day
 	~		|
 
 CE EE=
@@ -51,19 +51,19 @@ RR E=
 
 Pop E=
 	Susceptible E+Infected E+Recovered E
-	~	
+	~	Person
 	~		|
 
 Recovered E= INTEG (
 	RR E,
 		0)
-	~	
+	~	Person
 	~		|
 
 Infected E= INTEG (
 	IR E-RR E,
 		0)
-	~	
+	~	Person
 	~		|
 
 CE EY=
@@ -83,32 +83,32 @@ IR E=
 
 Beta AE=
 	CE AE/Pop A
-	~	
+	~	1/(Day*Person)
 	~		|
 
 Beta AA=
 	CE AA/Pop A
-	~	
+	~	1/(Person*Day)
 	~		|
 
 Beta AY=
 	CE AY/Pop A
-	~	
+	~	1/(Person*Day)
 	~		|
 
 Beta YE=
 	CE YE/Pop Y
-	~	
+	~	1/(Day*Person)
 	~		|
 
 Beta YA=
 	CE YA/Pop Y
-	~	
+	~	1/(Day*Person)
 	~		|
 
 Beta YY=
 	CE YY/Pop Y
-	~	
+	~	1/(Person*Day)
 	~		|
 
 CE AE=
@@ -144,13 +144,13 @@ CE YY=
 Infected A= INTEG (
 	IR A-RR A,
 		0)
-	~	
+	~	Person
 	~		|
 
 Infected Y= INTEG (
 	IR Y-RR Y,
 		1)
-	~	
+	~	Person
 	~		|
 
 IR A=
@@ -160,27 +160,27 @@ IR A=
 
 IR Y=
 	Lambda Y*Susceptible Y
-	~	
+	~	Person/Day
 	~		|
 
 Lambda A=
 	Beta AY*Infected Y+Beta AA*Infected A+Beta AE*Infected E
-	~	
+	~	1/Day
 	~		|
 
 Lambda Y=
 	Beta YY*Infected Y+Beta YA*Infected A+Beta YE*Infected E
-	~	
+	~	1/Day
 	~		|
 
 Pop A=
 	Susceptible A+Infected A+Recovered A
-	~	
+	~	Person
 	~		|
 
 Pop Y=
 	Susceptible Y+Infected Y+Recovered Y
-	~	
+	~	Person
 	~		|
 
 DE=
@@ -195,36 +195,36 @@ DA=
 
 DY=
 	2
-	~	
+	~	Day
 	~		|
 
 Susceptible Y= INTEG (
 	-IR Y,
 		24999)
-	~	
+	~	Person
 	~		|
 
 Recovered A= INTEG (
 	RR A,
 		0)
-	~	
+	~	Person
 	~		|
 
 Recovered Y= INTEG (
 	RR Y,
 		0)
-	~	
+	~	Person
 	~		|
 
 Susceptible A= INTEG (
 	-IR A,
 		50000)
-	~	
+	~	Person
 	~		|
 
 RR A=
 	Infected A/DA
-	~	
+	~	Person/Day
 	~		|
 
 RR Y=
@@ -235,7 +235,7 @@ RR Y=
 Susceptible E= INTEG (
 	-IR E,
 		25000)
-	~	
+	~	Person
 	~		|
 
 ********************************************************
@@ -245,23 +245,23 @@ Susceptible E= INTEG (
 	|
 
 FINAL TIME  = 20
-	~	Month
+	~	Day
 	~	The final time for the simulation.
 	|
 
 INITIAL TIME  = 0
-	~	Month
+	~	Day
 	~	The initial time for the simulation.
 	|
 
 SAVEPER  = 
-        TIME STEP
-	~	Month [0,?]
+        TIME STEP 
+	~	Day [0,?]
 	~	The frequency with which output is stored.
 	|
 
 TIME STEP  = 0.125
-	~	Month [0,?]
+	~	Day [0,?]
 	~	The time step for the simulation.
 	|
 
@@ -447,13 +447,13 @@ R3
 27:2,
 34:0,
 4:Time
-5:Lambda Y
+5:Prop Y Infected
 35:Date
 36:YYYY-MM-DD
 37:2000
 38:1
 39:1
-40:2
+40:4
 41:0
 42:0
 24:0
