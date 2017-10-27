@@ -1,10 +1,10 @@
 ###########################################
 # Translation of Vensim file.
-# Date created: 2016-11-01 15:02:00
+# Date created: 2017-10-27 13:39:51
 ###########################################
 library(deSolve)
 library(ggplot2)
-library(reshape2)
+library(tidyr)
 #Displaying the simulation run parameters
 START_TIME <- 0.000000
 FINISH_TIME <- 20.000000
@@ -37,9 +37,8 @@ model <- function(time, stocks, auxs){
 }
 # Function call to run simulation
 o<-data.frame(ode(y=stocks,times=simtime,func=model,parms=auxs,method='euler'))
-mo<-melt(o,id.vars = 'time')
-names(mo)<-c('Time','Stock','Value')
-ggplot(data=mo)+geom_line(aes(x=Time,y=Value,colour=Stock))
+to<-gather(o,key=Stock,value=Value,2:ncol(o))
+ggplot(data=to)+geom_line(aes(x=time,y=Value,colour=Stock))
 #----------------------------------------------------
 # Original text file exported from Vensim
 #  Init Infected = 1

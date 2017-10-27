@@ -1,4 +1,5 @@
 library(tidyverse)
+library(stringr)
 
 
 # Read in the Vensim data

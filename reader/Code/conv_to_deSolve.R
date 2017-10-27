@@ -6,7 +6,7 @@ sim <- new.env(parent=emptyenv())
 # Functions to prepare the input for processing
 sim$get_input_vensim<-function(file){
   #input<-readLines("./reader/vensim.txt",n=-1)
-  sim$input<<-readLines(file,n=-1)
+  sim$input<<-readLines(file,warn = F)
   sim$input<<-gsub("\"","",x = sim$input)
   sim$input<<-sim$input[sim$input != ""]
 }
@@ -50,7 +50,7 @@ sim$get_header<-function(){
   output<-c(output,"###########################################")
   output<-c(output,"library(deSolve)")
   output<-c(output,"library(ggplot2)")
-  output<-c(output,"library(reshape2)")
+  output<-c(output,"library(tidyr)")
 
 }
 
@@ -160,11 +160,13 @@ sim$call_ode<-function(m="model"){
              m,shQuote("euler"))
   output<-c(output,sprintf("o<-data.frame(%s)",s))
   
-  output<-c(output,sprintf("mo<-melt(o,id.vars = %s)",shQuote("time")))
-  output<-c(output,sprintf("names(mo)<-c(%s,%s,%s)",
-                           shQuote("Time"),shQuote("Stock"),shQuote("Value")))
+  #output<-c(output,sprintf("mo<-melt(o,id.vars = %s)",shQuote("time")))
+  #output<-c(output,sprintf("names(mo)<-c(%s,%s,%s)",
+  #                         shQuote("Time"),shQuote("Stock"),shQuote("Value")))
+  
+  output<-c(output,sprintf("to<-gather(o,key=Stock,value=Value,2:ncol(o))"))
   output<-c(output,
-            sprintf("ggplot(data=mo)+geom_line(aes(x=Time,y=Value,colour=Stock))"))
+            sprintf("ggplot(data=to)+geom_line(aes(x=time,y=Value,colour=Stock))"))
 }
 
 #-------------------------------------------------------------------
