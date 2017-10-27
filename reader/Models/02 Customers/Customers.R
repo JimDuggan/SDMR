@@ -1,6 +1,6 @@
 ###########################################
 # Translation of Vensim file.
-# Date created: 2017-10-27 13:40:59
+# Date created: 2017-10-27 21:14:40
 ###########################################
 library(deSolve)
 library(ggplot2)

@@ -318,17 +318,8 @@ $192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,1
 1,110,2,109,0,0,0,0,0,128,0,-1--1--1,,1|(491,199)|
 1,111,5,109,0,0,0,0,0,128,0,-1--1--1,,1|(495,331)|
 ///---\\\
-:GRAPH Infections
-:TITLE  
-:SCALE
-:VAR Total Infected
-:LINE-WIDTH 2
-:VAR Ia
-:LINE-WIDTH 2
-:VAR Iy
-:LINE-WIDTH 2
 :L<%^E!@
-1:Current.vdf
+1:/Users/jim/Dropbox/Lectures/2017 Lectures/CT561/Problem Sheets/02 Assignment/Current.vdf
 9:Current
 22:$,Dollar,Dollars,$s
 22:Day,Days

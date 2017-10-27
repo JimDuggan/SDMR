@@ -6,3 +6,4 @@ sim$save_model(output,"./reader/Models/02 Customers/Customers.R")
 
 # see the translator environment
 ls.str(sim)
+
