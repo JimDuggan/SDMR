@@ -1,0 +1,79 @@
+{UTF-8}
+Growth Fraction  = A FUNCTION OF( )
+	~	
+	~		|
+
+Number Added  = A FUNCTION OF( Growth Fraction,Population)
+	~	
+	~		|
+
+Population  = A FUNCTION OF( Number Added)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 2010
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 1960
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.125
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Population,266,142,40,20,3,3,0,0,0,0,0,0
+12,2,48,84,139,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(196,139)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(124,139)|
+11,5,0,160,139,6,8,34,3,0,0,1,0,0,0
+10,6,Number Added,160,155,39,8,40,3,0,0,-1,0,0,0
+10,7,Growth Fraction,95,270,42,8,8,3,0,0,0,0,0,0
+1,8,7,6,0,0,0,0,0,128,0,-1--1--1,,1|(123,218)|
+1,9,1,6,1,0,0,0,0,128,0,-1--1--1,,1|(235,198)|
+///---\\\
+:L<%^E!@
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+5:FINAL TIME
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0

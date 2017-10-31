@@ -1,0 +1,12 @@
+Population = INTEG( Number Added , 3e+09) 
+	
+FINAL TIME = 2010
+	
+Growth Fraction = 0.0125
+	
+INITIAL TIME = 1960
+	
+Number Added = Population * Growth Fraction 
+	
+TIME STEP = 0.125
+	
