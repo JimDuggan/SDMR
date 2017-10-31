@@ -29,6 +29,10 @@ model <- function(time, stocks, auxs){
 o<-data.frame(ode(y=stocks,times=simtime,func=model,parms=auxs,method='euler'))
 to<-gather(o,key=Stock,value=Value,2:ncol(o))
 ggplot(data=to)+geom_line(aes(x=time,y=Value,colour=Stock))
+
+ggplot()+geom_point(data=o,aes(x=time,y=Population))+geom_point(data=o1,aes(x=time,y=Population),colour="red")+geom_line()
+
+
 #----------------------------------------------------
 # Original text file exported from Vensim
 #  Population = INTEG( Number Added , 3e+09) 
