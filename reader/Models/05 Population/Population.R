@@ -19,7 +19,7 @@ stocks <-c( Population = 3e+09 )
 # This is the model function called from ode
 model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{
-    GrowthFraction <- 0.0125
+    GrowthFraction <- 0.03
     NumberAdded <- Population*GrowthFraction
     d_DT_Population  <- NumberAdded
     return (list(c(d_DT_Population)))
