@@ -20,27 +20,38 @@ model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{
     
     # Adding policy logic to the model
-    if(ChangeFlag == 1 && time > ChangeTime){
-      GrowthFraction <- GrowthFraction * 0.75
+    if(aChangeFlag == 1 && time > aChangeTime){
+      aGrowthFraction <- aGrowthFraction * aGrowthFractionMultiplier
     }
     
-    NumberAdded <- Population*GrowthFraction
+    NumberAdded <- Population*aGrowthFraction
     d_DT_Population  <- NumberAdded
     return (list(c(d_DT_Population)))
   })
 }
 
+run_info <- data.frame(
+  RunID = 1:length(seq(START_TIME,FINISH_TIME,10)),
+  aChangeFlag=1,
+  aChangeTime =seq(START_TIME,FINISH_TIME,10),
+  aGrowthFraction=0.0125,
+  aGrowthFractionMultiplier=0.75
+)
 
-auxs<-c(GrowthFraction=0.0125, ChangeTime=1980, ChangeFlag=0)
-o1<-data.frame(ode(y=stocks,times=simtime,func=model,parms=auxs,method='euler'))
+ans <- apply(run_info,1,function(x){
+  auxs<-c(aGrowthFraction=x[["aGrowthFraction"]],
+          aChangeTime=x[["aChangeTime"]],
+          aChangeFlag=x[["aChangeFlag"]],
+          aGrowthFractionMultiplier=x[["aGrowthFractionMultiplier"]])
+  
+  o<-data.frame(ode(y=stocks,times=simtime,func=model,parms=auxs,method='euler'))
+  o$RunID <- as.factor(x[["RunID"]])
+  o
+})
 
-auxs<-c(GrowthFraction=0.0125,ChangeTime=1995,ChangeFlag=1)
+ans_df <- rbind.fill(ans)
 
-o2<-data.frame(ode(y=stocks,times=simtime,func=model,parms=auxs,method='euler'))
-
-
-ggplot()+geom_point(data=o1,aes(x=time,y=Population),colour="blue")+
-  geom_point(data=o2,aes(x=time,y=Population),colour="red")
+ggplot(data=ans_df)+geom_path(aes(x=time,y=Population,colour=RunID))
 
 
 #----------------------------------------------------
