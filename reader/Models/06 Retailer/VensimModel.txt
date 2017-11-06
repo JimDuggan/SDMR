@@ -1,0 +1,53 @@
+Expected Customer Orders = INTEG( CECO , 100) 
+	
+Stock = INTEG( Acquisition Rate - Shipment Rate , 400) 
+	
+Supply Line = INTEG( Order Rate - Acquisition Rate , 400) 
+	
+Delivery Delay = 4
+	
+Acquisition Rate = Supply Line / Delivery Delay 
+	
+Desired Inventory = 400
+	
+ALPHA = 1
+	
+Inventory Adjustment Time = 1 / ALPHA 
+	
+Adjustment for Inventory = ( Desired Inventory - Stock ) / Inventory Adjustment Time
+           
+Desired Supply Line = Delivery Delay * Expected Customer Orders 
+	
+BETA = 0.05
+	
+Supply LIne Adjustment Time = 1 / BETA 
+	
+Adjustment for Supply Line = ( Desired Supply Line - Supply Line ) / Supply LIne Adjustment Time
+           
+Adjustment Time = 1
+	
+Customer Orders = 100 
+	
+Error Term = Customer Orders - Expected Customer Orders 
+	
+CECO = Error Term / Adjustment Time 
+	
+Desired Delivery Rate = Adjustment for Inventory + Expected Customer Orders
+           
+FINAL TIME = 40
+	
+Indicated Orders = Adjustment for Supply Line + Desired Delivery Rate 
+	
+INITIAL TIME = 0
+	
+Min Shipment Time = 1
+	
+Maximum Shipped Orders = Stock / Min Shipment Time 
+	
+Order Rate = max ( 0, Indicated Orders ) 
+	
+TIME STEP = 0.125
+	
+Shipment Rate = min ( Customer Orders , Maximum Shipped Orders ) 
+
+	

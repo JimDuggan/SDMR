@@ -1,6 +1,6 @@
 ###########################################
 # Translation of Vensim file.
-# Date created: 2017-11-02 15:44:04
+# Date created: 2017-11-02 15:56:18
 ###########################################
 library(deSolve)
 library(ggplot2)
@@ -25,23 +25,20 @@ model <- function(time, stocks, auxs){
     ALPHA <- 1
     InventoryAdjustmentTime <- 1/ALPHA
     AdjustmentforInventory <- (DesiredInventory-Stock)/InventoryAdjustmentTime
-    NA <- NA
     DesiredSupplyLine <- DeliveryDelay*ExpectedCustomerOrders
     BETA <- 0.05
     SupplyLIneAdjustmentTime <- 1/BETA
     AdjustmentforSupplyLine <- (DesiredSupplyLine-SupplyLine)/SupplyLIneAdjustmentTime
-    NA <- NA
     AdjustmentTime <- 1
     CustomerOrders <- 100
     ErrorTerm <- CustomerOrders-ExpectedCustomerOrders
     CECO <- ErrorTerm/AdjustmentTime
     DesiredDeliveryRate <- AdjustmentforInventory+ExpectedCustomerOrders
-    NA <- NA
     IndicatedOrders <- AdjustmentforSupplyLine+DesiredDeliveryRate
     MinShipmentTime <- 1
     MaximumShippedOrders <- Stock/MinShipmentTime
     OrderRate <- max(0,IndicatedOrders)
-    ShipmentRate <- MIN(CustomerOrders,MaximumShippedOrders)
+    ShipmentRate <- min(CustomerOrders,MaximumShippedOrders)
     d_DT_ExpectedCustomerOrders  <- CECO
     d_DT_Stock  <- AcquisitionRate-ShipmentRate
     d_DT_SupplyLine  <- OrderRate-AcquisitionRate
@@ -63,18 +60,15 @@ ggplot(data=to)+geom_line(aes(x=time,y=Value,colour=Stock))
 #  ALPHA = 1
 #  Inventory Adjustment Time = 1 / ALPHA 
 #  Adjustment for Inventory = ( Desired Inventory - Stock ) / Inventory Adjustment Time
-#             
 #  Desired Supply Line = Delivery Delay * Expected Customer Orders 
 #  BETA = 0.05
 #  Supply LIne Adjustment Time = 1 / BETA 
 #  Adjustment for Supply Line = ( Desired Supply Line - Supply Line ) / Supply LIne Adjustment Time
-#             
 #  Adjustment Time = 1
 #  Customer Orders = 100 
 #  Error Term = Customer Orders - Expected Customer Orders 
 #  CECO = Error Term / Adjustment Time 
 #  Desired Delivery Rate = Adjustment for Inventory + Expected Customer Orders
-#             
 #  FINAL TIME = 40
 #  Indicated Orders = Adjustment for Supply Line + Desired Delivery Rate 
 #  INITIAL TIME = 0
@@ -82,5 +76,5 @@ ggplot(data=to)+geom_line(aes(x=time,y=Value,colour=Stock))
 #  Maximum Shipped Orders = Stock / Min Shipment Time 
 #  Order Rate = max ( 0, Indicated Orders ) 
 #  TIME STEP = 0.125
-#  Shipment Rate = MIN ( Customer Orders , Maximum Shipped Orders ) 
+#  Shipment Rate = min ( Customer Orders , Maximum Shipped Orders ) 
 #----------------------------------------------------

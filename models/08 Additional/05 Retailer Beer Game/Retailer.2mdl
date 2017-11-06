@@ -1,0 +1,231 @@
+{UTF-8}
+Acquisition Rate=
+	Supply Line/Delivery Delay
+	~	SKU/Week
+	~		|
+
+Adjustment for Inventory=
+	(Desired Inventory-Stock)/Inventory Adjustment Time
+	~	
+	~		|
+
+Adjustment for Supply Line=
+	(Desired Supply Line-Supply Line)/Supply LIne Adjustment Time
+	~	
+	~		|
+
+Adjustment Time=
+	1
+	~	
+	~		|
+
+CECO=
+	Error Term/Adjustment Time
+	~	
+	~		|
+
+Min Shipment Time=
+	1
+	~	
+	~		|
+
+Delivery Delay=
+	4
+	~	Week
+	~		|
+
+Desired Delivery Rate=
+	Adjustment for Inventory+Expected Customer Orders
+	~	
+	~		|
+
+Desired Inventory=
+	400
+	~	
+	~		|
+
+Desired Supply Line=
+	Delivery Delay*Expected Customer Orders
+	~	SKU
+	~		|
+
+Error Term=
+	Customer Orders-Expected Customer Orders
+	~	
+	~		|
+
+Expected Customer Orders= INTEG (
+	CECO,
+		100)
+	~	
+	~		|
+
+Indicated Orders=
+	Adjustment for Supply Line+Desired Delivery Rate
+	~	SKU/Week
+	~		|
+
+Inventory Adjustment Time=
+	1
+	~	
+	~		|
+
+Maximum Shipped Orders=
+	Stock/Min Shipment Time
+	~	
+	~		|
+
+Supply LIne Adjustment Time=
+	1e+06
+	~	Week
+	~		|
+
+Order Rate=
+	max(0,Indicated Orders)
+	~	SKU/Week
+	~		|
+
+Shipment Rate=
+	MIN(Customer Orders,Maximum Shipped Orders)
+	~	SKU/Week
+	~		|
+
+Stock= INTEG (
+	Acquisition Rate-Shipment Rate,
+		400)
+	~	SKU
+	~		|
+
+Supply Line= INTEG (
+	Order Rate-Acquisition Rate,
+		400)
+	~	SKU
+	~		|
+
+Customer Orders=
+	100+step(100,10)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 40
+	~	Week
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Week
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Week [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.125
+	~	Week [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Stock,671,168,40,20,3,3,0,0,0,0,0,0
+10,2,Supply Line,326,170,40,20,3,3,0,0,0,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(567,169)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(429,169)|
+11,5,172,498,169,6,8,34,3,0,0,1,0,0,0
+10,6,Acquisition Rate,498,185,43,8,40,3,0,0,-1,0,0,0
+12,7,48,918,169,10,8,0,3,0,0,-1,0,0,0
+1,8,10,7,4,0,0,22,0,0,0,-1--1--1,,1|(861,169)|
+1,9,10,1,100,0,0,22,0,0,0,-1--1--1,,1|(757,169)|
+11,10,48,809,169,6,8,34,3,0,0,1,0,0,0
+10,11,Shipment Rate,809,185,38,8,40,3,0,0,-1,0,0,0
+12,12,48,110,171,10,8,0,3,0,0,-1,0,0,0
+1,13,15,2,4,0,0,22,0,0,0,-1--1--1,,1|(247,171)|
+1,14,15,12,100,0,0,22,0,0,0,-1--1--1,,1|(158,171)|
+11,15,48,203,171,6,8,34,3,0,0,1,0,0,0
+10,16,Order Rate,203,187,29,8,40,3,0,0,-1,0,0,0
+10,17,Delivery Delay,449,78,39,8,8,3,0,0,0,0,0,0
+1,18,17,5,1,0,0,0,0,128,0,-1--1--1,,1|(485,110)|
+1,19,2,6,1,0,0,0,0,128,0,-1--1--1,,1|(411,205)|
+10,20,Customer Orders,1005,301,43,8,8,3,0,0,0,0,0,0
+1,21,20,11,1,0,0,0,0,128,0,-1--1--1,,1|(914,222)|
+10,22,Maximum Shipped Orders,733,248,41,14,8,3,0,0,0,0,0,0
+10,23,Min Shipment Time,858,272,51,8,8,3,0,0,0,0,0,0
+1,24,1,22,1,0,0,0,0,128,0,-1--1--1,,1|(690,210)|
+1,25,23,22,1,0,0,0,0,128,0,-1--1--1,,1|(790,265)|
+1,26,22,11,1,0,0,0,0,128,0,-1--1--1,,1|(801,227)|
+10,27,Expected Customer Orders,896,488,40,20,3,3,0,0,0,0,0,0
+12,28,48,1040,490,10,8,0,3,0,0,-1,0,0,0
+1,30,32,27,4,0,0,22,0,0,0,-1--1--1,,1|(956,490)|
+1,31,32,28,100,0,0,22,0,0,0,-1--1--1,,1|(1009,490)|
+11,32,0,983,490,6,8,34,3,0,0,1,0,0,0
+10,33,CECO,983,506,18,8,40,3,0,0,-1,0,0,0
+10,34,Error Term,927,405,29,8,8,3,0,0,0,0,0,0
+1,35,20,34,1,0,0,0,0,128,0,-1--1--1,,1|(989,359)|
+1,36,27,34,1,0,0,0,0,128,0,-1--1--1,,1|(888,439)|
+1,37,34,32,1,0,0,0,0,128,0,-1--1--1,,1|(979,439)|
+10,38,Adjustment Time,1062,409,44,8,8,3,0,0,0,0,0,0
+1,41,40,38,1,0,0,0,0,128,0,-1--1--1,,1|(1094,376)|
+10,42,Desired Delivery Rate,638,513,48,21,8,131,0,0,0,0,0,0
+1,43,27,42,1,0,0,0,0,128,0,-1--1--1,,1|(773,528)|
+10,44,Adjustment for Inventory,663,376,40,14,8,3,0,0,0,0,0,0
+10,45,Desired Inventory,806,324,46,8,8,3,0,0,0,0,0,0
+10,46,Inventory Adjustment Time,786,419,45,14,8,3,0,0,0,0,0,0
+1,49,45,44,1,0,0,0,0,128,0,-1--1--1,,1|(739,324)|
+1,50,1,44,1,0,0,0,0,128,0,-1--1--1,,1|(682,267)|
+1,51,46,44,1,0,0,0,0,128,0,-1--1--1,,1|(722,408)|
+1,52,47,46,0,0,0,0,0,128,0,-1--1--1,,1|(839,384)|
+1,53,44,42,1,0,0,0,0,128,0,-1--1--1,,1|(668,431)|
+10,54,Adjustment for Supply Line,367,311,40,14,8,3,0,0,0,0,0,0
+1,55,2,54,1,0,0,0,0,128,0,-1--1--1,,1|(369,238)|
+10,58,Desired Supply Line,536,338,44,15,8,131,0,0,0,0,0,0
+1,59,17,58,1,0,0,0,0,128,0,-1--1--1,,1|(552,170)|
+1,60,27,58,1,0,0,0,0,128,0,-1--1--1,,1|(706,437)|
+10,61,Indicated Orders,185,404,42,8,8,3,0,0,0,0,0,0
+1,62,42,61,1,0,0,0,0,128,0,-1--1--1,,1|(360,509)|
+1,63,61,16,1,0,0,0,0,128,0,-1--1--1,,1|(153,286)|
+1,64,54,61,1,0,0,0,0,128,0,-1--1--1,,1|(292,382)|
+10,65,Supply LIne Adjustment Time,426,384,45,14,8,3,0,0,0,0,0,0
+1,67,66,65,0,0,0,0,0,128,0,-1--1--1,,1|(455,416)|
+1,68,65,54,1,0,0,0,0,128,0,-1--1--1,,1|(388,352)|
+1,69,58,54,0,0,0,0,0,128,0,-1--1--1,,1|(456,325)|
+1,70,38,32,0,0,0,0,0,128,0,-1--1--1,,1|(1025,446)|
+///---\\\
+:L<%^E!@
+1:Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:Expected Customer Orders
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:3
+41:0
+42:1
+24:0
+25:40
+26:40

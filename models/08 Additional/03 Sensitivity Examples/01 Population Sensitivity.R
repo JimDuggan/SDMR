@@ -5,6 +5,7 @@
 library(deSolve)
 library(ggplot2)
 library(tidyr)
+library(plyr)
 #Displaying the simulation run parameters
 START_TIME <- 1960.000000
 FINISH_TIME <- 2010.000000
@@ -19,9 +20,9 @@ stocks <-c( Population = 3e+09 )
 model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{
     
-    # Adding policy logic to the model
     if(aChangeFlag == 1 && time > aChangeTime){
-      aGrowthFraction <- aGrowthFraction * aGrowthFractionMultiplier
+      aGrowthFraction <- aGrowthFraction * 
+             aGrowthFractionMultiplier
     }
     
     NumberAdded <- Population*aGrowthFraction
@@ -29,6 +30,8 @@ model <- function(time, stocks, auxs){
     return (list(c(d_DT_Population)))
   })
 }
+
+
 
 run_info <- data.frame(
   RunID = 1:length(seq(START_TIME,FINISH_TIME,10)),
@@ -38,20 +41,28 @@ run_info <- data.frame(
   aGrowthFractionMultiplier=0.75
 )
 
+
+
 ans <- apply(run_info,1,function(x){
   auxs<-c(aGrowthFraction=x[["aGrowthFraction"]],
           aChangeTime=x[["aChangeTime"]],
           aChangeFlag=x[["aChangeFlag"]],
           aGrowthFractionMultiplier=x[["aGrowthFractionMultiplier"]])
   
-  o<-data.frame(ode(y=stocks,times=simtime,func=model,parms=auxs,method='euler'))
+  o<-data.frame(ode(y=stocks,
+                    times=simtime,
+                    func=model,
+                    parms=auxs,
+                    method='euler'))
   o$RunID <- as.factor(x[["RunID"]])
   o
 })
 
+
 ans_df <- rbind.fill(ans)
 
-ggplot(data=ans_df)+geom_path(aes(x=time,y=Population,colour=RunID))
+ggplot(data=ans_df)+
+  geom_path(aes(x=time,y=Population,colour=RunID))
 
 
 #----------------------------------------------------

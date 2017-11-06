@@ -9,6 +9,7 @@ sim$get_input_vensim<-function(file){
   sim$input<<-readLines(file,warn = F)
   sim$input<<-gsub("\"","",x = sim$input)
   sim$input<<-sim$input[sim$input != ""]
+  sim$input<<-sim$input[!grepl("^\\s*$", sim$input)]
 }
 
 sim$is_stock<-function(rhs){

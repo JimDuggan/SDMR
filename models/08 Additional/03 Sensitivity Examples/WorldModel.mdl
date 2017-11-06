@@ -1,0 +1,128 @@
+{UTF-8}
+Change Flag=
+	1
+	~	
+	~		|
+
+Change Time=
+	1970
+	~	
+	~		|
+
+Growth Fraction=
+	IF THEN ELSE(Change Flag=1 :AND: Time>Change Time, 0.0125 * Growth Fraction Multiplier\
+		,0.0125)
+	~	
+	~		|
+
+Growth Fraction Multiplier=
+	0.75
+	~	
+	~		|
+
+Number Added=
+	Population*Growth Fraction
+	~	
+	~		|
+
+Population= INTEG (
+	Number Added,
+		3e+09)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 2010
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 1960
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.125
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Population,266,142,40,20,3,3,0,0,0,0,0,0
+12,2,48,84,139,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(196,139)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(124,139)|
+11,5,48,160,139,6,8,34,3,0,0,1,0,0,0
+10,6,Number Added,160,155,39,8,40,3,0,0,-1,0,0,0
+10,7,Growth Fraction,105,216,37,16,8,131,0,0,0,0,0,0
+1,8,7,6,1,0,0,0,0,128,0,-1--1--1,,1|(137,187)|
+1,9,1,6,1,0,0,0,0,128,0,-1--1--1,,1|(235,198)|
+10,10,Time,199,288,21,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+10,11,Change Time,139,306,34,8,8,3,0,0,0,0,0,0
+10,12,Change Flag,62,292,33,8,8,3,0,0,0,0,0,0
+1,13,12,7,1,0,0,0,0,128,0,-1--1--1,,1|(59,243)|
+1,14,10,7,1,0,0,0,0,128,0,-1--1--1,,1|(169,256)|
+1,16,11,7,1,0,0,0,0,128,0,-1--1--1,,1|(136,256)|
+10,17,Growth Fraction Multiplier,306,221,43,14,8,3,0,0,0,0,0,0
+1,18,17,7,1,0,0,0,0,128,0,-1--1--1,,1|(208,223)|
+///---\\\
+:GRAPH Compare
+:TITLE  
+:SCALE
+:VAR Population
+:DATASET Baseline
+:LINE-WIDTH 2
+:VAR Population
+:DATASET 2000
+:LINE-WIDTH 2
+:VAR Population
+:DATASET 1980
+:LINE-WIDTH 2
+:VAR Population
+:DATASET 1970
+:LINE-WIDTH 2
+:L<%^E!@
+1:1970.vdf
+1:2000.vdf
+1:1980.vdf
+1:Baseline.vdf
+9:1970
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:Population
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:1960
+25:2010
+26:2010
