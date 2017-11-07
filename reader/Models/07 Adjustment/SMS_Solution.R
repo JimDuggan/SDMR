@@ -5,6 +5,7 @@
 library(deSolve)
 library(ggplot2)
 library(tidyr)
+library(plyr)
 #Displaying the simulation run parameters
 START_TIME <- 0.000000
 FINISH_TIME <- 100.000000
