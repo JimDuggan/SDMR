@@ -1,0 +1,17 @@
+Stock = INTEG( Net Flow , 100) 
+	
+Target = 100 + step ( 100, 10) 
+	
+AT = 100
+	
+Adjustment = ( Target - Stock ) / AT 
+	
+FINAL TIME = 100
+
+INITIAL TIME = 0
+
+Net Flow = Adjustment 
+	
+TIME STEP = 0.0625
+
+
