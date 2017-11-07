@@ -28,7 +28,7 @@ model <- function(time, stocks, auxs){
 }
 # Function call to run simulation
 
-at <- 1:50
+at <- 1:100
 run_info <- data.frame(
   RunID = at,
   AT = at
@@ -51,8 +51,8 @@ ans_df <- rbind.fill(ans)
 
 ggplot(ans_df,aes(x=time,y=Stock,color=RunID)) + 
   geom_point() + scale_colour_gradientn(colours=rainbow(50))+
-  ylab("Infected") +
-  xlab("Time (Days)")  + guides(color=FALSE) 
+  ylab("Stock") +
+  xlab("Time")  + guides(color=FALSE) 
 
 
 
