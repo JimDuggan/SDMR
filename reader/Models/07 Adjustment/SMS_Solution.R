@@ -11,7 +11,6 @@ FINISH_TIME <- 100.000000
 TIME_STEP <- 0.062500
 #Setting aux param to NULL
 
-
 #Generating the simulation time vector
 simtime<-seq(0.000000,100.000000,by=0.062500)
 # Writing global variables (stocks and dependent auxs)
@@ -19,8 +18,7 @@ stocks <-c( Stock = 100 )
 # This is the model function called from ode
 model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{
-    cat("The value of AT ...",AT,"\n")
-    if(time >=10) Target <- 200 else Target <-100
+    if(time > 10) Target <- 200 else Target <- 100
     Adjustment <- (Target-Stock)/AT
     NetFlow <- Adjustment
     d_DT_Stock  <- NetFlow
@@ -29,23 +27,31 @@ model <- function(time, stocks, auxs){
 }
 # Function call to run simulation
 
-MAX<-5
+at <- 1:50
 run_info <- data.frame(
-  RunID = 1:MAX,
-  AT=1:MAX
+  RunID = at,
+  AT = at
 )
 
 ans <- apply(run_info,1,function(x){
   auxs<-c(AT=x[["AT"]])
-  
   o<-data.frame(ode(y=stocks,
                     times=simtime,
                     func=model,
                     parms=auxs,
                     method='euler'))
   o$RunID <- x[["RunID"]]
+  o$AT <- x[["AT"]]
   o
 })
+
+
+ans_df <- rbind.fill(ans)
+
+ggplot(ans_df,aes(x=time,y=Stock,color=RunID)) + 
+  geom_point() + scale_colour_gradientn(colours=rainbow(50))+
+  ylab("Infected") +
+  xlab("Time (Days)")  + guides(color=FALSE) 
 
 
 
