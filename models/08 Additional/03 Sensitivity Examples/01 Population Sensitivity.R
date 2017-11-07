@@ -42,7 +42,6 @@ run_info <- data.frame(
 )
 
 
-
 ans <- apply(run_info,1,function(x){
   auxs<-c(aGrowthFraction=x[["aGrowthFraction"]],
           aChangeTime=x[["aChangeTime"]],
