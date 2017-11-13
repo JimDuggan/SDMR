@@ -12,13 +12,13 @@ Smoothed Reporting Rate = INTEG( CRR , 0)
 	
 Sy = INTEG( - YIR , 4999) 
 	
-CE AA = 0.55
+CE AA = 0.2
 	
 Population A = Sa + Ia + Ra 
 	
 Beta AA = CE AA / Population A 
 	
-CE AY = CE AA / 4
+CE AY = 0.05
 	
 Beta AY = CE AY / Population A 
 	
@@ -32,13 +32,13 @@ ARR = Ia / RD
 	
 AT = 2
 	
-CE YY = 0.6
-	
-CE YA = CE YY / 4
+CE YA = 0.1
 	
 Population Y = Sy + Iy + Ry 
 	
 Beta YA = CE YA / Population Y 
+	
+CE YY = 0.8
 	
 Beta YY = CE YY / Population Y 
 	
@@ -47,6 +47,8 @@ Close School Duration = 10
 Total Population = Population Y + Population A 
 	
 Reported Cases Per 100000 = Smoothed Reporting Rate * 100000 / Total Population
+           
+	
 School Closure Threshold = 300
 	
 Close Schools Flag = IF THEN ELSE ( Reported Cases Per 100000 > School Closure Threshold, 1, 0) 
@@ -65,15 +67,15 @@ Error = Reported Infection Rate - Smoothed Reporting Rate
 	
 CRR = Error / AT 
 	
+FINAL TIME = 50
+	
+INITIAL TIME = 0
+	
+TIME STEP = 0.125
+	
+SAVEPER = TIME STEP 
+	
 Total Infected = Ia + Iy 
 	
 YRR = Iy / RD 
-
-FINAL TIME = 70
-INITIAL TIME = 0
-TIME STEP = 0.125
-
-
-
-
 	

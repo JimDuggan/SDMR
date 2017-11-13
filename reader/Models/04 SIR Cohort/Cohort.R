@@ -1,44 +1,52 @@
 ###########################################
 # Translation of Vensim file.
-# Date created: 2017-10-27 13:38:26
+# Date created: 2017-11-13 17:00:54
 ###########################################
 library(deSolve)
 library(ggplot2)
 library(tidyr)
 #Displaying the simulation run parameters
 START_TIME <- 0.000000
-FINISH_TIME <- 70.000000
+FINISH_TIME <- 50.000000
 TIME_STEP <- 0.125000
 #Setting aux param to NULL
 auxs<-NULL
 
 #Generating the simulation time vector
-simtime<-seq(0.000000,70.000000,by=0.125000)
+simtime<-seq(0.000000,50.000000,by=0.125000)
 # Writing global variables (stocks and dependent auxs)
 stocks <-c( Ia = 0 , Iy = 1 , Ra = 0 , Ry = 0 , Sa = 5000 , SmoothedReportingRate = 0 , Sy = 4999 )
 # This is the model function called from ode
 model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{
-    CEAA <- 0.55
+    CEAA <- 0.2
     PopulationA <- Sa+Ia+Ra
     BetaAA <- CEAA/PopulationA
-    CEAY <- CEAA/4
+    CEAY <- 0.05
     BetaAY <- CEAY/PopulationA
     LambdaA <- BetaAA*Ia+BetaAY*Iy
     AIR <- LambdaA*Sa
     RD <- 2
     ARR <- Ia/RD
     AT <- 2
-    CEYY <- 0.6
-    CEYA <- CEYY/4
+    CEYA <- 0.1
     PopulationY <- Sy+Iy+Ry
     BetaYA <- CEYA/PopulationY
+    CEYY <- 0.8
     BetaYY <- CEYY/PopulationY
     CloseSchoolDuration <- 10
     TotalPopulation <- PopulationY+PopulationA
     ReportedCasesPer100000 <- SmoothedReportingRate*100000/TotalPopulation
     SchoolClosureThreshold <- 300
     #CloseSchoolsFlag <- IFTHENELSE(ReportedCasesPer100000>SchoolClosureThreshold,1,0)
+    
+    if(ReportedCasesPer100000 > SchoolClosureThreshold)
+      CloseSchoolsFlag <- T else CloseSchoolsFlag <- F
+    
+    if(CloseSchoolsFlag == T){
+      cat("Time is ",time," and CloseSchoolsFlag is true\n")
+    }
+    
     LambdaY <- BetaYA*Ia+BetaYY*Iy
     YIR <- LambdaY*Sy
     TotalInfectionRate <- AIR+YIR
@@ -71,20 +79,20 @@ ggplot(data=to)+geom_line(aes(x=time,y=Value,colour=Stock))
 #  Sa = INTEG( - AIR , 5000) 
 #  Smoothed Reporting Rate = INTEG( CRR , 0) 
 #  Sy = INTEG( - YIR , 4999) 
-#  CE AA = 0.55
+#  CE AA = 0.2
 #  Population A = Sa + Ia + Ra 
 #  Beta AA = CE AA / Population A 
-#  CE AY = CE AA / 4
+#  CE AY = 0.05
 #  Beta AY = CE AY / Population A 
 #  Lambda A = Beta AA * Ia + Beta AY * Iy 
 #  AIR = Lambda A * Sa 
 #  RD = 2
 #  ARR = Ia / RD 
 #  AT = 2
-#  CE YY = 0.6
-#  CE YA = CE YY / 4
+#  CE YA = 0.1
 #  Population Y = Sy + Iy + Ry 
 #  Beta YA = CE YA / Population Y 
+#  CE YY = 0.8
 #  Beta YY = CE YY / Population Y 
 #  Close School Duration = 10
 #  Total Population = Population Y + Population A 
@@ -98,9 +106,10 @@ ggplot(data=to)+geom_line(aes(x=time,y=Value,colour=Stock))
 #  Reported Infection Rate = Total Infection Rate * Reporting Fraction 
 #  Error = Reported Infection Rate - Smoothed Reporting Rate 
 #  CRR = Error / AT 
-#  Total Infected = Ia + Iy 
-#  YRR = Iy / RD 
-#  FINAL TIME = 70
+#  FINAL TIME = 50
 #  INITIAL TIME = 0
 #  TIME STEP = 0.125
+#  SAVEPER = TIME STEP 
+#  Total Infected = Ia + Iy 
+#  YRR = Iy / RD 
 #----------------------------------------------------
