@@ -1,6 +1,6 @@
 ###########################################
 # Translation of Vensim file.
-# Date created: 2017-11-13 17:00:54
+# Date created: 2017-11-14 15:54:09
 ###########################################
 library(deSolve)
 library(ggplot2)
@@ -38,15 +38,7 @@ model <- function(time, stocks, auxs){
     TotalPopulation <- PopulationY+PopulationA
     ReportedCasesPer100000 <- SmoothedReportingRate*100000/TotalPopulation
     SchoolClosureThreshold <- 300
-    #CloseSchoolsFlag <- IFTHENELSE(ReportedCasesPer100000>SchoolClosureThreshold,1,0)
-    
-    if(ReportedCasesPer100000 > SchoolClosureThreshold)
-      CloseSchoolsFlag <- T else CloseSchoolsFlag <- F
-    
-    if(CloseSchoolsFlag == T){
-      cat("Time is ",time," and CloseSchoolsFlag is true\n")
-    }
-    
+    CloseSchoolsFlag <- IFTHENELSE(ReportedCasesPer100000>SchoolClosureThreshold,1,0)
     LambdaY <- BetaYA*Ia+BetaYY*Iy
     YIR <- LambdaY*Sy
     TotalInfectionRate <- AIR+YIR
