@@ -1,17 +1,20 @@
 ###########################################
 # Translation of Vensim file.
-# Date created: 2017-11-14 15:54:09
+# Date created: 2017-11-13 17:00:54
 ###########################################
 library(deSolve)
 library(ggplot2)
 library(tidyr)
+library(dplyr)
+library(plyr)
+library(tibble)
+
 #Displaying the simulation run parameters
 START_TIME <- 0.000000
 FINISH_TIME <- 50.000000
 TIME_STEP <- 0.125000
 #Setting aux param to NULL
-auxs<-NULL
-TestCounte <- 0
+
 
 #Generating the simulation time vector
 simtime<-seq(0.000000,50.000000,by=0.125000)
@@ -33,8 +36,12 @@ model <- function(time, stocks, auxs){
     CEYA <- 0.1
     PopulationY <- Sy+Iy+Ry
     BetaYA <- CEYA/PopulationY
-    
     CEYY <- 0.8
+    
+    # TEST the simulation. Schools close (but do not reopen)
+    if(TestCloseFlag == T){
+      if (time > CloseTime) CEYY <- CEYY * DecreaseEffect
+    }
     
     BetaYY <- CEYY/PopulationY
     CloseSchoolDuration <- 10
@@ -43,12 +50,9 @@ model <- function(time, stocks, auxs){
     SchoolClosureThreshold <- 300
     #CloseSchoolsFlag <- IFTHENELSE(ReportedCasesPer100000>SchoolClosureThreshold,1,0)
     
-
-    if(ReportedCasesPer100000 > SchoolClosureThreshold){
-      cat("Close Schools at time = ",time,"\n")
-      TestCounter <<- TestCounter+1
-    }
-
+    if(ReportedCasesPer100000 > SchoolClosureThreshold)
+      CloseSchoolsFlag <- T else CloseSchoolsFlag <- F
+    
     LambdaY <- BetaYA*Ia+BetaYY*Iy
     YIR <- LambdaY*Sy
     TotalInfectionRate <- AIR+YIR
@@ -69,9 +73,37 @@ model <- function(time, stocks, auxs){
   })
 }
 # Function call to run simulation
-o<-data.frame(ode(y=stocks,times=simtime,func=model,parms=auxs,method='euler'))
-#to<-gather(o,key=Stock,value=Value,2:ncol(o))
-#ggplot(data=to)+geom_line(aes(x=time,y=Value,colour=Stock))
+
+
+run_info <- data.frame(
+  RunID          = 1:5,
+  TestCloseFlag  = c(F,rep(T,4)),
+  CloseTime      = c(0,seq(10,40,by=10)),
+  DecreaseEffect = 0.44
+)
+
+ans <- apply(run_info,1,function(x){
+  auxs<-c(TestCloseFlag=x[["TestCloseFlag"]],
+          CloseTime=x[["CloseTime"]],
+          DecreaseEffect=x[["DecreaseEffect"]])
+  o<-data.frame(ode(y=stocks,
+                    times=simtime,
+                    func=model,
+                    parms=auxs,
+                    method='euler'))
+  o$TotalInfected <- o$Ia+o$Iy
+  o$RunID <- x[["RunID"]]
+  o$CloseTime <-  as.factor(x[["CloseTime"]])
+  o
+})
+
+ans_df <- select(as_data_frame(rbind.fill(ans)),TotalInfected,everything())
+
+ggplot(ans_df,aes(x=time,y=TotalInfected,color=CloseTime)) + 
+  geom_path() +
+  ylab("Infected") +
+  xlab("Time (Days)") 
+
 #----------------------------------------------------
 # Original text file exported from Vensim
 #  Ia = INTEG( AIR - ARR , 0) 
