@@ -11,7 +11,7 @@ FINISH_TIME <- 50.000000
 TIME_STEP <- 0.125000
 #Setting aux param to NULL
 auxs<-NULL
-TestCounte <- 0
+TestCounter <- 0
 
 #Generating the simulation time vector
 simtime<-seq(0.000000,50.000000,by=0.125000)

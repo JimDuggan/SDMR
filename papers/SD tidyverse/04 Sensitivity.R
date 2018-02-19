@@ -5,7 +5,7 @@ library(stringr)
 # Read in the Vensim data
 d <- read_tsv("papers/SD tidyverse/data/Sensitivity.dat")
 
-# Convert to tidy data forma and calculate the simulation time
+# Convert to tidy data format and calculate the simulation time
 
 START_TIME <- 0
 DT <- 0.125
@@ -29,8 +29,8 @@ i_td <- td %>% group_by(Simulation) %>%
 
 # Print this on a colourful scatter plot
 
-ggplot(data=a_td,mapping = aes(x=R0,y=VF,size=InfMax,colour=InfMax)) + geom_point() + 
-  scale_colour_gradientn(colours=rev(rainbow(5)))
+ggplot(data=i_td,mapping = aes(x=R0,y=VF,size=InfMax,colour=InfMax)) + geom_point() + 
+  scale_colour_gradientn(colours=rev(rainbow(5)))+guides(size=F)
 
 # Calculate the average for the simulation runs
 
@@ -44,8 +44,6 @@ ggplot()+geom_path(data=td,mapping=aes(x=SimTime,y=Value,color=Simulation)) +
   xlab("Time (Days)")  + guides(color=FALSE)+
   geom_line(data=a_td,mapping=aes(x=SimTime,y=Avr),colour="black",size=2,linetype="dotted")
 
-
-# Mention statistical screening as options too...
 
 
 
