@@ -1,0 +1,405 @@
+A = INTEG( A Produced - A Prop 0to4 - A Prop 15to64 - A Prop 5to14 - A Prop 65, 2000) 
+	
+A 0to4 = INTEG( A Prop 0to4 - A Used 0to4 , 0) 
+	
+A 15to64 = INTEG( A Prop 15to64 - A Used 15to64 , 0) 
+	
+A 5to14 = INTEG( A Prop 5to14 - A Used 5to14 , 0) 
+	
+A 65 = INTEG( A Prop 65 - A Used 65 , 0) 
+	
+Deaths 0to4 = INTEG( DR 0to4 , 0) 
+	
+Deaths 15to64 = INTEG( DR 15to64 , 0) 
+	
+Deaths 5to14 = INTEG( DR 5to14 , 0) 
+	
+Deaths 65 = INTEG( DR 65 , 0) 
+	
+E 0to4 = INTEG( IR 0to4 - ER Mod 0to4 - ER Mild 0to4 - ER Sev 0to4 , 0) 
+	
+E 15to64 = INTEG( IR 15to64 - ER Mod 15to64 - ER Mil 15to64 - ER Sev 15to64, 0) 
+	
+E 5to14 = INTEG( IR 5to14 - ER Mod 5to14 - ER Mil 5to14 - ER Sev 5to14 , 0) 
+	
+E 65 = INTEG( IR 65 - ER Mod 65 - ER Mil 65 - ER Sev 65 , 0) 
+	
+I Mil 0to4 = INTEG( ER Mild 0to4 - RR Mild 0to4 , 1) 
+	
+I Mil 15to64 = INTEG( ER Mil 15to64 - RR Mil 15to64 , 1) 
+	
+I Mil 5to14 = INTEG( ER Mil 5to14 - RR Mil 5to14 , 1) 
+	
+I Mil 65 = INTEG( ER Mil 65 - RR Mil 65 , 1) 
+	
+I Mod 0to4 = INTEG( A Given 0to4 + ER Mod 0to4 - RR Mod 0to4 , 0) 
+	
+I Mod 15to64 = INTEG( A Given 15to64 + ER Mod 15to64 - RR Mod 15to64 , 0) 
+	
+I Mod 5to14 = INTEG( A Given 5to14 + ER Mod 5to14 - RR Mod 5to14 , 0) 
+	
+I Mod 65 = INTEG( A Given 65 + ER Mod 65 - RR Mod 65 , 0) 
+	
+I Sev 0to4 = INTEG( ER Sev 0to4 - A Given 0to4 - DR 0to4 - RR Sev 0to4 , 0) 
+	
+I Sev 15to64 = INTEG( ER Sev 15to64 - A Given 15to64 - DR 15to64 - RR Sev 15to64, 0) 
+	
+I Sev 5to14 = INTEG( ER Sev 5to14 - A Given 5to14 - DR 5to14 - RR Sev 5to14, 0) 
+	
+I Sev 65 = INTEG( ER Sev 65 - A Given 65 - DR 65 - RR Sev 65 , 0) 
+	
+R 0to4 = INTEG( RR Mild 0to4 + RR Mod 0to4 + RR Sev 0to4 + V Given 0to4 , 0) 
+	
+R 15to64 = INTEG( RR Mil 15to64 + RR Mod 15to64 + RR Sev 15to64 + V Given 15to64, 0) 
+	
+R 5to14 = INTEG( RR Mil 5to14 + RR Mod 5to14 + RR Sev 5to14 + V Given 5to14, 0) 
+	
+R 65 = INTEG( RR Mil 65 + RR Mod 65 + RR Sev 65 + V Given 65 , 0) 
+	
+S 0to4 = INTEG( - V Given 0to4 - IR 0to4 , 9999) 
+	
+S 15to64 = INTEG( - V Given 15to64 - IR 15to64 , 9999) 
+	
+S 5to14 = INTEG( - V Given 5to14 - IR 5to14 , 9999) 
+	
+S 65 = INTEG( - V Given 65 - IR 65 , 9999) 
+	
+V = INTEG( V Produced - V Prop 0to4 - V Prop 5to14 - V Prop 15to64 - V Prop 65, 2000) 
+	
+V 0to4 = INTEG( V Prop 0to4 - V Used 0to4 , 0) 
+	
+V 15to64 = INTEG( V Prop 15to64 - V Used 15to64 , 0) 
+	
+V 5to14 = INTEG( V Prop 5to14 - V Used 5to14 , 0) 
+	
+V 65 = INTEG( V Prop 65 - V Used 65 , 0) 
+	
+A Delay 0to4 = 2
+	
+A Delay 15to64 = 2
+	
+A Delay 5to14 = 2
+	
+A Delay 65 = 2
+	
+A Eff 0to4 = 0.9
+	
+A Eff 15to64 = 0.9
+	
+A Eff 5to14 = 0.9
+	
+A Eff 65 = 0.9
+	
+A Given 0to4 = min ( ( A / A Delay 0to4 ) * A Eff 0to4 , I Sev 0to4 ) 
+	
+A Given 15to64 = min ( ( A / A Delay 15to64 ) * A Eff 15to64 , I Sev 15to64) 
+	
+A Given 5to14 = min ( ( A / A Delay 5to14 ) * A Eff 5to14 , I Sev 5to14 ) 
+	
+A Given 65 = min ( ( A / A Delay 65 ) * A Eff 65 , I Sev 65 ) 
+	
+A Produced = 2
+	
+A Ratio 0to4 = 0.2
+	
+A Prop 0to4 = A * A Ratio 0to4 
+	
+A Ratio 15to64 = 0.2
+	
+A Prop 15to64 = A * A Ratio 15to64 
+	
+A Ratio 5to14 = 0.2
+	
+A Prop 5to14 = A * A Ratio 5to14 
+	
+A Ratio 65 = 0.2
+	
+A Prop 65 = A * A Ratio 65 
+	
+A Used 0to4 = A Given 0to4 
+	
+A Used 15to64 = A Given 15to64 
+	
+A Used 5to14 = A Given 5to14 
+	
+A Used 65 = A Given 65 
+	
+CE 0to4 0to4 = 2
+	
+Pop 0to4 = I Mil 0to4 + I Mod 0to4 + I Sev 0to4 + E 0to4 + S 0to4 + R 0to4 
+	
+Beta 0to4 0to4 = CE 0to4 0to4 / Pop 0to4 
+	
+CE 0to4 15to64 = 2
+	
+Beta 0to4 15to64 = CE 0to4 15to64 / Pop 0to4 
+	
+CE 0to4 5to14 = 2
+	
+Beta 0to4 5to14 = CE 0to4 5to14 / Pop 0to4 
+	
+CE 0to4 65 = 2
+	
+Beta 0to4 65 = CE 0to4 65 / Pop 0to4 
+	
+CE 15to64 0to4 = 2
+	
+Pop 15to64 = I Mil 15to64 + I Mod 15to64 + I Sev 15to64 + E 15to64 + S 15to64+ R 15to64 
+	
+Beta 15to64 0to4 = CE 15to64 0to4 / Pop 15to64 
+	
+CE 15to64 15to64 = 2
+	
+Beta 15to64 15to64 = CE 15to64 15to64 / Pop 15to64 
+	
+CE 15to64 5to14 = 2
+	
+Beta 15to64 5to14 = CE 15to64 5to14 / Pop 15to64 
+	
+CE 15to64 65 = 2
+	
+Beta 15to64 65 = CE 15to64 65 / Pop 15to64 
+	
+CE 5to14 0to4 = 2
+	
+Pop 5to14 = E 5to14 + I Mil 5to14 + I Mod 5to14 + I Sev 5to14 + R 5to14 + S 5to14
+           
+Beta 5to14 0to4 = CE 5to14 0to4 / Pop 5to14 
+	
+CE 5to14 15to64 = 2
+	
+Beta 5to14 15to64 = CE 5to14 15to64 / Pop 5to14 
+	
+CE 5to14 5to14 = 2
+	
+Beta 5to14 5to14 = CE 5to14 5to14 / Pop 5to14 
+	
+CE 5to14 65 = 2
+	
+Beta 5to14 65 = CE 5to14 65 / Pop 5to14 
+	
+CE 65 0to4 = 2
+	
+Pop 65 = E 65 + I Mil 65 + I Mod 65 + I Sev 65 + R 65 + S 65 
+	
+Beta 65 0to4 = CE 65 0to4 / Pop 65 
+	
+CE 65 15to64 = 2
+	
+Beta 65 15to64 = CE 65 15to64 / Pop 65 
+	
+CE 65 5to14 = 2
+	
+Beta 65 5to14 = CE 65 5to14 / Pop 65 
+	
+CE 65 65 = 2
+	
+Beta 65 65 = CE 65 65 / Pop 65 
+	
+Cohort Tot 0to4 = I Mil 0to4 + I Mod 0to4 + I Sev 0to4 + E 0to4 + S 0to4 + R 0to4 + Deaths 0to4 
+	
+Cohort Tot 15to64 = I Mil 15to64 + I Mod 15to64 + I Sev 15to64 + E 15to64 + S 15to64 + R 15to64 + Deaths 15to64 
+	
+Cohort Tot 5to14 = E 5to14 + I Mil 5to14 + I Mod 5to14 + I Sev 5to14 + R 5to14+ S 5to14 + Deaths 5to14 
+	
+Cohort Tot 65 = E 65 + I Mil 65 + I Mod 65 + I Sev 65 + R 65 + S 65 + Deaths 65
+           
+	
+Delay Mil 15to64 = 2
+	
+Delay Mil 5to14 = 2
+	
+Delay Mil 65 = 2
+	
+Delay Mild 0to4 = 2
+	
+Delay Mod 0to4 = 2
+	
+Delay Mod 15to64 = 2
+	
+Delay Mod 5to14 = 2
+	
+Delay Mod 65 = 2
+	
+Delay Sev 0to4 = 2
+	
+Delay Sev 15to64 = 2
+	
+Delay Sev 5to14 = 2
+	
+Delay Sev 65 = 2
+	
+DP 0to4 = 0.001
+	
+DP 15to64 = 0.001
+	
+DP 5to14 = 0.001
+	
+DP 65 = 0.001
+	
+DR 0to4 = I Sev 0to4 * DP 0to4 
+	
+DR 15to64 = I Sev 15to64 * DP 15to64 
+	
+DR 5to14 = I Sev 5to14 * DP 5to14 
+	
+DR 65 = I Sev 65 * DP 65 
+	
+LP Mil 15to64 = 2
+	
+ER Mil 15to64 = E 15to64 / LP Mil 15to64 
+	
+LP Mil 5to14 = 2
+	
+ER Mil 5to14 = E 5to14 / LP Mil 5to14 
+	
+LP Mil 65 = 2
+	
+ER Mil 65 = E 65 / LP Mil 65 
+	
+LP Mil 0to4 = 2
+	
+ER Mild 0to4 = E 0to4 / LP Mil 0to4 
+	
+LP Mod 0to4 = 2
+	
+ER Mod 0to4 = E 0to4 / LP Mod 0to4 
+	
+LP Mod 15to64 = 2
+	
+ER Mod 15to64 = E 15to64 / LP Mod 15to64 
+	
+LP Mod 5to14 = 2
+	
+ER Mod 5to14 = E 5to14 / LP Mod 5to14 
+	
+LP Mod 65 = 2
+	
+ER Mod 65 = E 65 / LP Mod 65 
+	
+LP Sev 0to4 = 2
+	
+ER Sev 0to4 = E 0to4 / LP Sev 0to4 
+	
+LP Sev 15to64 = 2
+	
+ER Sev 15to64 = E 15to64 / LP Sev 15to64 
+	
+LP Sev 5to14 = 2
+	
+ER Sev 5to14 = E 5to14 / LP Sev 5to14 
+	
+LP Sev 65 = 2
+	
+ER Sev 65 = E 65 / LP Sev 65 
+	
+FINAL TIME = 20
+	
+INITIAL TIME = 0
+	
+Tot I 0to4 = I Mil 0to4 + I Mod 0to4 + I Sev 0to4 
+	
+Tot I 5to14 = I Mil 5to14 + I Mod 5to14 + I Sev 5to14 
+	
+Tot I 15to64 = I Mil 15to64 + I Mod 15to64 + I Sev 15to64 
+	
+Tot I 65 = I Mil 65 + I Mod 65 + I Sev 65 
+	
+Lambda 0to4 = Beta 0to4 0to4 * Tot I 0to4 + Beta 0to4 5to14 * Tot I 5to14 + 
+           Beta 0to4 15to64 * Tot I 15to64 + Beta 0to4 65 * Tot I 65 
+	
+IR 0to4 = Lambda 0to4 * S 0to4 
+	
+Lambda 15to64 = Beta 15to64 0to4 * Tot I 0to4 + Beta 15to64 5to14 * Tot I 5to14+ Beta 15to64 15to64 * Tot I 15to64 + Beta 15to64 65 * Tot I 65
+                
+	
+IR 15to64 = Lambda 15to64 * S 15to64 
+	
+Lambda 5to14 = Beta 5to14 0to4 * Tot I 0to4 + Beta 5to14 5to14 * Tot I 5to14 + Beta 5to14 15to64 * Tot I 15to64 + Beta 5to14 65 * Tot I 65
+                
+	
+IR 5to14 = Lambda 5to14 * S 5to14 
+	
+Lambda 65 = Beta 65 0to4 * Tot I 0to4 + Beta 65 5to14 * Tot I 5to14 + Beta 65 15to64 * Tot I 15to64 + Beta 65 65 * Tot I 65 
+IR 65 = Lambda 65 * S 65 
+	
+RR Mil 15to64 = I Mil 15to64 / Delay Mil 15to64 
+	
+RR Mil 5to14 = I Mil 5to14 / Delay Mil 5to14 
+	
+RR Mil 65 = I Mil 65 / Delay Mil 65 
+	
+RR Mild 0to4 = I Mil 0to4 / Delay Mild 0to4 
+	
+RR Mod 0to4 = I Mod 0to4 / Delay Mod 0to4 
+	
+RR Mod 15to64 = I Mod 15to64 / Delay Mod 15to64 
+	
+RR Mod 5to14 = I Mod 5to14 / Delay Mod 5to14 
+	
+RR Mod 65 = I Mod 65 / Delay Mod 65 
+	
+RR Sev 0to4 = I Sev 0to4 / Delay Sev 0to4 
+	
+RR Sev 15to64 = I Sev 15to64 / Delay Sev 15to64 
+	
+RR Sev 5to14 = I Sev 5to14 / Delay Sev 5to14 
+	
+RR Sev 65 = I Sev 65 / Delay Sev 65 
+	
+TIME STEP = 0.125
+	
+SAVEPER = TIME STEP 
+	
+Total I = Tot I 0to4 + Tot I 15to64 + Tot I 5to14 + Tot I 65 
+	
+V Delay 0to4 = 2
+	
+V Delay 15to64 = 2
+	
+V Delay 5to14 = 2
+	
+V Delay 65 = 2
+	
+V Eff 0to4 = 0.7
+	
+V Eff 15to64 = 0.7
+	
+V Eff 5to14 = 0.7
+	
+V Eff 65 = 0.7
+	
+V Given 0to4 = min ( S 0to4 , ( V 0to4 / V Delay 0to4 ) * V Eff 0to4 ) 
+	
+V Given 15to64 = min ( S 15to64 , ( V 15to64 / V Delay 15to64 ) * V Eff 15to64) 
+	
+V Given 5to14 = min ( S 5to14 , ( V 5to14 / V Delay 5to14 ) * V Eff 5to14 ) 
+	
+V Given 65 = min ( S 65 , ( V 65 / V Delay 65 ) * V Eff 65 ) 
+	
+V Produced = 2
+	
+V Ratio 0to4 = 0.2
+	
+V Prop 0to4 = V * V Ratio 0to4 
+	
+V Ratio 15to64 = 0.2
+	
+V Prop 15to64 = V * V Ratio 15to64 
+	
+V Ratio 5to14 = 0.2
+	
+V Prop 5to14 = V * V Ratio 5to14 
+	
+V Ratio 65 = 0.2
+	
+V Prop 65 = V * V Ratio 65 
+	
+V Used 0to4 = V Given 0to4 
+	
+V Used 15to64 = V Given 15to64 
+	
+V Used 5to14 = V Given 5to14 
+	
+V Used 65 = V Given 65 
+	
