@@ -36,11 +36,11 @@ tot_inc <- mutate(inc,Total=Young+Child+Adult+Elderly)
 slice(wk_tot,1:6)
 
 
-
-ggplot(data=y_data,mapping = aes(x=Week,y=Incidence)) + 
+ggplot(data=tot_inc,mapping = aes(x=Week,y=Total)) + 
       geom_line() + geom_point()
 
-ggplot(t_inc,aes(x=Week,y=Incidence,color=Cohort)) + geom_line()
+ggplot(t_inc,aes(x=Week,y=Incidence,color=Cohort)) + 
+       geom_line() + geom_point()
 
 ggplot(t_inc,aes(x=Week,y=Incidence,fill=Cohort)) + geom_area()
 
@@ -52,8 +52,6 @@ t_coh <- t_inc %>%
                      PeakValue=max(Incidence),
                      PeakWeek=Week[which(Incidence==max(Incidence))],
                      AvrValue=mean(Incidence),
-                     SD=sd(Incidence),
-                     MinValue=min(Incidence),
-                     MaxValue=max(Incidence))
+                     SD=sd(Incidence))
 
 

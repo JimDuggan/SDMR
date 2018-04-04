@@ -26,9 +26,10 @@ new_td <- out_td %>%
 
 
 ggplot(new_td) + geom_path(aes(x=Time,y=Amount,colour=Variable))+
+  ylab("Number of Cases")+
   facet_wrap(~Cohort)+guides(colour=F)
 
-ggplot(new_td) + geom_area(aes(x=Time,y=Amount,fill=Variable))+
+ggplot(new_td) + geom_line(aes(x=Time,y=Amount,colour=Class))+
   facet_wrap(~Variable)
 
 ggplot(new_td) + geom_area(aes(x=Time,y=Amount,fill=Cohort))+
@@ -38,6 +39,14 @@ peaks <- new_td %>% filter(Class=="Infected") %>%
                     group_by(Variable) %>% 
                     summarise(MaxInfected=max(Amount),
                               TimeMaxInfected=Time[which.max(Amount)])
+
+agg <- new_td %>% group_by(Time,Class) %>%
+         summarise(Total=sum(Amount))
+
+slice(agg,1:6)
+
+ggplot(agg,aes(x=Time,y=Total,colour=Class)) + geom_point() +geom_line()
+
 
 
 

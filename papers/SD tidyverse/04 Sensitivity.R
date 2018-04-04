@@ -10,10 +10,12 @@ d <- read_tsv("papers/SD tidyverse/data/Sensitivity.dat")
 START_TIME <- 0
 DT <- 0.125
 
-td <- gather(d,Time,Value,-(Simulation:VF)) %>% 
-          mutate(TSeq=parse_integer(str_extract(Time,"\\d+"))) %>%
+td <- gather(d,TimeVariable,Value,-(Simulation:VF)) %>% 
+          mutate(TSeq=parse_integer(str_extract(TimeVariable,"\\d+"))) %>%
           mutate(SimTime=START_TIME+(TSeq-1)*DT) %>%
-          arrange(Simulation)
+          separate(TimeVariable,into = c("T","Variable")) %>%
+          select(Simulation,SimTime,R0,VF,Variable,Value) %>%
+          arrange(Simulation,SimTime)
 
 # display all the simulation traces
        
@@ -27,9 +29,10 @@ ggplot(td,aes(x=SimTime,y=Value,color=Simulation)) +
 i_td <- td %>% group_by(Simulation) %>%
                  summarise(InfMax=max(Value),R0=R0[1],VF=VF[1])
 
-# Print this on a colourful scatter plot
+# Print this on a scatter plot
 
-ggplot(data=i_td,mapping = aes(x=R0,y=VF,size=InfMax,colour=InfMax)) + geom_point() + 
+ggplot(data=i_td,mapping = aes(x=R0,y=VF,size=InfMax,colour=InfMax)) + 
+  geom_point() + 
   scale_colour_gradientn(colours=rev(rainbow(5)))+guides(size=F)
 
 # Calculate the average for the simulation runs
