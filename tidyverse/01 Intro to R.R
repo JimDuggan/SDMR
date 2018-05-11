@@ -9,7 +9,6 @@ t[1:3]
 
 
 g <- 0.02
-gr
 
 init_pop <- 1000
 init_pop

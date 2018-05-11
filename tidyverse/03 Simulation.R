@@ -1,6 +1,6 @@
 library(tidyverse)
 
-res <- read_csv("papers/SD tidyverse/data/SimulationOutput.csv")
+res <- read_csv("tidyverse/data/SimulationOutput.csv")
 
 colnames(res)
 

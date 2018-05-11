@@ -3,7 +3,7 @@ library(stringr)
 
 
 # Read in the Vensim data
-d <- read_tsv("papers/SD tidyverse/data/Sensitivity.dat")
+d <- read_tsv("tidyverse/data/Sensitivity.dat")
 
 # Convert to tidy data format and calculate the simulation time
 
