@@ -12,7 +12,7 @@ out <- res %>%
                      starts_with("Recovered"))
 
 
-out_td <- out %>% gather(key=Variable,value = Amount,-(Time))
+out_td <- out %>% gather(key=Variable,value = Amount,`Susceptible A`:`Recovered Y`)
 
 new_td <- out_td %>% 
            mutate(Cohort=case_when(
