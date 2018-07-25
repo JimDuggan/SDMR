@@ -45,7 +45,9 @@ agg <- new_td %>% group_by(Time,Class) %>%
 
 slice(agg,1:6)
 
-ggplot(agg,aes(x=Time,y=Total,colour=Class)) + geom_point() +geom_line()
+fig.4 <- ggplot(agg,aes(x=Time,y=Total,colour=Class)) + geom_point() +geom_line()
+
+#ggsave("Figure_4.eps",dpi=600,plot = fig.4)
 
 
 

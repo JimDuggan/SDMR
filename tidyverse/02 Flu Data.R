@@ -36,13 +36,18 @@ tot_inc <- mutate(inc,Total=Young+Child+Adult+Elderly)
 slice(wk_tot,1:6)
 
 
-ggplot(data=tot_inc,mapping = aes(x=Week,y=Total)) + 
-      geom_line() + geom_point()
+fig.1 <- ggplot(data=tot_inc,mapping = aes(x=Week,y=Total)) + 
+         geom_line() + geom_point()
 
-ggplot(t_inc,aes(x=Week,y=Incidence,color=Cohort)) + 
+fig.2 <- ggplot(t_inc,aes(x=Week,y=Incidence,color=Cohort)) + 
        geom_line() + geom_point()
 
+#ggsave("Figure_1.eps", dpi=600,plot = fig.1)
+#ggsave("Figure_2.eps",dpi=600,plot = fig.2)
+
+
 ggplot(t_inc,aes(x=Week,y=Incidence,fill=Cohort)) + geom_area()
+
 
 
 # get the totals sick by cohort
