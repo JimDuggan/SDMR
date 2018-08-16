@@ -1,4 +1,4 @@
-Sys.setenv(RETICULATE_PYTHON="/usr/local/bin/python3")
+#Sys.setenv(RETICULATE_PYTHON="/usr/local/bin/python3")
 
 library(pysd2r)
 library(ggplot2)
