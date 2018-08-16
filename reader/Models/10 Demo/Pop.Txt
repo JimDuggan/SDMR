@@ -1,0 +1,15 @@
+Initial Population = 3000
+	
+Population = INTEG( Number Added , Initial Population ) 
+	
+FINAL TIME = 2010
+	
+Growth Fraction = 0.015
+	
+INITIAL TIME = 1960
+	
+Number Added = Growth Fraction * Population 
+	
+TIME STEP = 0.125
+
+	

@@ -1,0 +1,93 @@
+{UTF-8}
+Growth Fraction=
+	0.015
+	~	
+	~		|
+
+Initial Population=
+	3000
+	~	
+	~		|
+
+Number Added=
+	Growth Fraction*Population
+	~	
+	~		|
+
+Population= INTEG (
+	Number Added,
+		Initial Population)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 2010
+	~	Year
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 1960
+	~	Year
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Year [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.125
+	~	Year [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Population,492,203,40,20,3,3,0,0,0,0,0,0
+12,2,48,294,201,10,8,0,3,0,0,-1,0,0,0
+1,4,6,1,4,0,0,22,0,0,0,-1--1--1,,1|(418,201)|
+1,5,6,2,100,0,0,22,0,0,0,-1--1--1,,1|(338,201)|
+11,6,0,378,201,6,8,34,3,0,0,1,0,0,0
+10,7,Number Added,378,217,39,8,40,3,0,0,-1,0,0,0
+10,8,Initial Population,441,87,44,8,8,3,0,0,0,0,0,0
+10,9,Growth Fraction,317,288,42,8,8,3,0,0,0,0,0,0
+1,10,9,7,0,0,0,0,0,128,0,-1--1--1,,1|(342,257)|
+1,11,1,7,1,0,0,0,0,128,0,-1--1--1,,1|(441,244)|
+1,12,8,1,0,0,0,0,0,128,0,-1--1--1,,1|(460,132)|
+///---\\\
+:L<%^E!@
+1:Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:100,0
+27:0,
+34:0,
+4:Time
+5:Population
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:0
+41:0
+42:1
+24:1960
+25:2010
+26:2010
