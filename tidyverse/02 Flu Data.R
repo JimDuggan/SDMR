@@ -39,14 +39,18 @@ slice(wk_tot,1:6)
 fig.1 <- ggplot(data=tot_inc,mapping = aes(x=Week,y=Total)) + 
          geom_line() + geom_point()
 
-fig.2 <- ggplot(t_inc,aes(x=Week,y=Incidence,color=Cohort)) + 
+fig.2 <- ggplot(t_inc,aes(x=Week,y=Incidence,color=Cohort, shape=Cohort)) + 
        geom_line() + geom_point()
+
+fig.2.bw <- ggplot(t_inc,aes(x=Week,y=Incidence,shape=Cohort)) + 
+  geom_line() + geom_point() + scale_fill_grey()
 
 #ggsave("Figure_1.eps", dpi=600,plot = fig.1)
 #ggsave("Figure_2.eps",dpi=600,plot = fig.2)
+#ggsave("Figure_2_bw.eps",dpi=600,plot = fig.2.bw)
 
 
-ggplot(t_inc,aes(x=Week,y=Incidence,fill=Cohort)) + geom_area()
+ggplot(t_inc,aes(x=Week,y=Incidence,fill=Cohort)) + geom_area() + scale_fill_grey()
 
 
 
