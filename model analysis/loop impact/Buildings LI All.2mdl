@@ -1,0 +1,284 @@
+{UTF-8}
+ABS B0 Impact=
+	abs(B0 Impact)
+	~	
+	~		|
+
+ABS B1 Impact=
+	abs(B1 Impact)
+	~	
+	~		|
+
+ABS R1 Impact=
+	abs(R1 Impact)
+	~	
+	~		|
+
+B0 Derivative=
+	(B0 Identifier-smooth(B0 Identifier,TIME STEP))/TIME STEP
+	~	
+	~		|
+
+B0 Identifier=
+	Business Structures*Normal Business Demolition Rate
+	~	
+	~		|
+
+B0 Impact=
+	-1*B0 Derivative/Structures Rate of Change
+	~	
+	~		|
+
+B1 Derivative=
+	(B1 Identifier-smooth(B1 Identifier,TIME STEP))/TIME STEP
+	~	
+	~		|
+
+B1 Identifier=
+	Land Fraction Available
+	~	
+	~		|
+
+B1 Impact=
+	R1 Identifier*B1 Derivative/Structures Rate of Change
+	~	
+	~		|
+
+Business Construction=
+	R1 Identifier*B1 Identifier
+	~	structures/year
+	~		|
+
+Business Demolition=
+	B0 Identifier
+	~	structures/year
+	~		|
+
+Business Structures= INTEG (
+	Business Construction-Business Demolition,
+		200)
+	~	structures
+	~		|
+
+Land Area=
+	1000
+	~	km*km
+	~		|
+
+Land Fraction Available=
+	1-Land Fraction Occupied
+	~	Dmnl
+	~		|
+
+Land Fraction Occupied=
+	Business Structures*Land Per Business Structure/Land Area
+	~	Dmnl
+	~		|
+
+Land Per Business Structure=
+	0.2
+	~	km*km/structures
+	~		|
+
+Normal Business Construction Rate=
+	0.1
+	~	1/year
+	~		|
+
+Normal Business Demolition Rate=
+	0.05
+	~	1/year
+	~		|
+
+R1 Derivative=
+	(R1 Identifier-smooth(R1 Identifier,TIME STEP))/TIME STEP
+	~	
+	~		|
+
+R1 Identifier=
+	Business Structures*Normal Business Construction Rate
+	~	
+	~		|
+
+R1 Impact=
+	B1 Identifier*R1 Derivative/Structures Rate of Change
+	~	
+	~		|
+
+Structures Rate of Change=
+	Business Construction-Business Demolition
+	~	structures/year
+	~		|
+
+Total Impact Balancing=
+	ABS B0 Impact+ABS B1 Impact
+	~	
+	~		|
+
+Total Impact Reinforcing=
+	ABS R1 Impact
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	year
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	year
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	year [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 0.02
+	~	year [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Business Structures,492,245,40,20,3,3,0,0,0,0,0,0
+10,2,Normal Business Construction Rate,189,184,47,14,8,3,0,0,0,0,0,0
+12,3,48,729,247,10,8,0,3,0,0,-1,0,0,0
+1,4,6,3,4,0,0,22,0,0,0,-1--1--1,,1|(675,247)|
+1,5,6,1,100,0,0,22,0,0,0,-1--1--1,,1|(575,247)|
+11,6,0,625,247,6,8,34,3,0,0,1,0,0,0
+10,7,Business Demolition,625,263,52,8,40,3,0,0,-1,0,0,0
+12,8,48,228,251,10,8,0,3,0,0,-1,0,0,0
+1,9,11,1,4,0,0,22,0,0,0,-1--1--1,,1|(401,251)|
+1,10,11,8,100,0,0,22,0,0,0,-1--1--1,,1|(288,251)|
+11,11,0,345,251,6,8,34,3,0,0,1,0,0,0
+10,12,Business Construction,345,267,56,8,40,3,0,0,-1,0,0,0
+10,13,Normal Business Demolition Rate,604,392,44,14,8,3,0,0,0,0,0,0
+10,14,Land Fraction Occupied,458,374,37,14,8,3,0,0,0,0,0,0
+1,15,1,14,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(498,316)|
+10,16,Land Area,403,462,27,8,8,3,0,0,0,0,0,0
+1,17,16,14,1,0,0,0,0,128,0,-1--1--1,,1|(411,420)|
+10,18,Land Per Business Structure,547,453,48,14,8,3,0,0,0,0,0,0
+1,19,18,14,1,0,0,0,0,128,0,-1--1--1,,1|(511,408)|
+10,20,Land Fraction Available,309,393,37,14,8,3,0,0,0,0,0,0
+1,21,14,20,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(379,404)|
+12,22,0,554,275,13,13,5,135,0,0,-1,0,0,0
+B0
+12,23,0,384,359,14,14,4,135,0,0,-1,0,0,0
+B1
+12,24,0,404,218,14,14,4,135,0,0,-1,0,0,0
+R1
+10,25,B0 Identifier,648,316,33,8,8,3,0,0,0,0,0,0
+1,26,13,25,1,0,0,0,0,128,0,-1--1--1,,1|(635,350)|
+1,27,1,25,1,0,0,0,0,128,0,-1--1--1,,1|(563,331)|
+1,28,25,7,1,0,0,0,0,128,0,-1--1--1,,1|(657,288)|
+10,29,B0 Impact,685,381,27,8,8,3,0,0,0,0,0,0
+10,30,Structures Rate of Change,493,149,47,14,8,3,0,0,0,0,0,0
+1,31,11,30,1,0,0,0,0,128,0,-1--1--1,,1|(392,191)|
+1,32,6,30,1,0,0,0,0,128,0,-1--1--1,,1|(579,193)|
+10,33,Structures Rate of Change,805,404,56,21,8,130,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,34,33,29,0,0,0,0,0,128,0,-1--1--1,,1|(737,391)|
+10,35,ABS B0 Impact,708,442,41,8,8,3,0,0,0,0,0,0
+1,36,29,35,1,0,0,0,0,128,0,-1--1--1,,1|(675,402)|
+10,37,R1 Identifier,363,148,33,8,8,3,0,0,0,0,0,0
+1,38,2,37,1,0,0,0,0,128,0,-1--1--1,,1|(271,151)|
+1,39,1,37,1,0,0,0,0,128,0,-1--1--1,,1|(440,177)|
+1,40,37,11,1,0,0,0,0,128,0,-1--1--1,,1|(318,180)|
+10,41,B1 Identifier,237,325,33,8,8,3,0,0,0,0,0,0
+1,42,20,41,1,0,0,0,0,128,0,-1--1--1,,1|(254,381)|
+1,43,41,12,1,0,0,0,0,128,0,-1--1--1,,1|(274,291)|
+10,44,B1 Identifier,130,113,40,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+10,45,B0 Derivative,765,301,36,8,8,3,0,0,0,0,0,0
+1,46,25,45,0,0,0,0,0,128,0,-1--1--1,,1|(698,309)|
+10,47,TIME STEP,860,339,39,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,48,47,45,0,0,0,0,0,64,0,-1--1--1,,1|(818,322)|
+1,49,45,29,0,0,0,0,0,128,0,-1--1--1,,1|(729,336)|
+10,50,R1 Derivative,348,92,36,8,8,3,0,0,0,0,0,0
+1,51,37,50,0,0,0,0,0,64,0,-1--1--1,,1|(357,126)|
+10,52,TIME STEP,456,74,39,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,53,52,50,0,0,0,0,0,64,0,-1--1--1,,1|(407,81)|
+10,54,R1 Impact,240,44,27,8,8,3,0,0,0,0,0,0
+10,55,ABS R1 Impact,83,22,41,8,8,3,0,0,0,0,0,0
+1,56,54,55,0,0,0,0,0,128,0,-1--1--1,,1|(174,35)|
+1,57,50,54,0,0,0,0,0,128,0,-1--1--1,,1|(300,70)|
+1,58,44,54,1,0,0,0,0,128,0,-1--1--1,,1|(230,53)|
+10,59,Structures Rate of Change,363,34,43,14,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,60,59,54,1,0,0,0,0,128,0,-1--1--1,,1|(298,27)|
+10,61,B1 Derivative,163,409,36,8,8,3,0,0,0,0,0,0
+1,62,41,61,0,0,0,0,0,128,0,-1--1--1,,1|(204,361)|
+10,63,TIME STEP,60,455,39,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,64,63,61,1,0,0,0,0,128,0,-1--1--1,,1|(100,425)|
+10,65,B1 Impact,181,481,27,8,8,3,0,0,0,0,0,0
+10,66,R1 Identifier,71,527,40,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,67,66,65,0,0,0,0,0,128,0,-1--1--1,,1|(119,506)|
+1,68,61,65,0,0,0,0,0,128,0,-1--1--1,,1|(170,438)|
+10,69,Structures Rate of Change,245,548,43,14,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+1,70,69,65,0,0,0,0,0,128,0,-1--1--1,,1|(214,516)|
+10,71,ABS B1 Impact,102,581,41,8,8,3,0,0,0,0,0,0
+1,72,65,71,0,0,0,0,0,128,0,-1--1--1,,1|(145,525)|
+10,73,ABS B0 Impact,643,71,47,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+10,74,ABS B1 Impact,748,101,47,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+10,75,ABS R1 Impact,859,74,47,8,8,2,0,3,-1,0,0,0,128-128-128,0-0-0,|0||128-128-128
+10,76,Total Impact Balancing,661,28,58,8,8,3,0,0,0,0,0,0
+10,77,Total Impact Reinforcing,835,27,33,14,8,3,0,0,0,0,0,0
+1,78,73,76,0,0,0,0,0,128,0,-1--1--1,,1|(648,55)|
+1,79,74,76,0,0,0,0,0,128,0,-1--1--1,,1|(709,68)|
+1,80,75,77,0,0,0,0,0,128,0,-1--1--1,,1|(851,59)|
+///---\\\
+:GRAPH Loop_Impacts
+:TITLE  
+:DOTS
+:SCALE
+:VAR B0 Impact
+:VAR R1 Impact
+
+:GRAPH ABS_Loop_Impacts
+:TITLE  
+:SCALE
+:VAR ABS B0 Impact
+:VAR ABS R1 Impact
+:VAR ABS B1 Impact
+
+:GRAPH Loops
+:TITLE  
+:SCALE
+:VAR Total Impact Balancing
+:VAR Total Impact Reinforcing
+:L<%^E!@
+1:/Users/jim/Dropbox/HealthSim/models/Model Analysis/Loop Impact/Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,1,0,0
+19:100,0
+27:0,
+34:0,
+4:Time
+5:B0 Derivative
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:0
+41:0
+42:1
+24:0
+25:100
+26:100

@@ -20,11 +20,12 @@ li <- results %>%
                  R1 = `ABS R1 Impact`) %>%
           mutate(Dominant=case_when(
                  R1 > (B0+B1) ~ "R1",
-                 B0 + B1 > R1 ~ "B0&B1",
                  B1 > R1 ~ "B1",
                  B0 > R1 ~ "B0",
+                 B0 + B1 > R1 ~ "B0&B1",
                  TRUE ~ "UNDEF")) %>%
          filter(Dominant !="UNDEF" )
 
-ggplot(data=li)+geom_line(aes(x=TIME,y=`Business Structures`,colour=Dominant))
+ggplot(data=li)+
+  geom_line(aes(x=TIME,y=`Business Structures`,colour=Dominant),size=2)
 
