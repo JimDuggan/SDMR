@@ -2,7 +2,7 @@
 library(pysd2r)
 library(ggplot2)
 
-target <- "pysd2r_scripts/models/Population.mdl"
+target <- "pysd2r/pysd2r_scripts/models/Population.mdl"
 
 py <- pysd_connect()
 

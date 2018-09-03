@@ -5,7 +5,7 @@ library(ggplot2)
 library(plyr)
 library(dplyr)
 
-target <- "pysd2r_scripts/models/Population.mdl"
+target <- "pysd2r/pysd2r_scripts/models/Population.mdl"
 
 gr <- seq(0.01,0.04,by=0.0025)
 
