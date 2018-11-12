@@ -340,7 +340,7 @@ INITIAL TIME  = 2014
 	|
 
 SAVEPER  = 
-        TIME STEP 
+        TIME STEP
 	~	Year [0,?]
 	~	The frequency with which output is stored.
 	|
@@ -602,6 +602,7 @@ B4
 :VAR "Percentage 40-64"
 :VAR "Percentage 65+"
 :L<%^E!@
+1:Current.vdf
 9:Current
 22:$,Dollar,Dollars,$s
 22:Hour,Hours
@@ -612,11 +613,11 @@ B4
 22:Year,Years
 22:Day,Days
 15:0,0,0,0,0,0
-19:5,0
+19:5,2
 27:2,
 34:0,
 4:Time
-5:"Percentage 40-64"
+5:General Practitioners
 35:Date
 36:YYYY-MM-DD
 37:2000
