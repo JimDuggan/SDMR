@@ -1,0 +1,28 @@
+# the .lst file contains the variables recorded, in the correct order
+Business Structures
+Business Construction
+
+# the vsc file contains the parameters varied
+200,M,1234,,0
+Normal Growth Rate=RANDOM_UNIFORM(0.05,0.20)
+Demolition Fraction=RANDOM_UNIFORM(0,0.10)
+Initial Structures=RANDOM_UNIFORM(500,1500)
+
+> d
+# A tibble: 200 x 1,606
+   Simulation `Demolition Fra… `Initial Struct… `Normal Growth … `T1 Business St… `T2 Business St…
+        <int>            <dbl>            <dbl>            <dbl>            <dbl>            <dbl>
+ 1          1           0.0421            1269.           0.0521            1269.            1271.
+ 2          2           0.0398             557.           0.0771             557.             560.
+ 3          3           0.0757             799.           0.113              799.             803.
+ 4          4           0.0397             874.           0.134              874.             884.
+ 5          5           0.0539             791.           0.140              791.             799.
+ 6          6           0.0808             670.           0.0895             670.             671.
+ 7          7           0.0534            1405.           0.145             1405.            1421.
+ 8          8           0.0632            1413.           0.0724            1413.            1415.
+ 9          9           0.0460             958.           0.107              958.             965.
+10         10           0.0410             925.           0.0756             925.             929.
+# ... with 190 more rows, and 1,600 more variables: `T3 Business Structures` <dbl>, `T4 Business
+#   Structures` <dbl>, `T5 Business Structures` <dbl>, `T6 Business Structures` <dbl>, `T7 Business
+#   Structures` <dbl>, `T8 Business Structures` <dbl>, `T9 Business Structures` <dbl>, `T10 Business
+#   Structures` <dbl>, `T11 Business Structures` <dbl>, `T12 Business Structures` <dbl>, `T13 Business

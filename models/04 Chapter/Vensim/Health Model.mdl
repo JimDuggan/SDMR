@@ -613,11 +613,11 @@ B4
 22:Year,Years
 22:Day,Days
 15:0,0,0,0,0,0
-19:5,2
+19:5,0
 27:2,
 34:0,
 4:Time
-5:General Practitioners
+5:"Population Aged 0-14"
 35:Date
 36:YYYY-MM-DD
 37:2000

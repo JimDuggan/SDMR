@@ -1,0 +1,4 @@
+200,M,1234,,0
+Normal Growth Rate=RANDOM_UNIFORM(0.05,0.20)
+Demolition Fraction=RANDOM_UNIFORM(0,0.10)
+Initial Structures=RANDOM_UNIFORM(500,1500)

@@ -1,6 +1,6 @@
 library(tidyverse)
 
-res <- read_csv("tidyverse/data/SimulationOutput.csv")
+res <- read_csv("tidyverse/sdr_paper1/data/SimulationOutput.csv")
 
 colnames(res)
 
@@ -50,8 +50,8 @@ fig.4 <- ggplot(agg,aes(x=Time,y=Total,colour=Class, shape=Class)) + geom_point(
 #fig.4.bw <- ggplot(agg,aes(x=Time,y=Total,shape=Class)) + geom_point() +
 #            geom_line()+scale_fill_grey()
 
-ggsave("Figure_4.eps",dpi=600,plot = fig.4)
-ggsave("Figure_4_bw.eps",dpi=600,plot = fig.4.bw)
+#ggsave("Figure_4.eps",dpi=600,plot = fig.4)
+#ggsave("Figure_4_bw.eps",dpi=600,plot = fig.4.bw)
 
 
 

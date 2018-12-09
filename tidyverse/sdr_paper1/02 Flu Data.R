@@ -4,7 +4,7 @@ library(tidyr)
 library(dplyr)
 library(ggplot2)
 
-inc <- read_csv("tidyverse/data/Incidence.csv")
+inc <- read_csv("tidyverse/sdr_paper1/data/Incidence.csv")
 
 slice(inc,1:6)
 
