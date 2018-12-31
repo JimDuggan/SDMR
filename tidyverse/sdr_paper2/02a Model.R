@@ -1,7 +1,6 @@
 library(deSolve)
 
 model <- function(time, stocks, auxs){
-
   with(as.list(c(stocks, auxs)),{  
     LandFractionOccupied <- BusinessStructures*LandRequiredPerBusiness/TotalAvailableLand
     
@@ -16,9 +15,9 @@ model <- function(time, stocks, auxs){
     BusinessDemolition <- BusinessStructures * DemolitionFraction
     
     # the net flow
-    BusinessStructures = BusinessConstruction-BusinessDemolition
+    d_BusinessStructures_dt <- BusinessConstruction-BusinessDemolition
     
-    return (list(c(BusinessStructures)))   
+    return (list(c(d_BusinessStructures_dt)))   
   })
 }
 
