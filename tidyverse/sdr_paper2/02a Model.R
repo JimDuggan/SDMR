@@ -1,24 +1,24 @@
 library(deSolve)
+library(dplyr)
 
 model <- function(time, stocks, auxs){
-  with(as.list(c(stocks, auxs)),{  
-    LandFractionOccupied <- BusinessStructures*LandRequiredPerBusiness/TotalAvailableLand
+  LandFractionOccupied <- stocks["BusinessStructures"] *
+                          auxs["LandRequiredPerBusiness"]/auxs["TotalAvailableLand"]
     
-    EffectofLandFractionOccupiedonGrowthRate <- 1 - LandFractionOccupied
+  EffectofLandFractionOccupiedonGrowthRate <- 1 - LandFractionOccupied
     
-    ActualGrowthRate <- NormalGrowthRate*EffectofLandFractionOccupiedonGrowthRate
+  ActualGrowthRate <- auxs["NormalGrowthRate"]*EffectofLandFractionOccupiedonGrowthRate
     
-    # Outflow
-    BusinessConstruction <- ActualGrowthRate*BusinessStructures
+  # Outflow
+  BusinessConstruction <- ActualGrowthRate*stocks["BusinessStructures"]
 
-    # Outflow
-    BusinessDemolition <- BusinessStructures * DemolitionFraction
+  # Outflow
+  BusinessDemolition <- stocks["BusinessStructures"] * auxs["DemolitionFraction"]
     
     # the net flow
-    d_BusinessStructures_dt <- BusinessConstruction-BusinessDemolition
+  d_BusinessStructures_dt <- BusinessConstruction-BusinessDemolition
     
-    return (list(c(d_BusinessStructures_dt)))   
-  })
+  return (list(c(d_BusinessStructures_dt)))   
 }
 
 
@@ -34,6 +34,6 @@ auxs    <- c(NormalGrowthRate=0.13,
 InitialStructures <- 1000
 stocks            <- c(BusinessStructures=InitialStructures)
 
-o<-data.frame(ode(y=stocks, times=simtime, func = model, 
-                  parms=auxs, method="euler"))
+o<-tibble::as_data_frame(ode(y=stocks, times=simtime, func = model, 
+                         parms=auxs, method="euler"))
 

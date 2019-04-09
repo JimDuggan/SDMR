@@ -26,12 +26,15 @@ get_sens_params <- function(vsc_file){
   params
 }
 
-# convert the sensitivity file to tidy data format
-tidy_vensim <- function(vars, params, sens_file, DT, START_TIME){
+get_sens_data <- function(sens_file){
+  read_tsv(sens_file)
+}
 
-  sens         <- read_tsv(sens_file)
-  
+# convert the sensitivity file to tidy data format
+tidy_vensim <- function(vars, params, sens, DT, START_TIME){
+
   regex_params <- str_c(params,collapse = "|")
+
 
   res <- map_df(vars, function(vi){
     df         <- select(sens,Simulation,matches(regex_params),contains(vi))

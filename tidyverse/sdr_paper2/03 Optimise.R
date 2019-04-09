@@ -6,35 +6,29 @@ library(ggplot2)
 
 data <- data.frame(read_csv("tidyverse/sdr_paper2/data/CalibrateStructures.csv"))
 
-
 model <- function(time, stocks, auxs){
-  
-  with(as.list(c(stocks, auxs)),{ 
-    LandRequiredPerBusiness <- 0.2
-    TotalAvailableLand    <- 10000
+  LandRequiredPerBusiness <- 0.2
+  TotalAvailableLand      <- 10000
     
-    LandFractionOccupied <- BusinessStructures*LandRequiredPerBusiness/TotalAvailableLand
+  LandFractionOccupied <- stocks["BusinessStructures"]*LandRequiredPerBusiness/TotalAvailableLand
     
-    EffectofLandFractionOccupiedonGrowthRate <- 1 - LandFractionOccupied
+  EffectofLandFractionOccupiedonGrowthRate <- 1 - LandFractionOccupied
     
-    ActualGrowthRate <- NormalGrowthRate*EffectofLandFractionOccupiedonGrowthRate
+  ActualGrowthRate <- auxs["NormalGrowthRate"]*EffectofLandFractionOccupiedonGrowthRate
+
+  BusinessConstruction <- ActualGrowthRate*stocks["BusinessStructures"]
+
+  BusinessDemolition <- stocks["BusinessStructures"] * auxs["DemolitionFraction"]
     
-    # Outflow
-    BusinessConstruction <- ActualGrowthRate*BusinessStructures
+  BusinessStructures <- BusinessConstruction-BusinessDemolition
     
-    # Outflow
-    BusinessDemolition <- BusinessStructures * DemolitionFraction
-    
-    # the net flow
-    BusinessStructures = BusinessConstruction-BusinessDemolition
-    
-    return (list(c(BusinessStructures)))   
-  })
+  return (list(c(BusinessStructures)))   
 }
 
 
 solveModel <- function(pars){
   # All the stocks are initialised here...
+  print("Running Model...")
   InitialStructures <- data[1,"BusinessStructures"]
   stocks            <- c(BusinessStructures=InitialStructures)
 
@@ -50,7 +44,6 @@ getCost<-function(p)
   out  <-solveModel(p)
   cost <- modCost(obs=data,model=out)
 }
-
 
 START<-0; FINISH<-100; STEP<-0.125;
 simtime <- seq(START, FINISH, by=STEP)
