@@ -1,6 +1,9 @@
-#Sys.setenv(RETICULATE_PYTHON="/usr/local/bin/python3")
+#Sys.setenv(RETICULATE_PYTHON="/anaconda3/bin/python3")
+
 library(pysd2r)
 library(ggplot2)
+
+get_python_info()
 
 target <- "pysd2r/pysd2r_scripts/models/Population.mdl"
 
