@@ -29,19 +29,22 @@ data_n_test  <- data_n[-(sample_rows),]
 # create the model
 #sir_mod <- neuralnet(Susceptible~Time+R0+DelayI, data=data_n_train,hidden = 5,linear.output = F)
 
-mods <- lapply(rev(seq(1,10,by=2)),function(nodes){
+mods <- lapply(rev(seq(5,10,by=2)),function(nodes){
   print(sprintf("Running model with hidden =  %d",nodes))
-  sir_mod <- neuralnet(Infected~Time+R0+DelayI, data=data_n_train,hidden = nodes,linear.output = F)
+  sir_mod <- neuralnet(Infected~Time+R0+DelayI, 
+                       data=data_n_train,
+                       hidden = nodes,
+                       linear.output = F)
 })
 
-sir_mod <- mods[[1]]
+sir_mod <- mods[[3]]
 
 plot(sir_mod)
 
 test_data <- sample_n(data,1)
 
 test_run <- data.frame(Time=normalise(unique(data$Time)),
-                       R0=normalise_single(2.0,data$R0),
+                       R0=normalise_single(3.0,data$R0),
                        DelayI=normalise_single(4.0,data$DelayI))
 
 test_results <- neuralnet::compute(sir_mod, test_run)
@@ -55,7 +58,7 @@ data_compare <- data.frame(time=unique(data$Time),
 
 init_connection("metamodels/02 SIR Model/Vensim/01 SIR Aggregate.mdl")
 data_compare$Actual <- run_sir_model(1,
-                                      2.0,
+                                      3.0,
                                       4.0)$Infected[-1]
 
 ggplot(data=data_compare)+geom_line(aes(x=time,y=Prediction),colour="red")+
