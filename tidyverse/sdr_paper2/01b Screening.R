@@ -11,7 +11,9 @@ sens_file <- "tidyverse/sdr_paper2/data/Sensitivity.tab"
 
 sens_vars <- get_sens_vars(lst_file)
 params    <- get_sens_params(vsc_file)
-ans       <- tidy_vensim(sens_vars, params, sens_file, DT=0.125, START=0)
+sens_data <- get_sens_data(sens_file)
+
+ans <- tidy_vensim(sens_vars, params, sens_data, DT=0.125, START=0)
 
 cors <- stat_screen(ans, "Business Structures", params)
 

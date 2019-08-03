@@ -1,5 +1,5 @@
 """
-Python model "Population.py"
+Python model "TimeSeriesTest.py"
 Translated using PySD version 0.10.0
 """
 from __future__ import division
@@ -15,10 +15,9 @@ _subscript_dict = {}
 _namespace = {
     'TIME': 'time',
     'Time': 'time',
-    'Growth Fraction': 'growth_fraction',
-    'Initial Population': 'initial_population',
-    'Number Added': 'number_added',
-    'Population': 'population',
+    'Inflow': 'inflow',
+    'Stock': 'stock',
+    'TS': 'ts',
     'FINAL TIME': 'final_time',
     'INITIAL TIME': 'initial_time',
     'SAVEPER': 'saveper',
@@ -39,88 +38,74 @@ def time():
     return __data['time']()
 
 
-@cache('run')
-def growth_fraction():
-    """
-    Real Name: b'Growth Fraction'
-    Original Eqn: b'0.015'
-    Units: b''
-    Limits: (None, None)
-    Type: constant
-
-    b''
-    """
-    return 0.015
-
-
-@cache('run')
-def initial_population():
-    """
-    Real Name: b'Initial Population'
-    Original Eqn: b'3000'
-    Units: b''
-    Limits: (None, None)
-    Type: constant
-
-    b''
-    """
-    return 3000
-
-
 @cache('step')
-def number_added():
+def inflow():
     """
-    Real Name: b'Number Added'
-    Original Eqn: b'Growth Fraction*Population'
+    Real Name: b'Inflow'
+    Original Eqn: b'A FUNCTION OF( TS)'
     Units: b''
     Limits: (None, None)
     Type: component
 
     b''
     """
-    return growth_fraction() * population()
+    return functions.incomplete()
 
 
 @cache('step')
-def population():
+def stock():
     """
-    Real Name: b'Population'
-    Original Eqn: b'INTEG ( Number Added, Initial Population)'
+    Real Name: b'Stock'
+    Original Eqn: b'A FUNCTION OF( Inflow)'
     Units: b''
     Limits: (None, None)
     Type: component
 
     b''
     """
-    return _integ_population()
+    return functions.incomplete()
+
+
+@cache('step')
+def ts():
+    """
+    Real Name: b'TS'
+    Original Eqn: b'A FUNCTION OF( )'
+    Units: b''
+    Limits: (None, None)
+    Type: component
+
+    b''
+    """
+    return functions.incomplete()
 
 
 @cache('run')
 def final_time():
     """
     Real Name: b'FINAL TIME'
-    Original Eqn: b'2010'
-    Units: b'Year'
+    Original Eqn: b'100'
+    Units: b'Month'
     Limits: (None, None)
     Type: constant
 
     b'The final time for the simulation.'
     """
-    return 2010
+    return 100
 
 
 @cache('run')
 def initial_time():
     """
     Real Name: b'INITIAL TIME'
-    Original Eqn: b'1960'
-    Units: b'Year'
+    Original Eqn: b'0'
+    Units: b'Month'
     Limits: (None, None)
     Type: constant
 
     b'The initial time for the simulation.'
     """
-    return 1960
+    return 0
 
 
 @cache('step')
@@ -128,7 +113,7 @@ def saveper():
     """
     Real Name: b'SAVEPER'
     Original Eqn: b'TIME STEP'
-    Units: b'Year'
+    Units: b'Month'
     Limits: (0.0, None)
     Type: component
 
@@ -141,14 +126,11 @@ def saveper():
 def time_step():
     """
     Real Name: b'TIME STEP'
-    Original Eqn: b'0.125'
-    Units: b'Year'
+    Original Eqn: b'1'
+    Units: b'Month'
     Limits: (0.0, None)
     Type: constant
 
     b'The time step for the simulation.'
     """
-    return 0.125
-
-
-_integ_population = functions.Integ(lambda: number_added(), lambda: initial_population())
+    return 1
