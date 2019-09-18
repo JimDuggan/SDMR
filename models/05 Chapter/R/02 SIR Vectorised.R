@@ -30,6 +30,7 @@ model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{ 
     #convert the stocks vector to a matrix
     states<-matrix(stocks,nrow=NUM_COHORTS,ncol=NUM_STATES)
+    browser()
     
     Susceptible <- states[,1]
     Infected    <- states[,2]

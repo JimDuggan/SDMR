@@ -14,10 +14,12 @@ sens_data <- get_sens_data(sens_file)
 
 ans <- tidy_vensim(sens_vars, params, sens_data, DT=0.125, START=0)
 
-ggplot(filter(ans,Variable=="Business Structures"),aes(x=Time,y=Value,color=Simulation, group=Simulation)) + 
+fig.3 <- ggplot(filter(ans,Variable=="Business Structures"),aes(x=Time,y=Value,color=Simulation, group=Simulation)) + 
   geom_path() + scale_colour_gradientn(colours=rainbow(10))+
   ylab("Business Structures") +
   xlab("Time (Years)")  + guides(color=FALSE) 
+
+ggsave("03_Figure.eps", dpi=600,plot = fig.3,height=4,width=6,units="in")
 
 
 

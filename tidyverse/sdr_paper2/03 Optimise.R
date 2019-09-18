@@ -60,8 +60,10 @@ optMod <- solveModel(optPar)
 time_points <-seq(from=1, to=length(simtime),by=1/STEP)
 optMod      <-optMod[time_points,]
 
-ggplot()+geom_path(data=optMod,aes(x=time,y=BusinessStructures),colour="red",size=2)+
+fig.6 <- ggplot()+geom_path(data=optMod,aes(x=time,y=BusinessStructures),colour="red",size=2)+
   geom_point(data=data,aes(x=time,y=BusinessStructures),colour="blue")
+
+ggsave("06_Figure.eps", dpi=600,plot = fig.6,height=4,width=6,units="in")
 
 
 

@@ -17,9 +17,17 @@ ans <- tidy_vensim(sens_vars, params, sens_data, DT=0.125, START=0)
 
 cors <- stat_screen(ans, "Business Structures", params)
 
-ggplot(data=cors,aes(x=Time,colour=Parameter,y=Correlation))+
-       geom_path()+ theme(legend.position = "top")+
+fig.4 <- ggplot(data=cors,aes(x=Time,y=Correlation, colour=Parameter))+
+       geom_path()+ theme(legend.position = "top")+geom_point()+
        scale_y_continuous(limits = c(-1.0,1.0))
+
+cors1 <- cors[c(T,F,F,F,F,F,F,F), ]
+fig.4b <- ggplot(data=cors1,aes(x=Time,y=Correlation, colour=Parameter))+ 
+  theme(legend.position = "top")+geom_point(aes(shape=Parameter))+
+  scale_y_continuous(limits = c(-1.0,1.0))
+
   
 
+ggsave("04_Figure.eps", dpi=600,plot = fig.4,height=4,width=6,units="in")
+ggsave("04b_Figure.eps", dpi=600,plot = fig.4b,height=4,width=6,units="in")
 

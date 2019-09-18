@@ -58,7 +58,17 @@ tidy_o <- select(o,time, contains("BStructures")) %>%
           gather(key = ModelVariable, value = Value, 
                  BStructures_01:BStructures_05)
 
-ggplot(tidy_o,aes(x=time,y=Value,colour=ModelVariable))+geom_path()+
+fig.8 <- ggplot(tidy_o,aes(x=time,y=Value,colour=ModelVariable))+geom_path()+
   ylab("Business Structures")+xlab("Year")+
   theme(legend.position = "bottom")
+
+tidy_o_2 <- tidy_o[c(T,F,F,F,F,F,F,F), ]
+
+fig.8b <- ggplot(tidy_o_2,aes(x=time,y=Value,colour=ModelVariable,shape=ModelVariable))+geom_path()+
+  geom_point()+
+  ylab("Business Structures")+xlab("Year")+
+  theme(legend.position = "bottom")
+
+ggsave("08_Figure.eps", dpi=600,plot = fig.8,height=4,width=6,units="in")
+ggsave("08b_Figure.eps", dpi=600,plot = fig.8b,height=4,width=6,units="in")
 
