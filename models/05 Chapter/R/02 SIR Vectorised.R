@@ -3,7 +3,7 @@ library(ggplot2)
 require(gridExtra)
 library(scales)
 
-START<-0; FINISH<-20; STEP<-0.125;
+START<-0; FINISH<-20000; STEP<-0.125;
 NUM_COHORTS<-3; NUM_STATES<-3
 simtime <- seq(START, FINISH, by=STEP)
 
@@ -30,7 +30,6 @@ model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{ 
     #convert the stocks vector to a matrix
     states<-matrix(stocks,nrow=NUM_COHORTS,ncol=NUM_STATES)
-    browser()
     
     Susceptible <- states[,1]
     Infected    <- states[,2]
