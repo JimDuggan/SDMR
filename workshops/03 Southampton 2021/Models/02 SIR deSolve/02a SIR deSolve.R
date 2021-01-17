@@ -20,7 +20,8 @@ sir_model <- function (time, stocks, auxs){
     return(list(c(d_Susceptible_dt, d_Infected_dt, d_Recovered_dt), 
                 RR = RR, Per_Capita_Beta = Per_Capita_Beta, R0 = R0, 
                 Checksum = Checksum, Force_of_Infection = Force_of_Infection, 
-                IR = IR, Recovery_Delay = Recovery_Delay, N = N, Average_Contacts = Average_Contacts, 
+                IR = IR, Recovery_Delay = Recovery_Delay, N = N, 
+                Average_Contacts = Average_Contacts, 
                 Infectivity = Infectivity))
   })
 }
@@ -41,4 +42,8 @@ results <- tibble(data.frame(ode(y      = stocks,
                       func   = sir_model,
                       parms  = params, 
                       method = "euler")))
+
+
+ggplot(results,aes(x=time,y=Infected))+
+  geom_point()+geom_line()
 

@@ -44,13 +44,16 @@ agg <- new_td %>% group_by(Time,Class) %>%
 
 slice(agg,1:6)
 
-ggplot(agg,aes(x=Time,y=Total,colour=Class, shape=Class)) + geom_point() +geom_line()
+ggplot(agg,aes(x=Time,y=Total,colour=Class, shape=Class)) + 
+  geom_point() +
+  geom_line()
 
 
 peaks <- new_td %>% filter(Class=="Infected") %>% 
   group_by(Variable) %>% 
   summarise(MaxInfected=max(Value),
             TimeMaxInfected=Time[which.max(Value)])
+
 
 #fig.4.bw <- ggplot(agg,aes(x=Time,y=Total,shape=Class)) + geom_point() +
 #            geom_line()+scale_fill_grey()
