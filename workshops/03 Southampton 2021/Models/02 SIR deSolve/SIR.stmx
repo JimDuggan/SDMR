@@ -5,7 +5,7 @@
 		<name>SIR</name>
 		<uuid>16023123-5007-4915-ae3a-6993ca973ad5</uuid>
 		<vendor>isee systems, inc.</vendor>
-		<product version="2.0.3" isee:build_number="2282" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+		<product version="2.0.1" isee:build_number="2228" isee:saved_by_v1="true" lang="en">Stella Architect</product>
 	</header>
 	<sim_specs isee:sim_duration="1.5" isee:simulation_delay="0.0517241" isee:restore_on_start="false" method="Euler" time_units="Days" isee:instantaneous_flows="false" isee:loop_scores="true" isee:loop_exhaustive_allowed="1000">
 		<start>1</start>
@@ -13,7 +13,7 @@
 		<dt reciprocal="true">8</dt>
 	</sim_specs>
 	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" rerun_on_structure_change="false" saved_runs="5" keep="false" rifp="true"/>
-	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" max_advance_time_in_ms="0" observer_start_page="home_page" enabled="false"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" observer_start_page="home_page" enabled="false"/>
 	<isee:time_formats default_format="Builtin">
 		<isee:time_format name="Builtin" type="adaptive"/>
 	</isee:time_formats>
@@ -115,7 +115,7 @@
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="826" page_height="579" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="822" page_height="575" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -178,64 +178,64 @@
 				<aux x="298" y="121" name="Force of Infection"/>
 				<aux x="394" y="92" name="Per Capita Beta"/>
 				<aux x="660" y="74" name="R0"/>
-				<connector uid="4" angle="107.65">
+				<connector uid="3" angle="107.65">
 					<from>Infected</from>
 					<to>Force_of_Infection</to>
 				</connector>
-				<connector uid="5" angle="180">
+				<connector uid="4" angle="180">
 					<from>Per_Capita_Beta</from>
 					<to>Force_of_Infection</to>
 				</connector>
-				<connector uid="6" angle="233.973">
+				<connector uid="5" angle="233.973">
 					<from>Force_of_Infection</from>
 					<to>IR</to>
 				</connector>
 				<aux x="507" y="134" name="Recovery Delay"/>
-				<connector uid="7" angle="275.711">
+				<connector uid="6" angle="275.711">
 					<from>Recovery_Delay</from>
 					<to>RR</to>
 				</connector>
 				<aux x="260" y="36" name="N"/>
-				<connector uid="9" angle="0">
+				<connector uid="7" angle="0">
 					<from>N</from>
 					<to>Per_Capita_Beta</to>
 				</connector>
 				<aux x="561" y="74" name="Average Contacts"/>
-				<connector uid="10" angle="165.964">
+				<connector uid="8" angle="165.964">
 					<from>Average_Contacts</from>
 					<to>Per_Capita_Beta</to>
 				</connector>
 				<aux x="394" y="25" name="Infectivity"/>
-				<connector uid="11" angle="270">
+				<connector uid="9" angle="270">
 					<from>Infectivity</from>
 					<to>Per_Capita_Beta</to>
 				</connector>
-				<connector uid="12" angle="9.09028">
+				<connector uid="10" angle="9.09028">
 					<from>Infectivity</from>
 					<to>R0</to>
 				</connector>
-				<connector uid="13" angle="347.471">
+				<connector uid="11" angle="347.471">
 					<from>Average_Contacts</from>
 					<to>R0</to>
 				</connector>
-				<connector uid="14" angle="356.82">
+				<connector uid="12" angle="356.82">
 					<from>Recovery_Delay</from>
 					<to>R0</to>
 				</connector>
 				<aux x="320" y="335" name="Checksum"/>
-				<connector uid="15" angle="274.399">
+				<connector uid="13" angle="274.399">
 					<from>Susceptible</from>
 					<to>Checksum</to>
 				</connector>
-				<connector uid="16" angle="250.017">
+				<connector uid="14" angle="250.017">
 					<from>Infected</from>
 					<to>Checksum</to>
 				</connector>
-				<connector uid="17" angle="219.928">
+				<connector uid="15" angle="219.928">
 					<from>Recovered</from>
 					<to>Checksum</to>
 				</connector>
-				<aux x="95" y="127" name="INIT Susceptible"/>
+				<aux x="123" y="116" name="INIT Susceptible"/>
 			</view>
 		</views>
 	</model>
