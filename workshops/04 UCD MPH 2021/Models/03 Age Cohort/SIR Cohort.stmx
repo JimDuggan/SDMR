@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xmile version="1.0" xmlns="http://docs.oasis-open.org/xmile/ns/XMILE/v1.0" xmlns:isee="http://iseesystems.com/XMILE">
+	<header>
+		<smile version="1.0" namespace="std, isee"/>
+		<name>SIR Cohort</name>
+		<uuid>904e1dce-0216-445b-8ec3-c6a0dd52dcf4</uuid>
+		<vendor>isee systems, inc.</vendor>
+		<product version="2.1.1" isee:build_number="2359" isee:saved_by_v1="true" lang="en">Stella Architect</product>
+	</header>
+	<sim_specs isee:sim_duration="0" isee:simulation_delay="0" isee:restore_on_start="false" method="Euler" time_units="Day" isee:instantaneous_flows="false" isee:loop_scores="false" isee:loop_exhaustive_allowed="1000">
+		<start>1</start>
+		<stop>40</stop>
+		<dt reciprocal="true">16</dt>
+	</sim_specs>
+	<isee:prefs show_module_prefix="true" live_update_on_drag="true" show_restore_buttons="false" layer="model" interface_scale_ui="true" interface_max_page_width="10000" interface_max_page_height="10000" interface_min_page_width="0" interface_min_page_height="0" rerun_on_structure_change="false" saved_runs="5" keep="false" rifp="true"/>
+	<isee:multiplayer_settings include_chat="true" allow_observers="false" advance_time_increment="1" max_advance_time_in_ms="0" observer_start_page="home_page" enabled="false"/>
+	<isee:time_formats default_format="Builtin">
+		<isee:time_format name="Builtin" type="adaptive"/>
+	</isee:time_formats>
+	<default_format/>
+	<model_units>
+		<unit name="People">
+			<eqn/>
+			<alias>person</alias>
+			<alias>persons</alias>
+		</unit>
+		<unit name="Dimensionless">
+			<eqn>1</eqn>
+			<alias>dmnl</alias>
+			<alias>unitless</alias>
+			<alias>fraction</alias>
+		</unit>
+		<unit name="Days">
+			<eqn/>
+			<alias>day</alias>
+		</unit>
+	</model_units>
+	<model>
+		<variables>
+			<stock name="Susceptible\nChild">
+				<eqn>39999</eqn>
+				<outflow>&quot;C-IR&quot;</outflow>
+				<units>People</units>
+			</stock>
+			<stock name="Infected\nChild">
+				<eqn>1</eqn>
+				<inflow>&quot;C-IR&quot;</inflow>
+				<outflow>&quot;C-RR&quot;</outflow>
+				<units>People</units>
+			</stock>
+			<stock name="Removed\nChild">
+				<eqn>0</eqn>
+				<inflow>&quot;C-RR&quot;</inflow>
+				<units>People</units>
+			</stock>
+			<flow name="C-IR">
+				<eqn>Susceptible_Child*Lambda_Child</eqn>
+				<non_negative/>
+				<units>People/Day</units>
+			</flow>
+			<flow name="C-RR">
+				<eqn>Infected_Child/Infectious_Duration</eqn>
+				<non_negative/>
+				<units>People/Day</units>
+			</flow>
+			<aux name="Lambda\nChild">
+				<eqn>Lambda_Child_Child+Lambda_Child_Adult</eqn>
+				<units>1/Day</units>
+			</aux>
+			<aux name="Susceptibility Child">
+				<eqn>.01</eqn>
+				<units>Dimensionless</units>
+			</aux>
+			<aux name="Total Child Population">
+				<eqn>Infected_Child + Removed_Child + Susceptible_Child</eqn>
+				<isee:summing/>
+				<units>People</units>
+			</aux>
+			<aux name="Infectious Duration">
+				<eqn>2</eqn>
+				<units>Days</units>
+			</aux>
+			<aux name="Contact Child Child">
+				<eqn>15</eqn>
+				<units>1/Days</units>
+			</aux>
+			<stock name="Susceptible\nAdult">
+				<eqn>60000</eqn>
+				<outflow>&quot;A-IR&quot;</outflow>
+				<units>People</units>
+			</stock>
+			<stock name="Infected\nAdult">
+				<eqn>0</eqn>
+				<inflow>&quot;A-IR&quot;</inflow>
+				<outflow>&quot;A-RR&quot;</outflow>
+				<units>People</units>
+			</stock>
+			<stock name="Removed\nAdult">
+				<eqn>0</eqn>
+				<inflow>&quot;A-RR&quot;</inflow>
+				<units>People</units>
+			</stock>
+			<flow name="A-IR">
+				<eqn>Susceptible_Adult*Lambda_Adult</eqn>
+				<non_negative/>
+				<units>People/Day</units>
+			</flow>
+			<flow name="A-RR">
+				<eqn>Infected_Adult/Infectious_Duration</eqn>
+				<non_negative/>
+				<units>People/Day</units>
+			</flow>
+			<aux name="Lambda Adult">
+				<eqn>Lambda_Adult_Child+Lambda_Adult_Adult</eqn>
+				<units>1/Days</units>
+			</aux>
+			<aux name="Contact Child Adult">
+				<eqn>6</eqn>
+				<units>1/Days</units>
+			</aux>
+			<aux name="Total Adult Population">
+				<eqn>Infected_Adult + Removed_Adult + Susceptible_Adult</eqn>
+				<isee:summing/>
+				<units>People</units>
+			</aux>
+			<aux name="Total Population">
+				<eqn>Total_Adult_Population + Total_Child_Population</eqn>
+				<isee:summing/>
+				<units>People</units>
+			</aux>
+			<aux name="Contact Adult Child">
+				<eqn>4</eqn>
+				<units>1/Days</units>
+			</aux>
+			<aux name="Contact Adult Adult">
+				<eqn>10</eqn>
+				<units>1/Days</units>
+			</aux>
+			<aux name="Lambda Child Child">
+				<eqn>Contact_Child_Child*Susceptibility_Child*Infected_Child/Total_Child_Population</eqn>
+				<units>1/Days</units>
+			</aux>
+			<aux name="Lambda Child Adult">
+				<eqn>Contact_Child_Adult*Susceptibility_Child*Infected_Adult/Total_Adult_Population</eqn>
+				<units>1/Days</units>
+			</aux>
+			<aux name="Lambda Adult Child">
+				<eqn>Contact_Adult_Child*Susceptibility_Adult*Infected_Child/Total_Child_Population</eqn>
+				<units>1/Days</units>
+			</aux>
+			<aux name="Lambda Adult Adult">
+				<eqn>Contact_Adult_Adult*Susceptibility_Adult*Infected_Adult/Total_Adult_Population</eqn>
+				<units>1/Days</units>
+			</aux>
+			<aux name="Total Contacts Adult Child">
+				<eqn>Total_Adult_Population*Contact_Adult_Child</eqn>
+				<units>People/Days</units>
+			</aux>
+			<aux name="Total Contacts Child Adults">
+				<eqn>Total_Child_Population*Contact_Child_Adult</eqn>
+				<units>People/Days</units>
+			</aux>
+			<aux name="Susceptibility Adult">
+				<eqn>.1</eqn>
+				<units>Dimensionless</units>
+			</aux>
+			<aux name="Adult IR Per 100K">
+				<eqn>100000*&quot;A-IR&quot;/Total_Adult_Population</eqn>
+				<units>1/Days</units>
+			</aux>
+			<aux name="Child IR Per 100K">
+				<eqn>100000*&quot;C-IR&quot;/Total_Child_Population</eqn>
+				<units>1/Days</units>
+			</aux>
+		</variables>
+		<views>
+			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+				<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+				<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+					<isee:series_styles>
+						<isee:series_style color="blue" thickness="1"/>
+						<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF7F00" thickness="1"/>
+						<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#FF007F" thickness="1"/>
+						<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+						<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+						<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+						<isee:series_style color="#C8C8C8" thickness="1"/>
+					</isee:series_styles>
+				</graph>
+				<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				<button color="black" background="#E0E0E0" font_size="12pt" border_width="thin" border_style="solid" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595"/>
+				<isee:annotation color="black" background="#E0E0E0" font_size="12pt" border_width="thin" border_style="solid" transparent="false" corner_radius="0" isee:flat="false" icon_side="top" isee:highlight_on_hover="false" isee:highlight_color="#959595" popup_corner_radius="0" popup_background_color="#FFFECF"/>
+				<slider color="#66CC66" background="#E0E0E0" font_size="12pt" num_ticks="3" label_side="top" wrap_title="true" vertical="false" isee:fancy_appearance="false" isee:show_hover_tip="when_deciding" input_expands="true" input_width="100"/>
+				<isee:sim_speed_slider color="black" background="white"/>
+				<isee:time_slider color="#E95F74" background="silver"/>
+				<isee:pie_input color="black" background="white" font_size="12pt" legend_position="bottom" isee:transparent="false"/>
+				<knob color="#66CC66" background="#E0E0E0" font_size="12pt" label_side="bottom" wrap_title="true"/>
+				<numeric_input color="black" background="#E0E0E0" font_size="12pt" label_side="left" wrap_title="true" input_expands="false" input_width="100"/>
+				<switch color="black" background="#E0E0E0" font_size="12pt" label_side="top" wrap_title="true" isee:appearance="switch" isee:on_color="green"/>
+				<options color="black" background="white" appearance="radio-buttons" arrangement="vertical"/>
+				<graphical_input color="black" background="#E0E0E0" font_size="12pt" isee:show_hover_tip="true"/>
+				<group_input color="black" background="#E0E0E0" font_size="12pt"/>
+				<lamp color="black" background="white" font_size="9pt"/>
+				<gauge color="black" background="white" font_size="9pt" needle_color="#F09F72" bar_color="#EEEEEE" bar_progress_color="black" appearance="radial" num_major_ticks="11" num_minor_ticks="11" show_numeric_value="true"/>
+				<isee:spatial_map color="black" background="white" font_size="12pt"/>
+				<isee:animation_object color="black" background="white" font_size="12pt"/>
+				<isee:navigation_widget color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_color="#999999" border_width="thin" border_style="solid" item_spacing="6" appearance="tabs" corner_radius="4" selected_item_color="black" selected_item_background="white" item_background="#DDDDDD"/>
+				<isee:shape color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid" opacity="1" transparent_background="true"/>
+				<isee:selector color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
+				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+			</style>
+			<view isee:show_pages="false" background="white" page_width="818" page_height="559" isee:page_cols="2" isee:page_rows="2" isee:scroll_y="7" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
+					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="45" height="35"/>
+					</stock>
+					<flow color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom"/>
+					<isee:placeholder color="#228B22" background="white" font_color="#228B22" font_size="9pt" label_side="bottom"/>
+					<module color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
+						<shape type="rectangle" width="55" height="45"/>
+					</module>
+					<aux color="blue" background="white" font_color="blue" font_size="9pt" label_side="bottom">
+						<shape type="circle" radius="18"/>
+					</aux>
+					<group color="red" background="white" font_color="red" font_size="9pt"/>
+					<connector color="#FF007F" background="white" font_color="#FF007F" font_size="9pt" isee:thickness="1"/>
+					<text_box color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<isee:loop_indicator color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt"/>
+					<numeric_display color="blue" background="white" font_size="9pt" isee:transparent="false"/>
+					<graph color="black" background="white" font_size="12pt" axis_color="#666666" grid_color="#C8C8C8" isee:graph_area_color="white" legend_position="bottom" isee:transparent="false" isee:hide_border="false" axis_title_font_style="normal" axis_title_font_weight="normal" axis_title_text_decoration="none" axis_title_text_align="center" axis_title_vertical_text_align="center" axis_title_font_color="black" axis_title_font_family="Arial" axis_title_font_size="12pt" axis_title_text_padding="2" axis_title_text_border_color="black" axis_title_text_border_width="thin" axis_title_text_border_style="none" axis_label_font_style="normal" axis_label_font_weight="normal" axis_label_text_decoration="none" axis_label_text_align="center" axis_label_vertical_text_align="center" axis_label_font_color="black" axis_label_font_family="Arial" axis_label_font_size="9pt" axis_label_text_padding="2" axis_label_text_border_color="black" axis_label_text_border_width="thin" axis_label_text_border_style="none">
+						<isee:series_styles>
+							<isee:series_style color="blue" thickness="1"/>
+							<isee:series_style color="red" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="fuchsia" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="#008F44" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF7F00" thickness="1"/>
+							<isee:series_style color="#7F00FF" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#0CA0FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="lime" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#FF007F" thickness="1"/>
+							<isee:series_style color="aqua" thickness="1" pen_style="dot_dashed"/>
+							<isee:series_style color="#F586FF" thickness="1" pen_style="dotted"/>
+							<isee:series_style color="black" thickness="1" pen_style="dashed"/>
+							<isee:series_style color="#C8C8C8" thickness="1"/>
+						</isee:series_styles>
+					</graph>
+					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
+				</style>
+				<stock label_side="top" x="218" y="209" name="Susceptible\nChild"/>
+				<stock x="430" y="209" name="Infected\nChild"/>
+				<stock x="623" y="209" name="Removed\nChild"/>
+				<flow x="318" y="209" name="C-IR">
+					<pts>
+						<pt x="240.5" y="209"/>
+						<pt x="407.5" y="209"/>
+					</pts>
+				</flow>
+				<flow x="520.5" y="209" name="C-RR">
+					<pts>
+						<pt x="452.5" y="209"/>
+						<pt x="600.5" y="209"/>
+					</pts>
+				</flow>
+				<connector uid="1" angle="321.483">
+					<from>Susceptible_Child</from>
+					<to>&quot;C-IR&quot;</to>
+				</connector>
+				<aux x="348" y="141" name="Lambda\nChild"/>
+				<aux x="395" y="39" name="Susceptibility Child"/>
+				<connector uid="5" angle="221.186">
+					<from>Lambda_Child</from>
+					<to>&quot;C-IR&quot;</to>
+				</connector>
+				<aux x="227" y="98" name="Total Child Population"/>
+				<connector uid="7" angle="318.814">
+					<from>Infected_Child</from>
+					<to>&quot;C-RR&quot;</to>
+				</connector>
+				<aux x="570.5" y="268" name="Infectious Duration"/>
+				<connector uid="8" angle="148.392">
+					<from>Infectious_Duration</from>
+					<to>&quot;C-RR&quot;</to>
+				</connector>
+				<aux x="277" y="38" name="Contact Child Child"/>
+				<stacked_container uid="23" x="770" y="287.5" width="501" height="273" visible_index="1">
+					<graph width="501" height="273" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Adult_IR_Per_100K"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Child_IR_Per_100K"/>
+						</plot>
+					</graph>
+					<graph width="501" height="273" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name='"A-IR"'/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name='"C-IR"'/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<stock label_side="top" x="220" y="370" name="Susceptible\nAdult"/>
+				<stock x="432" y="370" name="Infected\nAdult"/>
+				<stock x="625" y="370" name="Removed\nAdult"/>
+				<flow x="320" y="370" name="A-IR">
+					<pts>
+						<pt x="242.5" y="370"/>
+						<pt x="409.5" y="370"/>
+					</pts>
+				</flow>
+				<flow x="522.5" y="370" name="A-RR">
+					<pts>
+						<pt x="454.5" y="370"/>
+						<pt x="602.5" y="370"/>
+					</pts>
+				</flow>
+				<connector uid="24" angle="321.483">
+					<from>Susceptible_Adult</from>
+					<to>&quot;A-IR&quot;</to>
+				</connector>
+				<connector uid="25" angle="318.814">
+					<from>Infected_Adult</from>
+					<to>&quot;A-RR&quot;</to>
+				</connector>
+				<aux x="314" y="442" name="Lambda Adult"/>
+				<aux x="494" y="42" name="Contact Child Adult"/>
+				<connector uid="30" angle="272.386">
+					<from>Infectious_Duration</from>
+					<to>&quot;A-RR&quot;</to>
+				</connector>
+				<aux x="508.5" y="606" name="Total Adult Population"/>
+				<aux x="115" y="286" name="Total Population"/>
+				<aux x="209" y="541" name="Contact Adult Child"/>
+				<aux x="593.5" y="538" name="Contact Adult Adult"/>
+				<aux x="366" y="89" name="Lambda Child Child"/>
+				<aux x="461.5" y="110" name="Lambda Child Adult"/>
+				<connector uid="37" angle="85.8151">
+					<from>Infected_Child</from>
+					<to>Lambda_Child_Child</to>
+				</connector>
+				<connector uid="38" angle="71.5651">
+					<from>Infected_Adult</from>
+					<to>Lambda_Child_Adult</to>
+				</connector>
+				<connector uid="39" angle="271.79">
+					<from>Contact_Child_Adult</from>
+					<to>Lambda_Child_Adult</to>
+				</connector>
+				<connector uid="40" angle="305.218">
+					<from>Susceptibility_Child</from>
+					<to>Lambda_Child_Adult</to>
+				</connector>
+				<connector uid="41" angle="250.907">
+					<from>Lambda_Child_Child</from>
+					<to>Lambda_Child</to>
+				</connector>
+				<connector uid="42" angle="193.431">
+					<from>Lambda_Child_Adult</from>
+					<to>Lambda_Child</to>
+				</connector>
+				<connector uid="43" angle="167.125">
+					<from>
+						<alias uid="44"/>
+					</from>
+					<to>Lambda_Child_Adult</to>
+				</connector>
+				<connector uid="45" angle="330.186">
+					<from>Contact_Child_Child</from>
+					<to>Lambda_Child_Child</to>
+				</connector>
+				<connector uid="46" angle="242.176">
+					<from>Susceptibility_Child</from>
+					<to>Lambda_Child_Child</to>
+				</connector>
+				<connector uid="47" angle="3.70463">
+					<from>Total_Child_Population</from>
+					<to>Lambda_Child_Child</to>
+				</connector>
+				<aux x="274" y="520" name="Lambda Adult Child"/>
+				<aux x="448" y="463" name="Lambda Adult Adult"/>
+				<connector uid="48" angle="260.538">
+					<from>Infected_Child</from>
+					<to>Lambda_Adult_Child</to>
+				</connector>
+				<connector uid="49" angle="299.358">
+					<from>Infected_Adult</from>
+					<to>Lambda_Adult_Adult</to>
+				</connector>
+				<connector uid="50" angle="112.932">
+					<from>Total_Adult_Population</from>
+					<to>Lambda_Adult_Adult</to>
+				</connector>
+				<connector uid="26" angle="45">
+					<from>Lambda_Adult</from>
+					<to>&quot;A-IR&quot;</to>
+				</connector>
+				<aux x="371" y="665" name="Total Contacts Adult Child"/>
+				<connector uid="51" angle="278.746">
+					<from>Contact_Adult_Child</from>
+					<to>Total_Contacts_Adult_Child</to>
+				</connector>
+				<connector uid="52" angle="203.224">
+					<from>Total_Adult_Population</from>
+					<to>Total_Contacts_Adult_Child</to>
+				</connector>
+				<aux x="637" y="39" name="Total Contacts Child Adults"/>
+				<connector uid="53" angle="1.20183">
+					<from>Contact_Child_Adult</from>
+					<to>Total_Contacts_Child_Adults</to>
+				</connector>
+				<connector uid="54" angle="188.746">
+					<from>
+						<alias uid="55"/>
+					</from>
+					<to>Total_Contacts_Child_Adults</to>
+				</connector>
+				<connector uid="56" angle="192.095">
+					<from>Lambda_Adult_Adult</from>
+					<to>Lambda_Adult</to>
+				</connector>
+				<connector uid="57" angle="128.66">
+					<from>Lambda_Adult_Child</from>
+					<to>Lambda_Adult</to>
+				</connector>
+				<connector uid="61" angle="184.97">
+					<from>Contact_Adult_Adult</from>
+					<to>Lambda_Adult_Adult</to>
+				</connector>
+				<connector uid="64" angle="17.9044">
+					<from>Contact_Adult_Child</from>
+					<to>Lambda_Adult_Child</to>
+				</connector>
+				<aux x="348" y="596" name="Susceptibility Adult"/>
+				<connector uid="65" angle="134.236">
+					<from>Susceptibility_Adult</from>
+					<to>Lambda_Adult_Child</to>
+				</connector>
+				<connector uid="66" angle="79.3803">
+					<from>
+						<alias uid="67"/>
+					</from>
+					<to>Lambda_Adult_Adult</to>
+				</connector>
+				<aux x="898" y="235.5" name="Adult IR Per 100K"/>
+				<connector uid="68" angle="318.366">
+					<from>
+						<alias uid="69"/>
+					</from>
+					<to>Adult_IR_Per_100K</to>
+				</connector>
+				<connector uid="70" angle="239.036">
+					<from>
+						<alias uid="71"/>
+					</from>
+					<to>Adult_IR_Per_100K</to>
+				</connector>
+				<aux x="895" y="335" name="Child IR Per 100K"/>
+				<connector uid="72" angle="67.0113">
+					<from>
+						<alias uid="73"/>
+					</from>
+					<to>Child_IR_Per_100K</to>
+				</connector>
+				<connector uid="74" angle="113.199">
+					<from>
+						<alias uid="75"/>
+					</from>
+					<to>Child_IR_Per_100K</to>
+				</connector>
+				<connector uid="60" angle="30.9638">
+					<from>
+						<alias uid="59"/>
+					</from>
+					<to>Lambda_Adult_Child</to>
+				</connector>
+				<alias color="blue" background="white" font_style="italic" uid="44" x="559" y="89" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Total_Adult_Population</of>
+				</alias>
+				<alias font_style="italic" uid="55" x="764" y="47" width="18" height="18">
+					<of>Total_Child_Population</of>
+				</alias>
+				<alias font_style="italic" uid="59" x="268" y="579" width="18" height="18">
+					<of>Total_Child_Population</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="67" x="421" y="550" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Susceptibility_Adult</of>
+				</alias>
+				<alias color="blue" background="white" font_style="italic" uid="71" x="949" y="160" width="18" height="18">
+					<shape type="circle" radius="18"/>
+					<of>Total_Adult_Population</of>
+				</alias>
+				<alias font_style="italic" uid="69" x="838" y="164" width="18" height="18">
+					<of>&quot;A-IR&quot;</of>
+				</alias>
+				<alias font_style="italic" uid="73" x="831" y="406" width="18" height="18">
+					<of>&quot;C-IR&quot;</of>
+				</alias>
+				<alias font_style="italic" uid="75" x="935" y="415" width="18" height="18">
+					<of>Total_Child_Population</of>
+				</alias>
+			</view>
+		</views>
+	</model>
+	<isee:controls>
+		<isee:control priority="interactive" name="Susceptibility_Adult" value="0.0173682134371452"/>
+		<isee:control priority="interactive" name="Susceptibility_Child" value="0.135389895651887"/>
+	</isee:controls>
+</xmile>
+
