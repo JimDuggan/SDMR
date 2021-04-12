@@ -7,7 +7,7 @@
 		<vendor>isee systems, inc.</vendor>
 		<product version="2.1.1" isee:build_number="2359" isee:saved_by_v1="true" lang="en">Stella Architect</product>
 	</header>
-	<sim_specs isee:sim_duration="0" isee:simulation_delay="0" isee:restore_on_start="false" method="Euler" time_units="Day" isee:instantaneous_flows="false" isee:loop_scores="false" isee:loop_exhaustive_allowed="1000">
+	<sim_specs isee:sim_duration="1.5" isee:simulation_delay="0.0384615" isee:restore_on_start="false" method="Euler" time_units="Day" isee:instantaneous_flows="false" isee:loop_scores="false" isee:loop_exhaustive_allowed="1000">
 		<start>1</start>
 		<stop>40</stop>
 		<dt reciprocal="true">16</dt>
@@ -58,6 +58,15 @@
 			<aux name="Contacts">
 				<eqn>10</eqn>
 			</aux>
+			<aux name="R0">
+				<eqn>Contacts*Infectivity*Infectious_Duration</eqn>
+			</aux>
+			<aux name="Net Flow">
+				<eqn>IR-RR</eqn>
+			</aux>
+			<aux name="Rt">
+				<eqn>R0*Susceptible/Total_Population</eqn>
+			</aux>
 		</variables>
 		<views>
 			<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
@@ -104,7 +113,7 @@
 				<isee:iframe color="black" background="white" text_align="left" vertical_text_align="top" font_size="12pt" border_width="thin" border_style="solid"/>
 				<isee:financial_table color="black" background="#E0E0E0" text_align="right" font_size="12pt" hide_border="false" auto_fit="true" first_column_width="250" other_column_width="100" header_font_style="normal" header_font_weight="bold" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="14pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 			</style>
-			<view isee:show_pages="false" background="white" page_width="822" page_height="575" isee:page_cols="2" isee:page_rows="2" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
+			<view isee:show_pages="false" background="white" page_width="822" page_height="575" isee:page_cols="2" isee:page_rows="2" isee:scroll_x="36.4286" isee:scroll_y="0.714286" zoom="140" isee:popup_graphs_are_comparative="true" isee:enable_non_negative_highlights="false" type="stock_flow">
 				<style color="black" background="white" font_style="normal" font_weight="normal" text_decoration="none" text_align="center" vertical_text_align="center" font_color="black" font_family="Arial" font_size="10pt" padding="2" border_color="black" border_width="thin" border_style="none">
 					<stock color="blue" background="white" font_color="blue" font_size="9pt" label_side="top">
 						<shape type="rectangle" width="45" height="35"/>
@@ -141,31 +150,31 @@
 					</graph>
 					<table color="black" background="#E0E0E0" text_align="right" font_size="12pt" orientation="vertical" wrap_text="false" isee:auto_fit="true" isee:use_alternate_row_colors="false" isee:unlimited_table_length="false" blank_column_width="80" column_width="160" interval="1" report_balances="beginning" report_flows="instantaneous" header_font_style="normal" header_font_weight="normal" header_text_decoration="none" header_text_align="center" header_vertical_text_align="center" header_font_color="black" header_font_family="Arial" header_font_size="12pt" header_text_padding="2" header_text_border_color="black" header_text_border_width="thin" header_text_border_style="none"/>
 				</style>
-				<stock x="558" y="209" name="Susceptible"/>
-				<stock x="770" y="209" name="Infected"/>
-				<stock x="963" y="209" name="Removed"/>
-				<flow x="658" y="209" name="IR">
+				<stock x="714.429" y="216.857" name="Susceptible"/>
+				<stock x="926.429" y="216.857" name="Infected"/>
+				<stock x="1119.43" y="216.857" name="Removed"/>
+				<flow x="814.429" y="216.857" name="IR">
 					<pts>
-						<pt x="580.5" y="209"/>
-						<pt x="747.5" y="209"/>
+						<pt x="736.929" y="216.857"/>
+						<pt x="903.929" y="216.857"/>
 					</pts>
 				</flow>
-				<flow x="860.5" y="209" name="RR">
+				<flow x="1016.93" y="216.857" name="RR">
 					<pts>
-						<pt x="792.5" y="209"/>
-						<pt x="940.5" y="209"/>
+						<pt x="948.929" y="216.857"/>
+						<pt x="1096.93" y="216.857"/>
 					</pts>
 				</flow>
 				<connector uid="1" angle="321.483">
 					<from>Susceptible</from>
 					<to>IR</to>
 				</connector>
-				<aux x="688" y="141" name="Lambda"/>
+				<aux x="844.429" y="148.857" name="Lambda"/>
 				<connector uid="2" angle="109.983">
 					<from>Infected</from>
 					<to>Lambda</to>
 				</connector>
-				<aux x="780" y="108" name="Infectivity"/>
+				<aux x="936.429" y="115.857" name="Infectivity"/>
 				<connector uid="4" angle="180">
 					<from>Infectivity</from>
 					<to>Lambda</to>
@@ -174,7 +183,7 @@
 					<from>Lambda</from>
 					<to>IR</to>
 				</connector>
-				<aux x="553" y="98" name="Total Population"/>
+				<aux x="709.429" y="105.857" name="Total Population"/>
 				<connector uid="6" angle="353.089">
 					<from>Total_Population</from>
 					<to>Lambda</to>
@@ -183,27 +192,30 @@
 					<from>Infected</from>
 					<to>RR</to>
 				</connector>
-				<aux x="916.5" y="146" name="Infectious Duration"/>
+				<aux x="1072.93" y="153.857" name="Infectious Duration"/>
 				<connector uid="8" angle="257.196">
 					<from>Infectious_Duration</from>
 					<to>RR</to>
 				</connector>
-				<aux x="676" y="90" name="Contacts"/>
+				<aux x="832.429" y="97.8571" name="Contacts"/>
 				<connector uid="20" angle="283.241">
 					<from>Contacts</from>
 					<to>Lambda</to>
 				</connector>
-				<stacked_container uid="23" x="178" y="342" width="501" height="273">
-					<graph width="501" height="273" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+				<stacked_container uid="23" x="65.8571" y="47.7143" width="435.286" height="248.714">
+					<graph width="435.286" height="248.714" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="IR"/>
 						</plot>
 						<plot color="red" pen_style="dot_dashed" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
 							<entity name="RR"/>
 						</plot>
+						<plot color="fuchsia" pen_style="dotted" isee:keep_zero_visible="true" pen_width="1" index="0" right_axis="true" show_y_axis="true">
+							<entity name="R0"/>
+						</plot>
 					</graph>
 				</stacked_container>
-				<stacked_container uid="24" x="755" y="342" width="501" height="273">
+				<stacked_container uid="24" x="63.5714" y="346.286" width="501" height="273">
 					<graph width="501" height="273" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
 						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
 							<entity name="Susceptible"/>
@@ -216,12 +228,56 @@
 						</plot>
 					</graph>
 				</stacked_container>
+				<aux x="1050.43" y="53.8571" name="R0"/>
+				<connector uid="25" angle="38.3675">
+					<from>Contacts</from>
+					<to>R0</to>
+				</connector>
+				<connector uid="26" angle="20.556">
+					<from>Infectivity</from>
+					<to>R0</to>
+				</connector>
+				<connector uid="27" angle="81.7406">
+					<from>Infectious_Duration</from>
+					<to>R0</to>
+				</connector>
+				<aux x="918.429" y="305" name="Net Flow"/>
+				<connector uid="28" angle="295.278">
+					<from>IR</from>
+					<to>Net_Flow</to>
+				</connector>
+				<connector uid="29" angle="254.5">
+					<from>RR</from>
+					<to>Net_Flow</to>
+				</connector>
+				<stacked_container uid="30" x="690.143" y="347" width="467.429" height="271.571">
+					<graph width="467.429" height="271.571" type="time_series" isee:points_only="false" show_grid="false" include_units_in_legend="false" plot_numbers="false" isee:label_pie_slices="false" num_x_grid_lines="0" num_y_grid_lines="0" num_x_labels="5" num_y_labels="3" isee:fill_intensity="0.1" isee:allow_zero_axis="true" left_axis_multi_scale="false" left_axis_auto_scale="true" left_include_units="true" right_axis_multi_scale="false" right_axis_auto_scale="true" right_include_units="true">
+						<plot color="blue" isee:keep_zero_visible="true" pen_width="1" index="0" show_y_axis="true">
+							<entity name="Net_Flow"/>
+						</plot>
+						<plot color="red" pen_style="dot_dashed" isee:keep_zero_visible="true" pen_width="1" index="1" show_y_axis="true">
+							<entity name="Infected"/>
+						</plot>
+						<plot color="fuchsia" pen_style="dotted" isee:keep_zero_visible="true" pen_width="1" index="0" right_axis="true" show_y_axis="true">
+							<entity name="Rt"/>
+						</plot>
+					</graph>
+				</stacked_container>
+				<aux x="781" y="20.2857" width="18" height="18" name="Rt"/>
+				<connector uid="31" angle="161.764">
+					<from>R0</from>
+					<to>Rt</to>
+				</connector>
+				<connector uid="32" angle="56.6244">
+					<from>Total_Population</from>
+					<to>Rt</to>
+				</connector>
+				<connector uid="33" angle="45.9602">
+					<from>Susceptible</from>
+					<to>Rt</to>
+				</connector>
 			</view>
 		</views>
 	</model>
-	<isee:controls>
-		<isee:control priority="interactive" name="Contacts" value="11.127813740139"/>
-		<isee:control priority="interactive" name="Infectivity" value="0.12185835209055"/>
-	</isee:controls>
 </xmile>
 
