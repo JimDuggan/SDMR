@@ -5,7 +5,7 @@ library(ggplot2)
 library(purrr)
 library(stringr)
 
-res <- read_xlsx("workshops/03 Southampton 2021/Models/03 SIR Vaccination/Sensitivity Output.xlsx")
+res <- read_xlsx("workshops/07 OR63 Workshop/models/02 Sensitivity/Sensitivity Output.xlsx")
 
 
 

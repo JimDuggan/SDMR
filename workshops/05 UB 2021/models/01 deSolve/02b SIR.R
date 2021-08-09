@@ -4,7 +4,7 @@ library(readsdr)
 library(deSolve)
 library(dplyr)
 
-filepath <- "workshops/03 Southampton 2021/Models/02 SIR deSolve/SIR.stmx"
+filepath <- "workshops/07 OR63 Workshop/models/01 deSolve/SIR.stmx"
 mdl      <- read_xmile(filepath) 
 
 simtime <- seq(mdl$deSolve_components$sim_params$start,
