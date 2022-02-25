@@ -10,4 +10,5 @@ data <- observations %>%
           filter(month==1) %>%
           filter(station %in% target)
 
-ggplot(data,aes(x=date,y=temp,colour=station,size=rain))+geom_point()
+ggplot(data,aes(x=date,y=temp,colour=station,size=rain))+
+  geom_point()
