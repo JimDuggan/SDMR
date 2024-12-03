@@ -8,6 +8,18 @@ simtime <- seq(START, FINISH, by=STEP)
 stocks  <- c(sStock=100)
 auxs    <- c(aCapacity=10000, aRef.Availability=1, aRef.GrowthRate=0.10)
 
+bmode<-function(net_flow, time)
+{
+  net_flow<-abs(net_flow)
+  net_flow_dt<- rep(NA, length(net_flow))
+  net_flow_dt[2:length(net_flow_dt)]<-diff(net_flow)/diff(time)  
+  bm<-ifelse(net_flow_dt > 0,ans<-"EXP",
+             ifelse(net_flow_dt < 0,ans<-"LOG",ans<-"LIN"))
+  bm[1] = bm[2]
+  return(bm)
+}
+
+
 model <- function(time, stocks, auxs){
   with(as.list(c(stocks, auxs)),{ 
     aAvailability <- 1 - sStock / aCapacity
